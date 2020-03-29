@@ -1,27 +1,28 @@
 #!/bin/bash
 
-# Fail on errors
-set -e
+on_error () {
+    echo "Error, cleaning up..."
+    rm -rf "$HOME/.dotfiles"
+    exit 1
+}
+
+# Cleanup on errors
+trap 'on_error' ERR
 
 cd $HOME
 
 git clone --bare 'https://github.com/iFreilicht/.dotfiles.git' .dotfiles/.git
 
 # Set up git alias for working with special dotfile repo structure
+shopt -s expand_aliases
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/.git/ --work-tree=$HOME'
 
 # Include .gitconfig file when working with dotfiles
 dot config --local include.path $HOME/.dotfiles/.gitconfig
 
-# Stop failing on errors
-unset -e
-
-if [ ! $1 == '--force'] then
+if [ ! $1 ] || [ $1 != '--force' ]; then
     # Try to checkout all files
     dot checkout
-    if [ $? != 0 ] then
-        'Do what git says or re-run with --force.'
-    fi
 else
     # Checkout all files, overwriting exisiting ones
     dot checkout -f
