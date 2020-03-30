@@ -40,7 +40,7 @@ set $green         #859900
 exec setxkbmap us intl
 
 # Set screen layout
-exec ~/.screenlayout/two_screens_vertical.sh
+exec ~/.dotfiles/monitorlayout.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
