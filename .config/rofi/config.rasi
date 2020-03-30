@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,run,ssh";
+	modi: "combi";
 	width: 50;
 	lines: 15;
 /*	columns: 1;*/
@@ -31,7 +31,7 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-/*	combi-modi: "window,run";*/
+	combi-modi: "window,run,ssh";
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -63,7 +63,7 @@ configuration {
 /*	display-run: ;*/
 /*	display-ssh: ;*/
 /*	display-drun: ;*/
-/*	display-combi: ;*/
+	display-combi: "do";
 /*	display-keys: ;*/
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/

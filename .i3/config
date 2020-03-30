@@ -71,7 +71,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # Start rofi instead of dmenu
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show combi
 # Emoji picker
 bindsym $sup+period exec splatmoji type
 
