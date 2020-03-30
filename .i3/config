@@ -214,3 +214,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Window categories
+for_window [title="Microsoft Teams Notification"] floating enable; sticky enable
+no_focus [title="Microsoft Teams Notification"]
