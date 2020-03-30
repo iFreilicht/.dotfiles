@@ -1,3 +1,6 @@
 [submodule ".dotfiles/run/splatmoji"]
 	path = .dotfiles/run/splatmoji
 	url = https://github.com/cspeterson/splatmoji.git
+[submodule ".dotfiles/run/teiler"]
+	path = .dotfiles/run/teiler
+	url = https://github.com/carnager/teiler.git
