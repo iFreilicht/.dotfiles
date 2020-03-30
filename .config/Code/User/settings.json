@@ -1,0 +1,31 @@
+{
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.formatOnSave": true,
+    "python.formatting.autopep8Args": [
+        "--max-line-length",
+        "120"
+    ],
+    "editor.renderWhitespace": "all",
+    "terminal.integrated.fontFamily": "'Meslo LG M DZ for Powerline'",
+    "explorer.confirmDelete": false,
+    "git.autofetch": true,
+    "gitlens.views.repositories.location": "scm",
+    "gitlens.views.fileHistory.location": "scm",
+    "gitlens.views.lineHistory.location": "scm",
+    "gitlens.views.compare.location": "scm",
+    "gitlens.views.search.location": "scm",
+    "arduino.path": "/home/felix/programs/arduino-1.8.12",
+    "arduino.additionalUrls": [
+        "https://dl.espressif.com/dl/package_esp32_index.json",
+        "http://arduino.esp8266.com/stable/package_esp8266com_index.json",
+        "http://digistump.com/package_digistump_index.json"
+    ],
+    "extensions.autoUpdate": false,
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "markdown-preview-enhanced.liveUpdate": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.exclude": {
+        "**/.git": false
+    }
+}
