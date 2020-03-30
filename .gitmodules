@@ -4,3 +4,6 @@
 [submodule ".dotfiles/run/teiler"]
 	path = .dotfiles/run/teiler
 	url = https://github.com/carnager/teiler.git
+[submodule ".dotfiles/fonts"]
+	path = .dotfiles/fonts
+	url = https://github.com/powerline/fonts.git
