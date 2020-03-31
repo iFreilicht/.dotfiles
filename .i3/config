@@ -55,8 +55,7 @@ font pango:Meslo LG M 10
 floating_modifier $mod
 
 # lock screen. Set kbmap afterwards to work around it resetting after a long time
-exec export I3LOCK_BACKGROUND=/home/felix/Pictures/solarized-mountains-dark.png
-bindsym $sup+bracketright exec "xset dpms 5; i3lock -n -t -i ~/Pictures/solarized-mountains-dark_2560x1440.png; xset -dpms; setxkbmap us intl"
+bindsym $sup+bracketright exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/solarized_mountains_1920x1080.png; xset dpms 300 3600 0; setxkbmap us intl"
 
 # hide borders close to edge of screen
 hide_edge_borders both
