@@ -7,7 +7,7 @@
         "120"
     ],
     "editor.renderWhitespace": "all",
-    "terminal.integrated.fontFamily": "'Meslo LG M DZ for Powerline'",
+    "terminal.integrated.fontFamily": "'MesloLGMDZ Nerd Font Mono'",
     "explorer.confirmDelete": false,
     "git.autofetch": true,
     "gitlens.views.repositories.location": "scm",
@@ -27,5 +27,6 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "files.exclude": {
         "**/.git": false
-    }
+    },
+    "editor.fontFamily": "'MesloLGMDZ Nerd Font'"
 }
