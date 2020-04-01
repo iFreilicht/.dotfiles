@@ -28,5 +28,6 @@
     "files.exclude": {
         "**/.git": false
     },
-    "editor.fontFamily": "'MesloLGMDZ Nerd Font'"
+    "editor.fontFamily": "'MesloLGMDZ Nerd Font'",
+    "window.menuBarVisibility": "toggle"
 }
