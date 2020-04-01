@@ -189,10 +189,14 @@ bindsym $mod+Shift+Right resize grow width $r_px px or $r_ppt ppt
 exec_always ~/.config/polybar/launch.sh
 
 # Window decoration colors
-client.focused          #586e75 #586e75 #002b36 #268bd2
-client.focused_inactive #002b36 #002b36 #839496 #268bd2
-client.unfocused        #002b36 #002b36 #839496 #268bd2
-client.urgent           #002b36 #dc322f #fdf6e3 #859900
+# class                 border  backgr. text    indicator
+client.focused          $base02 $base02 $base1  $blue
+client.focused_inactive $base03 $base03 $base0  $blue
+client.unfocused        $base03 $base03 $base01 $blue
+client.urgent           $red    $red    $base2  $base2
+
+client.placeholder      #000000 $base03 $base01 #000000
+client.background               $base03
 
 
 # Pulse Audio controls
