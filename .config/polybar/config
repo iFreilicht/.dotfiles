@@ -411,20 +411,34 @@ label-close-foreground = ${colors.base0}
 label-separator = |
 label-separator-foreground = ${colors.base01}
 
-menu-0-0 = reboot
+
+menu-0-0 = 
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = ⏼
 menu-0-1-exec = menu-open-2
+menu-0-2 = ⏾
+menu-0-2-exec = menu-open-3
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-0 = 
+menu-1-0-exec = systemctl reboot
+menu-1-1 = 窱
+menu-1-1-exec = menu-open-0
+menu-1-2 = 窱
+menu-1-2-exec = menu-open-0
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+menu-2-0 = 窱
+menu-2-0-exec = menu-open-0
+menu-2-1 = ⏼
+menu-2-1-exec = systemctl poweroff
+menu-2-2 = 窱
+menu-2-2-exec = menu-open-0
+
+menu-3-0 = 窱
+menu-3-0-exec = menu-open-0
+menu-3-1 = 窱
+menu-3-1-exec = menu-open-0
+menu-3-2 = ⏾
+menu-3-2-exec = systemctl hybrid-sleep
 
 [settings]
 screenchange-reload = true
