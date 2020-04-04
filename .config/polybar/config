@@ -40,8 +40,8 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/center]
-monitor = ${env:MONITOR:DP-1}
+[bar/primary]
+monitor = ${env:MONITOR:fallback-value}
 width = 100%
 height = 24
 ;offset-x = 1%
@@ -87,29 +87,18 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/left]
-monitor = ${env:MONITOR:DVI-I-1}
-width = 100%
-height = 24
-fixed-center = true
+[bar/unified]
+inherit = bar/primary
 
-font-0 = "MesloLGMDZ Nerd Font:size=10;0"
+modules-left = eth wlan xkeyboard filesystem
 
-background = ${colors.base03}
-foreground = ${colors.base0}
+[bar/secondary]
+inherit = bar/primary
 
-line-size = 2
-line-color = ${colors.base02}
-
-border-size = 0
-border-color = #00000000
-
-padding = 3
-
-module-margin-left = 0
-module-margin-right = 3
+tray-position = none
 
 modules-right = i3
+modules-center =
 modules-left = filesystem
 
 [module/xwindow]
