@@ -7,6 +7,12 @@
         "120"
     ],
     "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        72,
+        79,
+        99,
+        120
+    ],
     "terminal.integrated.fontFamily": "'MesloLGMDZ Nerd Font Mono'",
     "explorer.confirmDelete": false,
     "git.autofetch": true,
@@ -29,5 +35,8 @@
         "**/.git": false
     },
     "editor.fontFamily": "'MesloLGMDZ Nerd Font'",
-    "window.menuBarVisibility": "toggle"
+    "window.menuBarVisibility": "toggle",
+    "gitlens.advanced.messages": {
+        "suppressGitDisabledWarning": true
+    }
 }
