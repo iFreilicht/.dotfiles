@@ -1,19 +1,19 @@
 
 # Display directories as trees
-sudo apt install tree 
+sudo apt install -y tree 
 # Show system info
-sudo apt install neofetch
+sudo apt install -y neofetch
 # rofi task switcher / launcher
-sudo apt install rofi
+sudo apt install -y rofi
 # Dependencies of splatmoji
-sudo apt install xdotool xsel
+sudo apt install -y xdotool xsel
 # Dependencies of teiler
-sudo apt install xininfo ffmpeg xclip maim slop copyq
+sudo apt install -y xininfo ffmpeg xclip maim slop copyq
 # install teiler from git repo
 cd .dotfiles/run/teiler && sudo make install; cd
 
 # Install dependencies of polybar
-sudo apt install \
+sudo apt install -y \
   cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
   libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev \
   libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen \
@@ -21,5 +21,4 @@ sudo apt install \
   libiw-dev libcurl4-openssl-dev libpulse-dev \
   libxcb-composite0-dev xcb libxcb-ewmh2
 # install polybar
-cd .dotfiles/run/polybar && ./build.sh --all-features --auto && \
-  sudo make install
+cd .dotfiles/run/polybar && ./build.sh --all-features --auto 
