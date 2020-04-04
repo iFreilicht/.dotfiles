@@ -3,7 +3,7 @@ configuration {
 	width: 50;
 	lines: 15;
 /*	columns: 1;*/
-	font: "MesloLGMDZ Nerd Font 12";
+	font: "MesloLGMDZ Nerd Font 10";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
@@ -48,7 +48,7 @@ configuration {
 /*	scroll-method: 0;*/
 /*	fake-background: "screenshot";*/
 /*	window-format: "{w}    {i}{c}   {t}";*/
-/*	click-to-exit: true;*/
+	click-to-exit: false;
 /*	show-match: true;*/
 /*	theme: ;*/
 /*	color-normal: ;*/
@@ -75,7 +75,7 @@ configuration {
 /*	kb-move-char-back: "Left,Control+b";*/
 /*	kb-move-char-forward: "Right,Control+f";*/
 /*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
-/*	kb-remove-word-forward: "Control+Alt+d";*/
+	kb-remove-word-forward: "Control+Alt+d,Control+Delete";
 /*	kb-remove-char-forward: "Delete,Control+d";*/
 /*	kb-remove-char-back: "BackSpace,Control+h";*/
 /*	kb-remove-to-eol: "Control+k";*/
@@ -96,7 +96,7 @@ configuration {
 /*	kb-row-first: "Home,KP_Home";*/
 /*	kb-row-last: "End,KP_End";*/
 /*	kb-row-select: "Control+space";*/
-/*	kb-screenshot: "Alt+S";*/
+	kb-screenshot: "Control+S";
 /*	kb-toggle-case-sensitivity: "grave,dead_grave";*/
 /*	kb-toggle-sort: "Alt+grave";*/
 /*	kb-cancel: "Escape,Control+g,Control+bracketleft";*/
@@ -136,4 +136,4 @@ configuration {
 /*	me-select-entry: "MousePrimary";*/
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
-}@import "/usr/share/rofi/themes/solarized_alternate.rasi"
+}@import "~/.config/rofi/theme.rasi"
