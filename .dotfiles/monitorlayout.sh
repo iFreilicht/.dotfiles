@@ -7,6 +7,6 @@ case $(hostname) in
     felix-XPS-12-Ubuntu)
         echo "On Laptop"
         # Laptop, two screens
-        xrandr --output eDP1 --auto --primary --output DP1 --auto --above eDP1
+        xrandr --output eDP-1 --auto --primary --output DP1 --auto --above eDP-1
     ;;
 esac

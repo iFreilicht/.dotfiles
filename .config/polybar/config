@@ -65,7 +65,7 @@ padding = 3
 module-margin-left = 0
 module-margin-right = 3
 
-modules-left = eth wlan xkeyboard
+modules-left = eth wlan0 wlan1 xkeyboard
 modules-center = i3
 modules-right =  tray memory cpu temperature alsa date powermenu
 
@@ -90,7 +90,7 @@ cursor-scroll = ns-resize
 [bar/unified]
 inherit = bar/primary
 
-modules-left = eth wlan xkeyboard filesystem
+modules-left = eth wlan0 wlan1 xkeyboard filesystem
 
 [bar/secondary]
 inherit = bar/primary
@@ -222,28 +222,6 @@ format-prefix-foreground = ${colors.base01}
 format-underline = ${colors.violet}
 label = %percentage_used%%
 
-[module/wlan]
-type = internal/network
-interface = wlp3s0
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 =
-ramp-signal-1 =
-ramp-signal-2 =
-ramp-signal-3 =
-ramp-signal-4 =
-ramp-signal-foreground = ${colors.base01}
-
 [module/eth]
 type = internal/network
 interface = eno1
@@ -258,6 +236,25 @@ format-disconnected-underline = ${colors.red}
 format-disconnected-suffix = " "
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.red}
+
+[module/wlan0]
+inherit=module/eth
+interface = wlp3s0
+
+label-connected = %essid%
+format-connected-suffix = " 說"
+format-disconnected-suffix = " ﲁ"
+
+ramp-signal-0 =
+ramp-signal-1 =
+ramp-signal-2 =
+ramp-signal-3 =
+ramp-signal-4 =
+ramp-signal-foreground = ${colors.base01}
+
+[module/wlan1]
+inherit=module/wlan0
+interface=wlan1
 
 [module/date]
 type = internal/date
