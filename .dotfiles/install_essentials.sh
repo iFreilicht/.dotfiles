@@ -21,4 +21,10 @@ sudo apt install -y \
   libiw-dev libcurl4-openssl-dev libpulse-dev \
   libxcb-composite0-dev xcb libxcb-ewmh2
 # install polybar
-cd .dotfiles/run/polybar && ./build.sh --all-features --auto 
+cd .dotfiles/run/polybar && ./build.sh --all-features --auto; cd 
+
+# Install all the vim stuff
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
+cd .vim/plugged/YouCompleteMe && ./install.py; cd
