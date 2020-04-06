@@ -26,5 +26,4 @@ cd .dotfiles/run/polybar && ./build.sh --all-features --auto; cd
 # Install all the vim stuff
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
-cd .vim/plugged/YouCompleteMe && ./install.py; cd
+vim +PlugInstall +qall && cd .vim/plugged/YouCompleteMe && ./install.py; cd

@@ -30,7 +30,7 @@ call plug#end()
 
 let g:airline_theme='solarized'
 set background=dark
-colorscheme solarized
+silent! colorscheme solarized
 
 let mapleader = " "
 
