@@ -1,4 +1,5 @@
-
+# Jump to directories
+sudo apt install -y autojump
 # Display directories as trees
 sudo apt install -y tree 
 # Show system info

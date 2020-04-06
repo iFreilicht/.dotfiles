@@ -100,3 +100,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Alias for dotfiles bare repository
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
+
+# Autojump needs to be sourced to work on Ubuntu
+source /usr/share/autojump/autojump.sh
