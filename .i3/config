@@ -12,9 +12,9 @@
 set $mod Mod1
 set $sup Mod4
 
-set $up i
-set $left j
-set $down k
+set $up k
+set $left h
+set $down j
 set $right l
 
 # Color constants for Solarized palette
@@ -106,11 +106,8 @@ bindsym $sup+Down move down
 bindsym $sup+Up move up
 bindsym $sup+Right move right
 
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
+# split in other orientation
+bindsym $mod+v split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
