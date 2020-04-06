@@ -38,5 +38,6 @@
     "window.menuBarVisibility": "toggle",
     "gitlens.advanced.messages": {
         "suppressGitDisabledWarning": true
-    }
+    },
+    "vim.vimrc.enable": true
 }
