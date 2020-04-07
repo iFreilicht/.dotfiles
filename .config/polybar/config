@@ -65,7 +65,7 @@ padding = 3
 module-margin-left = 0
 module-margin-right = 3
 
-modules-left = eth wlan0 wlan1 xkeyboard i3
+modules-left = eth vpn wlan0 wlan1 xkeyboard i3
 modules-center = xwindow
 modules-right =  tray memory cpu temperature alsa date powermenu
 
@@ -237,6 +237,13 @@ format-disconnected-underline = ${colors.red}
 format-disconnected-suffix = " "
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.red}
+
+[module/vpn]
+inherit = module/eth
+interface = tun0
+
+label-connected = "VPN"
+label-disconnected = "VPN"
 
 [module/wlan0]
 inherit=module/eth
