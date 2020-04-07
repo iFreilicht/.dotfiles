@@ -65,9 +65,9 @@ padding = 3
 module-margin-left = 0
 module-margin-right = 3
 
-modules-left = eth wlan0 wlan1 xkeyboard
+modules-left = eth wlan0 wlan1 xkeyboard i3
 modules-center = xwindow
-modules-right =  i3 tray memory cpu temperature alsa date powermenu
+modules-right =  tray memory cpu temperature alsa date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -244,7 +244,7 @@ interface = wlp3s0
 
 label-connected = %essid%
 format-connected-suffix = " 說"
-format-disconnected-suffix = " ﲁ"
+format-disconnected =
 
 ramp-signal-0 =
 ramp-signal-1 =
@@ -256,6 +256,8 @@ ramp-signal-foreground = ${colors.base01}
 [module/wlan1]
 inherit=module/wlan0
 interface=wlan1
+format-disconnected = <label-disconnected>
+format-disconnected-suffix = " ﲁ"
 
 [module/date]
 type = internal/date
