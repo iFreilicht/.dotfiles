@@ -103,3 +103,8 @@ alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
 # Autojump needs to be sourced to work on Ubuntu
 source /usr/share/autojump/autojump.sh
+
+# Source private zshrc if it exists
+if [ -f "$HOME/.p-zshrc" ]; then
+    source "$HOME/.p-zshrc"
+fi
