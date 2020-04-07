@@ -66,8 +66,8 @@ module-margin-left = 0
 module-margin-right = 3
 
 modules-left = eth wlan0 wlan1 xkeyboard
-modules-center = i3
-modules-right =  tray memory cpu temperature alsa date powermenu
+modules-center = xwindow
+modules-right =  i3 tray memory cpu temperature alsa date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -98,12 +98,13 @@ inherit = bar/primary
 tray-position = none
 
 modules-right = i3
-modules-center =
 modules-left = filesystem
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title%
+label-maxlen = 80
+label-empty = ???
 
 [module/xkeyboard]
 type = internal/xkeyboard

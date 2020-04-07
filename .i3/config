@@ -64,7 +64,8 @@ bindsym $sup+bracketright exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/i
 default_orientation vertical
 for_window [class="^"] split toggle
 
-# hide borders close to edge of screen
+# Style borders
+new_window pixel 2
 hide_edge_borders both
 
 # allow switching back to previous workspace easily
