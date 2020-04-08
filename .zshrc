@@ -108,3 +108,8 @@ source /usr/share/autojump/autojump.sh
 if [ -f "$HOME/.p-zshrc" ]; then
     source "$HOME/.p-zshrc"
 fi
+
+# Source node version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

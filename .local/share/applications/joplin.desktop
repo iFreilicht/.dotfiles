@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Joplin Desktop
+GenericName=Note tool
+Exec=joplin-desktop %u
+Categories=Notes;Todo;
+StartupWMClass=joplin
+Type=Application

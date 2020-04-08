@@ -1,0 +1,6 @@
+[
+    { "keys": ["l"], "type": "function", "command": "focus_next" },
+    { "keys": ["h"], "type": "function", "command": "focus_previous" },
+    { "keys": ["k"], "type": "function", "command": "move_up" },
+    { "keys": ["j"], "type": "function", "command": "move_down" }
+]
