@@ -209,11 +209,11 @@ client.background               $base03
 
 # Pulse Audio controls
 #increase sound volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 -- +1%; exec killall -USR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%; exec killall -USR1 i3status
 #decrease sound volume 
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -- -1%; exec killall -USR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%; exec killall -USR1 i3status
 # mute sound
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle; exec killall -USR1 i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle; exec killall -USR1 i3status
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
