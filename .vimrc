@@ -25,6 +25,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
