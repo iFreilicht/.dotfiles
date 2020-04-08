@@ -1,3 +1,8 @@
+# Spotify
+
+- Install GUI: `snap install spotify`
+- Install TUI: `snap install spt`
+
 # Joplin
 
 GUI:
