@@ -65,9 +65,9 @@ padding = 3
 module-margin-left = 0
 module-margin-right = 3
 
-modules-left = eth vpn wlan0 wlan1 xkeyboard i3
+modules-left = eth vpn wlan0 wlan1 xkeyboard i3 memory cpu
 modules-center = xwindow
-modules-right =  tray memory cpu temperature alsa date powermenu
+modules-right =  tray spotify pulseaudio date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -90,7 +90,7 @@ cursor-scroll = ns-resize
 [bar/unified]
 inherit = bar/primary
 
-modules-left = eth wlan0 wlan1 xkeyboard filesystem
+modules-left = eth wlan0 wlan1 xkeyboard memory cpu filesystem
 
 [bar/secondary]
 inherit = bar/primary
@@ -130,8 +130,7 @@ mount-2 = /mnt/c
 mount-3 = /mnt/s
 
 label-mounted = %{F#586e75}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.base02}
+format-unmounted =
 
 [module/i3]
 type = internal/i3
@@ -176,11 +175,11 @@ label-urgent-padding = 2
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev =
+icon-stop =
+icon-play =
+icon-pause =
+icon-next =
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -210,16 +209,16 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.base01}
+format-suffix = "  "
+format-suffix-foreground = ${colors.base01}
 format-underline = ${colors.magenta}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "﬙ "
-format-prefix-foreground = ${colors.base01}
+format-suffix = " ﬙ "
+format-suffix-foreground = ${colors.base01}
 format-underline = ${colors.violet}
 label = %percentage_used%%
 
@@ -281,56 +280,34 @@ format-underline = ${colors.yellow}
 
 label = %date% %time%
 
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix =
+format = <label>
+exec = python /home/felix/.dotfiles/run/polybar-spotify/spotify_status.py -f '{play_pause} {artist}/{album}/{song}' -p ','
+format-underline = ${colors.red}
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = 婢 muted
-label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.base01}
-
-[module/alsa]
-type = internal/alsa
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+format-volume = <bar-volume> <label-volume>
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 format-volume-underline = ${colors.orange}
 
-format-muted-prefix = "婢 "
-format-muted-foreground = ${colors.base01}
-label-muted = sound muted
-format-muted-underline = ${self.format-volume-underline}
+label-muted = ──────── 婢
+label-muted-foreground = ${colors.base01}
 
-bar-volume-width = 5
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-width = 6
+bar-volume-foreground-0 = ${colors.blue}
+bar-volume-foreground-1 = ${colors.cyan}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.yellow}
+bar-volume-foreground-4 = ${colors.orange}
+bar-volume-foreground-5 = ${colors.red}
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator = ◆
 bar-volume-indicator-font = 2
 bar-volume-fill = ─
 bar-volume-fill-font = 2
