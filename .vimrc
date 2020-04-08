@@ -1,5 +1,6 @@
 syntax on
 
+set encoding=utf-8
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
@@ -12,6 +13,8 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+
+set listchars=eol:↵,tab:>-,space:·,trail:⨯,extends:,precedes:
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -29,8 +32,8 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
-let g:airline_theme='solarized'
 set background=dark
+let g:airline_theme='solarized'
 silent! colorscheme solarized
 
 let mapleader = " "
