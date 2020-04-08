@@ -16,7 +16,7 @@ set incsearch
 
 set listchars=eol:↵,tab:>-,space:·,trail:⨯,extends:,precedes:
 
-set colorcolumn=80
+set colorcolumn=73,80,100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
