@@ -9,11 +9,13 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs command_execution_time)
 
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-
+POWERLEVEL9K_VI_INSERT_MODE_STRING="INS"
+POWERLEVEL9K_VI_COMMAND_MODE_STRING="NRM"
+DEFAULT_USER=felix
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -65,6 +67,7 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   gitfast
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
