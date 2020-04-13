@@ -19,6 +19,9 @@ sudo apt install -y xininfo ffmpeg xclip maim slop copyq
 # install teiler from git repo
 cd .dotfiles/run/teiler && sudo make install; cd
 
+# Install ag (mainly for fzf)
+sudo apt install -y silversearcher-ag
+
 # Install dependencies of polybar
 sudo apt install -y \
   cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
@@ -34,3 +37,4 @@ cd .dotfiles/run/polybar && ./build.sh --all-features --auto; cd
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +qall && cd .vim/plugged/YouCompleteMe && ./install.py; cd
+mkdir .vim/undodir # For persistent undo

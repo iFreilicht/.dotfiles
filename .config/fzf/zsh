@@ -1,0 +1,22 @@
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */home/felix/.dotfiles/run/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/home/felix/.dotfiles/run/fzf/bin"
+fi
+
+# Include dotfiles, except .git
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+# Use top-to-bottom view, enable multimode and sensible keybindings
+export FZF_DEFAULT_OPTS='--reverse --multi --bind tab:down --bind btab:up --bind ctrl-space:toggle --multi'
+
+# Trigger autocomplete on *<TAB>
+export FZF_COMPLETION_TRIGGER='*'
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/home/felix/.dotfiles/run/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/home/felix/.dotfiles/run/fzf/shell/key-bindings.zsh"

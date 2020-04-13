@@ -26,3 +26,6 @@ source $HOME/.config/broot/launcher/bash/br
 
 # ZSH syntax highlighting. This should be sourced last!
 source $HOME/.dotfiles/run/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Source fzf
+source $HOME/.config/fzf/zsh
