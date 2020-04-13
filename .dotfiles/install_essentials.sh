@@ -6,6 +6,8 @@ sudo apt install -y tree
 sudo apt install -y neofetch
 # rofi task switcher / launcher
 sudo apt install -y rofi
+# Comprehensive man pages
+sudo apt install -y tldr
 # Dependencies of splatmoji
 sudo apt install -y xdotool xsel
 # Playerctl, for media keys
