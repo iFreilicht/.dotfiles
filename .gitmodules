@@ -13,3 +13,6 @@
 [submodule ".dotfiles/run/polybar-spotify"]
 	path = .dotfiles/run/polybar-spotify
 	url = https://github.com/Jvanrhijn/polybar-spotify.git
+[submodule ".dotfiles/run/zsh-syntax-highlighting"]
+	path = .dotfiles/run/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
