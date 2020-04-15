@@ -33,7 +33,7 @@ sudo apt install -y $apt_deps
 # Install python dependencies of ranger and ranger itself
 py_deps=(
     chardet # Improved encoding detection for text files
-    ueberzug # Image previews
+    ueberzug # Very fast image previews
     ranger-fm
 )
 sudo python3 -m pip install $py_deps
@@ -54,3 +54,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +qall && cd .vim/plugged/YouCompleteMe && ./install.py; cd
 mkdir .vim/undodir # For persistent undo
+
+# Install kitty
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
