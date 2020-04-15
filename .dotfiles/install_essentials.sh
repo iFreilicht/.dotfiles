@@ -22,6 +22,22 @@ cd .dotfiles/run/teiler && sudo make install; cd
 # Install ag (mainly for fzf)
 sudo apt install -y silversearcher-ag
 
+# Install apt-installable dependencies of ranger
+apt_deps=(
+    unrar # Previewing archives
+    mediainfo # View info about media files
+    fontforge # Font previews
+    ffmpegthumbnailer # Video previews
+)
+sudo apt install -y $apt_deps
+# Install python dependencies of ranger and ranger itself
+py_deps=(
+    chardet # Improved encoding detection for text files
+    ueberzug # Image previews
+    ranger-fm
+)
+sudo python3 -m pip install $py_deps
+
 # Install dependencies of polybar
 sudo apt install -y \
   cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
