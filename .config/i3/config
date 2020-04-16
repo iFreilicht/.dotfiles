@@ -37,7 +37,7 @@ set $cyan          #2aa198
 set $green         #859900
 
 # Solid background
-exec --no-startup-id xsetroot -solid "#002b36"
+exec --no-startup-id nitrogen --restore
 
 # Set keyboard layout to US-International
 exec setxkbmap us intl

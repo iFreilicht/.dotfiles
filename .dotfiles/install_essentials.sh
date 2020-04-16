@@ -8,6 +8,8 @@ sudo apt install -y neofetch
 sudo apt install -y rofi
 # Comprehensive man pages
 sudo apt install -y tldr
+# Backgrounds
+sudo apt install -y nitrogen
 # Dependencies of splatmoji
 sudo apt install -y xdotool xsel
 # Playerctl, for media keys
