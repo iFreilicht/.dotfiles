@@ -110,7 +110,7 @@ modules-left =
 type = internal/xwindow
 label = %title%
 label-maxlen = 80
-label-empty = ???
+label-empty =
 
 [module/xkeyboard]
 type = internal/xkeyboard
