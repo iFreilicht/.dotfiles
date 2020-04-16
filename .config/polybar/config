@@ -97,8 +97,8 @@ inherit = bar/primary
 
 tray-position = none
 
-modules-right = i3
-modules-left = filesystem
+modules-right = filesystem
+modules-left = i3
 
 [module/xwindow]
 type = internal/xwindow

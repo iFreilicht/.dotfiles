@@ -25,7 +25,7 @@ while pgrep -x polybar >/dev/null; do sleep 0.1; done
 
 # Find primary and secondary monitors
 primary=$(polybar --list-monitors | grep primary | cut -d ':' -f1)
-others=$(polybar --list-monitors | grep -v primary | cut -d ':' -f1)
+others=$(polybar --list-monitors | grep -v primary | grep -v XRandR | cut -d ':' -f1)
 log main "Found primary monitor: $primary"
 log main "Found other monitors: $others"
 
