@@ -19,3 +19,6 @@
 [submodule ".dotfiles/run/fzf"]
 	path = .dotfiles/run/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule ".dotfiles/run/i3-alternating-layout"]
+	path = .dotfiles/run/i3-alternating-layout
+	url = https://github.com/olemartinorg/i3-alternating-layout.git

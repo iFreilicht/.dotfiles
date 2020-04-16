@@ -39,6 +39,9 @@ set $green         #859900
 # Solid background
 exec --no-startup-id nitrogen --restore
 
+# Automatically choose best split
+exec --no-startup-id ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
+
 # Set keyboard layout to US-International
 exec setxkbmap us intl
 
@@ -59,10 +62,6 @@ floating_modifier $mod
 
 # lock screen. Set kbmap afterwards to work around it resetting after a long time
 bindsym $sup+bracketright exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/solarized_mountains_1920x1080.png; xset dpms 300 3600 0; setxkbmap us intl"
-
-# Alternate split orientation for new windows
-default_orientation vertical
-for_window [class="^"] split toggle
 
 # Style borders
 new_window pixel 2

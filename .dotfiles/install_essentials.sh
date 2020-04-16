@@ -40,6 +40,9 @@ py_deps=(
 )
 sudo python3 -m pip install $py_deps
 
+# Install i3 python wrapper (for i3-alternating-layout)
+sudo python3 -m pip install i3-py
+
 # Install dependencies of polybar
 sudo apt install -y \
   cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
