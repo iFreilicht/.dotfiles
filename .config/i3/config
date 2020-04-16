@@ -230,3 +230,6 @@ for_window [title="Microsoft Teams Notification"] floating enable; sticky enable
 no_focus [title="Microsoft Teams Notification"]
 
 for_window [title="^MEGAsync$"] floating enable; resize set 402 564
+
+# Change default workspace numbers: 3 becomes 7, 2 becomes 4
+exec i3-msg "workspace 3, workspace 7, workspace 2, workspace 4, workspace 1"
