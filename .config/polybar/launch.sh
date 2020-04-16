@@ -39,7 +39,11 @@ elif [ -z $others ]; then
 else
     open_bar $primary primary
     for monitor in $others; do
-        open_bar $monitor secondary
+        if [ $monitor = "DP-1-1-1-8" ]; then
+            open_bar $monitor ternary
+        else
+            open_bar $monitor secondary
+        fi
     done
 fi
 

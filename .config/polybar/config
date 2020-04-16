@@ -100,6 +100,12 @@ tray-position = none
 modules-right = filesystem
 modules-left = i3
 
+[bar/ternary]
+inherit = bar/secondary
+
+modules-right = i3
+modules-left =
+
 [module/xwindow]
 type = internal/xwindow
 label = %title%
