@@ -90,7 +90,7 @@ cursor-scroll = ns-resize
 [bar/unified]
 inherit = bar/primary
 
-modules-left = eth wlan0 wlan1 xkeyboard memory cpu filesystem
+modules-left = eth wlan0 wlan1 xkeyboard i3 memory cpu filesystem
 
 [bar/secondary]
 inherit = bar/primary
