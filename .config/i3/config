@@ -36,17 +36,20 @@ set $blue          #268bd2
 set $cyan          #2aa198
 set $green         #859900
 
+# Set screen layout
+exec lock set mon; ~/.dotfiles/monitorlayout.sh; lock free mon
+
 # Solid background
 exec --no-startup-id nitrogen --restore
 
-# Automatically choose best split
-exec --no-startup-id ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
+# Automatically choose best split (after monitorlayout.sh completed)
+exec_always --no-startup-id lock wait mon; sleep 2; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
+
+# Start polybar (after monitorlayout.sh completed)
+exec_always --no-startup-id lock wait mon; ~/.config/polybar/launch.sh
 
 # Set keyboard layout to US-International
 exec setxkbmap us intl
-
-# Set screen layout
-exec ~/.dotfiles/monitorlayout.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -190,10 +193,6 @@ bindsym $mod+Shift+Up resize grow height $r_px px or $r_ppt ppt
 bindsym $mod+Shift+Down resize shrink height $r_px px or $r_ppt ppt
 bindsym $mod+Shift+Right resize grow width $r_px px or $r_ppt ppt
 
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-exec_always ~/.config/polybar/launch.sh
 
 # Window decoration colors
 # class                 border  backgr. text    indicator

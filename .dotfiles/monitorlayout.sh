@@ -1,6 +1,8 @@
 #!/bin/zsh
 
-# Failsafe
+# Reset all monitors
+xrandr -s 0
+# Failsafe 
 xrandr --auto
 
 case $(hostname) in
