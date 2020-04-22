@@ -6,6 +6,8 @@ sudo apt install -y tree
 sudo apt install -y neofetch
 # rofi task switcher / launcher
 sudo apt install -y rofi
+# Set numlock via console
+sudo apt install -y numlockx
 # Comprehensive man pages
 sudo apt install -y tldr
 # Backgrounds
