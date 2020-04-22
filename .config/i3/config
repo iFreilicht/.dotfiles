@@ -37,16 +37,16 @@ set $cyan          #2aa198
 set $green         #859900
 
 # Set screen layout
-exec lock set mon; ~/.dotfiles/monitorlayout.sh; lock free mon
+exec mutex set mon; ~/.dotfiles/monitorlayout.sh; mutex free mon
 
 # Solid background
 exec --no-startup-id nitrogen --restore
 
 # Automatically choose best split (after monitorlayout.sh completed)
-exec_always --no-startup-id lock wait mon; sleep 2; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
+exec_always --no-startup-id mutex wait mon; sleep 2; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
 
 # Start polybar (after monitorlayout.sh completed)
-exec_always --no-startup-id lock wait mon; ~/.config/polybar/launch.sh
+exec_always --no-startup-id mutex wait mon; ~/.config/polybar/launch.sh
 
 # Set keyboard layout to US-International
 exec setxkbmap us intl
