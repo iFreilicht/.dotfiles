@@ -36,17 +36,14 @@ set $blue          #268bd2
 set $cyan          #2aa198
 set $green         #859900
 
-# Set screen layout
-exec mutex set mon; ~/.dotfiles/monitorlayout.sh; mutex free mon
-
 # Solid background
 exec --no-startup-id nitrogen --restore
 
 # Automatically choose best split (after monitorlayout.sh completed)
-exec_always --no-startup-id mutex wait mon; sleep 2; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
+exec_always --no-startup-id sleep 2; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
 
 # Start polybar (after monitorlayout.sh completed)
-exec_always --no-startup-id mutex wait mon; ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Set keyboard layout to US-International
 exec setxkbmap us intl
@@ -64,7 +61,7 @@ font pango:MesloLGMDZ Nerd Font 9
 floating_modifier $mod
 
 # lock screen. Set kbmap afterwards to work around it resetting after a long time
-bindsym $sup+bracketright exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/solarized_mountains_1920x1080.png; xset dpms 300 3600 0; setxkbmap us intl"
+bindsym $sup+colon exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/solarized_mountains_1920x1080.png; xset dpms 300 3600 0; setxkbmap us intl"
 
 # Style borders
 new_window pixel 2
