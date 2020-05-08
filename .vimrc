@@ -37,5 +37,7 @@ set background=dark
 let g:airline_theme='solarized'
 silent! colorscheme solarized
 
+let g:airline#extensions#tabline#enabled = 1
+
 let mapleader = " "
 
