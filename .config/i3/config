@@ -36,14 +36,16 @@ set $blue          #268bd2
 set $cyan          #2aa198
 set $green         #859900
 
+exec flock /tmp/monlock ~/.dotfiles/monitorlayout.sh
+
 # Solid background
 exec --no-startup-id nitrogen --restore
 
 # Automatically choose best split (after monitorlayout.sh completed)
-exec_always --no-startup-id sleep 2; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
+exec_always --no-startup-id flock /tmp/monlock sleep 2; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
 
 # Start polybar (after monitorlayout.sh completed)
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id flock /tmp/monlock ~/.config/polybar/launch.sh
 
 # Set keyboard layout to US-International
 exec setxkbmap us intl
