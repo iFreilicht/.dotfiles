@@ -118,3 +118,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+source /home/felix/.config/broot/launcher/bash/br
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
