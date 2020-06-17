@@ -50,6 +50,9 @@ exec_always --no-startup-id flock /tmp/monlock ~/.config/polybar/launch.sh
 # Set keyboard layout to US-International
 exec setxkbmap us intl
 
+# Run desired autostart programs
+exec --no-startup-id sleep 5; dex -as ~/.config/autostart
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1

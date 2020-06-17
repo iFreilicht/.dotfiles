@@ -24,6 +24,7 @@ apt_deps=(
     mediainfo # View info about media files
     fontforge # Font previews
     ffmpegthumbnailer # Video previews
+    dex # Launching .desktop and autostart files
 )
 sudo apt install -y $apt_deps
 # Install python dependencies of ranger and ranger itself
