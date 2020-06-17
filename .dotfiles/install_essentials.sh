@@ -28,6 +28,7 @@ apt_deps=(
 sudo apt install -y $apt_deps
 # Install python dependencies of ranger and ranger itself
 py_deps=(
+    dbus # dependency of polybar-spotify
     i3ipc # i3 wrapper for i3-alternating-layout
     chardet # Improved encoding detection for text files
     ueberzug # Very fast image previews
