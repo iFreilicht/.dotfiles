@@ -70,7 +70,6 @@ bindsym $sup+colon exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/s
 
 # Style borders. Wide enough to be resized with mouse
 new_window pixel 5
-hide_edge_borders both
 
 # allow switching back to previous workspace easily
 workspace_auto_back_and_forth yes
@@ -155,9 +154,9 @@ bindsym $sup+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Window decoration colors
 # class                 border  backgr. text    indicator
-client.focused          $base02 $base02 $base1  $blue
-client.focused_inactive $base03 $base03 $base0  $blue
-client.unfocused        $base03 $base03 $base01 $blue
+client.focused          $base02 $base02 $base1  $base01
+client.focused_inactive $base03 $base03 $base01 $base03
+client.unfocused        $base03 $base03 $base01 $base03
 client.urgent           $red    $red    $base2  $base2
 
 client.placeholder      #000000 $base03 $base01 #000000
