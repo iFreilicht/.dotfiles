@@ -25,6 +25,7 @@ apt_deps=(
     fontforge # Font previews
     ffmpegthumbnailer # Video previews
     dex # Launching .desktop and autostart files
+    jq # JSON processor, dependency of i3-focus-next.sh
 )
 sudo apt install -y $apt_deps
 # Install python dependencies of ranger and ranger itself

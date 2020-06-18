@@ -63,45 +63,36 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:MesloLGMDZ Nerd Font 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier $sup
 
 # lock screen. Set kbmap afterwards to work around it resetting after a long time
 bindsym $sup+colon exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/solarized_mountains_1920x1080.png; xset dpms 300 3600 0; setxkbmap us intl"
 
-# Style borders
-new_window pixel 2
+# Style borders. Wide enough to be resized with mouse
+new_window pixel 5
 hide_edge_borders both
 
 # allow switching back to previous workspace easily
 workspace_auto_back_and_forth yes
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $sup+Return exec terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $sup+Escape kill
 
 # Take screenshot
 bindsym Print exec teiler --quick image area
 
 # Start rofi instead of dmenu
-bindsym $mod+d exec rofi -show combi
+bindsym $sup+d exec rofi -show combi
 # Window switching with rofi
-bindsym $mod+Tab exec rofi -show window
+bindsym $sup+Tab exec rofi -show window
 # Emoji picker
 bindsym $sup+period exec splatmoji type
 
-# change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# change focus (if it gets more complicated, just use the mouse)
+bindsym $mod+Tab exec ~/.config/i3/i3-focus-next.sh
 
 # move focused window
 bindsym $sup+$left move left
@@ -109,34 +100,21 @@ bindsym $sup+$down move down
 bindsym $sup+$up move up
 bindsym $sup+$right move right
 
-# alternatively, you can use the cursor keys:
-bindsym $sup+Left move left
-bindsym $sup+Down move down
-bindsym $sup+Up move up
-bindsym $sup+Right move right
-
 # split in other orientation
-bindsym $mod+v split toggle
+bindsym $sup+v split toggle
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $sup+f fullscreen
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# change container layout (tabbed, toggle split, no need for stacked)
+bindsym $sup+w layout tabbed
+bindsym $sup+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $sup+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
+bindsym $sup+space focus mode_toggle
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -168,33 +146,12 @@ bindsym $sup+Shift+$down move workspace to output down
 bindsym $sup+Shift+$up move workspace to output up
 bindsym $sup+Shift+$right move workspace to output right
 
-# alternatively, you can use the cursor keys:
-bindsym $sup+Shift+Left move workspace to output left
-bindsym $sup+Shift+Down move workspace to output down
-bindsym $sup+Shift+Up move workspace to output up
-bindsym $sup+Shift+Right move workspace to output right
-
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $sup+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $sup+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
-set $r_px 5
-set $r_ppt 5
-
-bindsym $mod+Shift+$left resize shrink width $r_px px or $r_ppt ppt
-bindsym $mod+Shift+$up resize grow height $r_px px or $r_ppt ppt
-bindsym $mod+Shift+$down resize shrink height $r_px px or $r_ppt ppt
-bindsym $mod+Shift+$right resize grow width $r_px px or $r_ppt ppt
-
-bindsym $mod+Shift+Left resize shrink width $r_px px or $r_ppt ppt
-bindsym $mod+Shift+Up resize grow height $r_px px or $r_ppt ppt
-bindsym $mod+Shift+Down resize shrink height $r_px px or $r_ppt ppt
-bindsym $mod+Shift+Right resize grow width $r_px px or $r_ppt ppt
-
+bindsym $sup+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Window decoration colors
 # class                 border  backgr. text    indicator
