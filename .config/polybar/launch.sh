@@ -39,7 +39,8 @@ elif [ -z $others ]; then
 else
     open_bar $primary primary
     for monitor in $others; do
-        if [ $monitor = "DP-1-1-1" ]; then
+        # If monitor is last in DP three-monitor daisy chain
+        if [ $(echo $monitor | grep '^DP-..1.1$') ]; then
             open_bar $monitor ternary
         else
             open_bar $monitor secondary
