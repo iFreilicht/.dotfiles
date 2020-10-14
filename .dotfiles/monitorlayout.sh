@@ -6,7 +6,7 @@ case $(hostname) in
         echo "On host source"
 
         # If nvidia driver is running
-        if [ $(lshw -c video | grep -o 'nvidia') ]; then 
+        if [ $(lshw -c video 2> /dev/null | grep -o 'nvidia') ]; then 
             xrandr --output DP-0.8 --auto --primary \
                    --output DP-0.1.8 --auto --right-of DP-0.8 \
                    --output DP-0.1.1 --auto --left-of DP-0.8 
