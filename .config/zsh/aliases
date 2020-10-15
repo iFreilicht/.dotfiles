@@ -2,3 +2,4 @@
 # Alias for dotfiles bare repository
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 alias fd=fdfind
+alias ssh='TERM=xterm-color ssh'
