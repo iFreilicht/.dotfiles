@@ -1,5 +1,11 @@
 # vim: syntax=sh
 # Alias for dotfiles bare repository
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
+
+# Better alternative to find
 alias fd=fdfind
-alias ssh='TERM=xterm-color ssh'
+
+# Make sure remote clients aren't confused by kitty
+if [ $TERM = 'xterm-kitty' ]; then
+    alias ssh='TERM=xterm-color ssh'
+fi
