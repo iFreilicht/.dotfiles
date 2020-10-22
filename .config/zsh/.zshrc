@@ -37,5 +37,9 @@ source $HOME/.dotfiles/run/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Source fzf
 source $HOME/.config/fzf/zsh
 
+# Make sure vim is the default editor
+export EDITOR='vim'
+export VISUAL='vim'
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
