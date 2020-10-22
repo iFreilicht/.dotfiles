@@ -21,7 +21,7 @@ compinit
 setopt globdots
 
 # Autojump needs to be sourced to work on Ubuntu
-source /usr/share/autojump/autojump.sh
+source /usr/share/autojump/autojump.zsh
 
 # Source node version manager
 export NVM_DIR="$HOME/.nvm"
