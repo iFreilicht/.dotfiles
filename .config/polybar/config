@@ -49,6 +49,8 @@ height = 24
 radius = 0
 fixed-center = true
 
+enable-ipc = true
+
 font-0 = "MesloLGMDZ Nerd Font:size=10;0"
 
 background = ${colors.base03}
