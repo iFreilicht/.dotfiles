@@ -27,6 +27,8 @@ apt_deps=(
     dex # Launching .desktop and autostart files
     jq # JSON processor, dependency of i3-focus-next.sh
     fdfind # Alternative to find, way easier to use
+    lshw # Get info about hardware
+    qt5ct # Style Qt apps with KDE themes without running KDE
 )
 sudo apt install -y $apt_deps
 # Install python dependencies of ranger and ranger itself

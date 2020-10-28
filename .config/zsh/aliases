@@ -5,8 +5,11 @@ alias sudo='sudo '
 # Alias for dotfiles bare repository
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
-# Better alternative to find
-alias fd=fdfind
+# Better alternative to find, has to be aliased on Ubuntu
+if [ $(type fd | grep -o 'not') ]; then
+    alias fd=fdfind
+fi 
+
 
 # Make sure remote clients aren't confused by kitty
 if [ $TERM = 'xterm-kitty' ]; then
