@@ -34,7 +34,7 @@ if [ -z $primary ]; then
     for monitor in $others; do
         open_bar $monitor unified
     done
-elif [ -z $others ]; then
+elif [ -z "$others" ]; then
     open_bar $primary unified
 else
     open_bar $primary primary
