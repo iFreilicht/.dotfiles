@@ -41,11 +41,18 @@ exec flock /tmp/monlock ~/.dotfiles/monitorlayout.sh
 # Solid background
 exec --no-startup-id nitrogen --restore
 
+# Set gap size
+gaps inner 10
+gaps top 38
+
 # Automatically choose best split (after monitorlayout.sh completed)
 exec_always --no-startup-id flock /tmp/monlock sleep 5; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
 
 # Start polybar (after monitorlayout.sh completed)
 exec_always --no-startup-id flock /tmp/monlock ~/.config/polybar/launch.sh
+
+# Start compton (and restart if it is already running)
+exec_always pkill picom; picom
 
 # Set keyboard layout to US-International
 exec setxkbmap us intl
@@ -154,7 +161,7 @@ bindsym $sup+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Window decoration colors
 # class                 border  backgr. text    indicator
-client.focused          $base02 $base02 $base1  $base01
+client.focused          $base03 $base03 $base1  $base03
 client.focused_inactive $base03 $base03 $base01 $base03
 client.unfocused        $base03 $base03 $base01 $base03
 client.urgent           $red    $red    $base2  $base2

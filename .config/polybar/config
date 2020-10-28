@@ -35,23 +35,23 @@ cyan = #2aa198
 green = #859900
 
 ;background = ${xrdb:color0:#222}
-background = #222
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
 [bar/primary]
 monitor = ${env:MONITOR:fallback-value}
-width = 100%
-height = 24
-;offset-x = 1%
-;offset-y = 1%
+width = 1900
+height = 28
+offset-x = 10
+offset-y = 10
 radius = 0
 fixed-center = true
 
 enable-ipc = true
+override-redirect = true
 
-font-0 = "MesloLGMDZ Nerd Font:size=10;0"
+font-0 = "MesloLGMDZ Nerd Font:size=10;2"
 
 background = ${colors.base03}
 foreground = ${colors.base0}
@@ -60,9 +60,12 @@ line-size = 2
 line-color = ${colors.base02}
 
 border-size = 0
-border-color = #00000000
+border-left = 8
+border-right = 8
+border-color = ${colors.base03}
 
-padding = 3
+padding = 0
+padding-top = 0
 
 module-margin-left = 0
 module-margin-right = 3
