@@ -52,7 +52,7 @@ exec_always --no-startup-id flock /tmp/monlock sleep 5; ~/.dotfiles/run/i3-alter
 exec_always --no-startup-id flock /tmp/monlock ~/.config/polybar/launch.sh
 
 # Start compton (and restart if it is already running)
-exec_always pkill picom; picom
+exec_always pkill picom; sleep 0.1; picom
 
 # Set keyboard layout to US-International
 exec setxkbmap us intl
