@@ -45,6 +45,10 @@ exec --no-startup-id nitrogen --restore
 gaps inner 10
 gaps top 38
 
+# TODO: Find a better way to launch dunst
+# Start dunst
+exec_always --no-startup-id pkill dunst; sleep 0.1; dunst
+
 # Automatically choose best split (after monitorlayout.sh completed)
 exec_always --no-startup-id flock /tmp/monlock sleep 5; ~/.dotfiles/run/i3-alternating-layout/alternating_layouts.py
 
@@ -86,6 +90,9 @@ bindsym $sup+Return exec terminal
 
 # kill focused window
 bindsym $sup+Escape kill
+
+# Show last notification
+bindsym $sup+BackSpace exec dunstctl history-pop
 
 # Take screenshot
 bindsym Print exec teiler --quick image area
