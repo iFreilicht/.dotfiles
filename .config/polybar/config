@@ -49,7 +49,6 @@ radius = 0
 fixed-center = true
 
 enable-ipc = true
-override-redirect = true
 
 font-0 = "MesloLGMDZ Nerd Font:size=10;2"
 
@@ -79,9 +78,9 @@ tray-padding = 2
 tray-background = ${colors.base03}
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
-;override-redirect = true
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
