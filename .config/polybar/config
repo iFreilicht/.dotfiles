@@ -135,9 +135,10 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-mount-1 = /mnt/g
-mount-2 = /mnt/c
-mount-3 = /mnt/s
+mount-1 = /home
+mount-2 = /mnt/g
+mount-3 = /mnt/c
+mount-4 = /mnt/s
 
 label-mounted = %{F#586e75}%mountpoint%%{F-}: %percentage_used%%
 format-unmounted =
