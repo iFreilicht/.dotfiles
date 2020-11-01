@@ -101,14 +101,14 @@ inherit = bar/primary
 
 tray-position = none
 
-modules-right = filesystem
+modules-right = date_min
 modules-left = i3
 
 [bar/ternary]
 inherit = bar/secondary
 
 modules-right = i3
-modules-left =
+modules-left = filesystem
 
 [module/xwindow]
 type = internal/xwindow
@@ -289,6 +289,10 @@ format-prefix =
 format-underline = ${colors.yellow}
 
 label = %date% %time%
+
+[module/date_min]
+inherit = module/date
+format-underline = ${colors.orange}
 
 [module/spotify]
 type = custom/script
