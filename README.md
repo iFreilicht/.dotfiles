@@ -15,7 +15,7 @@
 - Shadows, gaps around polybar, smooth animations and transparency on inactive windows using [picom](https://github.com/yshui/picom)
 - Unified look for all desktop menus using [rofi](https://github.com/davatorium/rofi)
 - All desktop shortcuts start with `Super`, leaving other modifiers for apps
-- Searchable emoji-picker on `Super+.` using [splatmoji](https://github.com/davatorium/rofi)
+- Searchable emoji-picker on `Super+.` using [splatmoji](https://github.com/cspeterson/splatmoji)
 - Conventient screenshots on `PrintScr` using [teiler](https://github.com/carnager/teiler) 
 
 ## Console
