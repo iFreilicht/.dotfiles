@@ -7,9 +7,6 @@
 [submodule ".dotfiles/run/polybar"]
 	path = .dotfiles/run/polybar
 	url = https://github.com/jaagr/polybar.git
-[submodule ".dotfiles/run/keepmenu"]
-	path = .dotfiles/run/keepmenu
-	url = https://github.com/firecat53/keepmenu.git
 [submodule ".dotfiles/run/polybar-spotify"]
 	path = .dotfiles/run/polybar-spotify
 	url = https://github.com/Jvanrhijn/polybar-spotify.git
