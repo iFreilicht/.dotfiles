@@ -95,7 +95,7 @@ cursor-scroll = ns-resize
 [bar/unified]
 inherit = bar/primary
 
-modules-left = eth wlan0 wlan1 xkeyboard i3 memory cpu filesystem
+modules-left = eth wlan0 wlan1 wlan2 xkeyboard i3 memory cpu filesystem
 
 [bar/secondary]
 inherit = bar/primary
@@ -246,7 +246,7 @@ label-connected = %local_ip%
 
 format-disconnected-underline = ${colors.red}
 format-disconnected-suffix = " "
-label-disconnected = %ifname% disconnected
+label-disconnected = %ifname%
 label-disconnected-foreground = ${colors.red}
 
 [module/vpn]
@@ -261,15 +261,8 @@ inherit=module/eth
 interface = wlp3s0
 
 label-connected = %essid%
-format-connected-suffix = " 說"
-format-disconnected =
-
-ramp-signal-0 =
-ramp-signal-1 =
-ramp-signal-2 =
-ramp-signal-3 =
-ramp-signal-4 =
-ramp-signal-foreground = ${colors.base01}
+format-connected-suffix = " 直 "
+format-disconnected-suffix = " 睊 "
 
 [module/wlan1]
 inherit=module/wlan0
@@ -277,6 +270,9 @@ interface=wlan1
 format-disconnected = <label-disconnected>
 format-disconnected-suffix = " ﲁ"
 
+[module/wlan2]
+inherit=module/wlan0
+interface=wlp2s0
 [module/date]
 type = internal/date
 interval = 5
