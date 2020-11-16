@@ -72,7 +72,7 @@ module-margin-right = 3
 
 modules-left = eth vpn wlan0 wlan1 xkeyboard i3 memory cpu
 modules-center = xwindow
-modules-right =  tray pulseaudio date powermenu
+modules-right =  tray pulseaudio date battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -288,7 +288,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix =
-format-underline = ${colors.yellow}
+format-underline = ${colors.orange}
 
 label = %date% %time%
 
@@ -310,7 +310,7 @@ type = internal/pulseaudio
 format-volume = <bar-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
-format-volume-underline = ${colors.orange}
+format-volume-underline = ${colors.red}
 
 label-muted = ──────── 婢
 label-muted-foreground = ${colors.base01}
@@ -334,35 +334,23 @@ bar-volume-empty-foreground = ${colors.base01}
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = ADP1
-full-at = 98
+adapter = AC
+full-at = 99
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.green}
+format-discharging-underline = ${colors.yellow}
+format-full-underline = ${colors.green}
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-charging = <ramp-capacity> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.base01}
-format-full-underline = ${self.format-charging-underline}
+format-full-prefix = "  "
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.base01}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.base01}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.base01}
-animation-discharging-framerate = 750
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " " 
 
 [module/temperature]
 type = internal/temperature
