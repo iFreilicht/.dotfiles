@@ -20,6 +20,13 @@ fi
 compinit
 setopt globdots
 
+# Set history options
+HISTSIZE=100000
+HISTFILESIZE=200000
+SAVEHIST=100000
+HISTFILE=~/.cache/zsh/history
+setopt appendhistory
+
 # Autojump needs to be sourced to work on Ubuntu
 source /usr/share/autojump/autojump.zsh
 
