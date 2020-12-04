@@ -39,5 +39,22 @@
     "gitlens.advanced.messages": {
         "suppressGitDisabledWarning": true
     },
-    "vim.vimrc.enable": true
+    "vim.vimrc.enable": true,
+    "git.confirmSync": false,
+    "yaml.schemas": {
+        "file:///home/felix/.vscode-oss/extensions/atlassian.atlascode-2.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.jira.jqlList": [
+        {
+            "id": "3f8a50ed-9b27-4077-8947-c6e8052f0625",
+            "enabled": true,
+            "name": "My jira.navvis.com Issues",
+            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+            "siteId": "jira.navvis.com",
+            "monitor": true
+        }
+    ],
+    "python.linting.pylintUseMinimalCheckers": false,
+    "editor.formatOnSaveMode": "modifications",
+    "window.zoomLevel": 0
 }
