@@ -16,6 +16,10 @@
 ;
 ;==========================================================
 
+[section/base]
+; HOST is defined in launch script
+include-file = $HOME/.config/polybar/width/$WIDTH
+
 [colors]
 base03 = #002b36
 base02 = #073642
@@ -40,12 +44,12 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/primary]
-monitor = ${env:MONITOR:fallback-value}
+monitor = ${env:MONITOR:}
 dpi=${xrdb:Xft.dpi:-1}
-width = 99%
-height = 2.59%
-offset-x = 0.49%
-offset-y = 0.90%
+width = ${host/bar.width}
+height = ${host/bar.height}
+offset-x = ${host/bar.offset-x}
+offset-y = ${host/bar.offset-y}
 radius = 0
 fixed-center = true
 
@@ -56,12 +60,12 @@ font-0 = "MesloLGMDZ Nerd Font:size=10;2"
 background = ${colors.base03}
 foreground = ${colors.base0}
 
-line-size = 2
+line-size = ${host/bar.line-size}
 line-color = ${colors.base02}
 
 border-size = 0
-border-left = 0.42%
-border-right = 0.42%
+border-left = ${host/bar.border-left}
+border-right = ${host/bar.border-right}
 border-color = ${colors.base03}
 
 padding = 0

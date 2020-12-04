@@ -10,8 +10,12 @@ function open_bar {
     monitor=$1
     bar=$2
     
+    # Get width of monitor, set to 1920 if command failed
+    width_raw="$(polybar --list-monitors | grep "$monitor" | grep -Po '(?<= ).*(?=x)')"
+    width=$width_raw && (( $? > 0 )) && width=1920
+    
     log $bar "Opening $bar bar on monitor $monitor..."
-    MONITOR=$monitor polybar -r $bar >>"/tmp/polybar-$bar.log" 2>&1 &
+    MONITOR=$monitor WIDTH=$width polybar -r $bar >>"/tmp/polybar-$bar.log" 2>&1 &
     # Sleep shortly to allow next bar to connect to i3
     sleep 1
 }
