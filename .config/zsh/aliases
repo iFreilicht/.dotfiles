@@ -27,6 +27,12 @@ fi
 # --no-compress: Skips compression, saves CPU
 alias 'cp+'='rsync -axhW --info=progress2 --no-inc-recursive --no-compress'
 
+# Never forget to get progress
+alias rsync='rsync --info=progress2'
+
+# Activate python venv
+alias activate='source .venv/bin/activate'
+
 # Some git commands that are often typed
 alias add='git add'
 alias status='git status'
