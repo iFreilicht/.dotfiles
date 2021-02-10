@@ -38,6 +38,9 @@ export NVM_DIR="$HOME/.nvm"
 # Source cargo
 [ -s "$HOME/.cargo/env" ] && source $HOME/.cargo/env
 
+# Source nix
+[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
 # Broot is better run as br for functionality reasons
 source $HOME/.config/broot/launcher/bash/br
 
