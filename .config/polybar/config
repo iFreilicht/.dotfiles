@@ -76,7 +76,7 @@ module-margin-right = 3
 
 modules-left = eth vpn wlan0 wlan1 xkeyboard i3 memory cpu
 modules-center = xwindow
-modules-right =  tray pulseaudio date battery powermenu
+modules-right =  tray spotify pulseaudio date battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -298,11 +298,10 @@ format-underline = ${colors.orange}
 
 [module/spotify]
 type = custom/script
-interval = 1
-format-prefix =
+interval = 0
+tail = true
 format = <label>
-exec = python /home/felix/.dotfiles/run/polybar-spotify/spotify_status.py -f '{play_pause} {artist}/{album}/{song}' -p ','
-format-underline = ${colors.red}
+exec = $HOME/.dotfiles/run/spotifyd-status/target/release/spotifyd-status
 
 [module/pulseaudio]
 type = internal/pulseaudio

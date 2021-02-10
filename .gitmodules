@@ -19,3 +19,6 @@
 [submodule ".dotfiles/run/i3-alternating-layout"]
 	path = .dotfiles/run/i3-alternating-layout
 	url = https://github.com/olemartinorg/i3-alternating-layout.git
+[submodule ".dotfiles/run/spotifyd-status"]
+	path = .dotfiles/run/spotifyd-status
+	url = https://github.com/iFreilicht/spotifyd-status.git
