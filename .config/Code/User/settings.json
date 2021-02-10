@@ -42,7 +42,7 @@
     "vim.vimrc.enable": true,
     "git.confirmSync": false,
     "yaml.schemas": {
-        "file:///home/felix/.vscode-oss/extensions/atlassian.atlascode-2.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/felix/.vscode-oss/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "atlascode.jira.jqlList": [
         {
@@ -55,6 +55,16 @@
         }
     ],
     "python.linting.pylintUseMinimalCheckers": false,
-    "editor.formatOnSaveMode": "modifications",
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "diffEditor.renderSideBySide": true,
+    "rust-client.rlsPath": "/home/felix/.cargo/bin/rls",
+    "rust-client.rustupPath": "/home/felix/.cargo/bin/rustup",
+    "rust-analyzer.inlayHints.chainingHints": false,
+    "rust-analyzer.inlayHints.enable": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "editor.formatOnType": true,
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
