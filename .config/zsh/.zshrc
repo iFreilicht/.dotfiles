@@ -27,6 +27,9 @@ SAVEHIST=100000
 HISTFILE=~/.cache/zsh/history
 setopt appendhistory
 
+# Let direnv hook into zsh. Used especially for nix
+eval "$(direnv hook zsh)"
+
 # Autojump needs to be sourced to work on Ubuntu
 source /usr/share/autojump/autojump.zsh
 
