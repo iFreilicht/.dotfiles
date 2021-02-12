@@ -66,5 +66,9 @@
     "editor.formatOnType": true,
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.cargo.loadOutDirsFromCheck": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[nix]": {
+        "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt"
+    },
+    "python.languageServer": "Pylance"
 }
