@@ -1,0 +1,8 @@
+[host/bar]
+width = 2540
+height = 28
+offset-x = 10
+offset-y = 10
+border-left = 8
+border-right = 8
+line-size = 2
