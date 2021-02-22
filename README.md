@@ -16,6 +16,7 @@
 - Unified look for all desktop menus using [rofi](https://github.com/davatorium/rofi)
 - All desktop shortcuts start with `Super`, leaving other modifiers for apps
 - Searchable emoji-picker on `Super+.` using [splatmoji](https://github.com/cspeterson/splatmoji)
+- Quick calculator on `Super+C` using [rofi-calc](https://github.com/svenstaro/rofi-calc)
 - Conventient screenshots on `PrintScr` using [teiler](https://github.com/carnager/teiler) 
 
 ## Console

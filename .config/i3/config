@@ -103,6 +103,8 @@ bindsym $sup+d exec rofi -show combi
 bindsym $sup+Tab exec rofi -show window
 # Emoji picker
 bindsym $sup+period exec splatmoji type
+# Calculator
+bindsym $sup+c exec --no-startup-id calc
 
 # change focus (if it gets more complicated, just use the mouse)
 bindsym $mod+Tab exec ~/.config/i3/i3-focus-next.sh
