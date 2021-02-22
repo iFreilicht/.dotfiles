@@ -203,5 +203,5 @@ for_window [title="DevTools Updater"] floating enable
 
 for_window [title="^MEGAsync$"] floating enable; resize set 402 564
 
-# Change default workspace numbers: 3 becomes 7, 2 becomes 4
-exec i3-msg "workspace 3, workspace 7, workspace 2, workspace 4, workspace 1"
+# Change default workspace numbers: left screen 7, center screen 1, right screen 4
+exec i3-msg "workspace 1, workspace 7, workspace 2, workspace 4, workspace 3, workspace 1"
