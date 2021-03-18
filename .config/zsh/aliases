@@ -52,3 +52,5 @@ alias clone='git clone'
 alias merge='git merge'
 alias rebase='git rebase'
 alias log-adog='git log --all --decorate --oneline --graph'
+# See https://stackoverflow.com/a/6127884/2533467
+alias del-merged='git branch --merged | egrep -v "(^\*|master|main|develop)" | xargs git branch -d'
