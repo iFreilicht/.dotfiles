@@ -44,6 +44,9 @@ export NVM_DIR="$HOME/.nvm"
 # Source nix
 [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
+# Source ROS
+[ -e "/opt/ros/melodic/setup.zsh" ] && source "/opt/ros/melodic/setup.zsh"
+
 # Broot is better run as br for functionality reasons
 source $HOME/.config/broot/launcher/bash/br
 
