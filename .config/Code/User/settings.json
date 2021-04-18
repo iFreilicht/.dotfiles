@@ -42,7 +42,7 @@
     "vim.vimrc.enable": true,
     "git.confirmSync": false,
     "yaml.schemas": {
-        "file:///home/felix/.vscode-oss/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/felix/.vscode/extensions/atlassian.atlascode-2.8.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "atlascode.jira.jqlList": [
         {
@@ -55,7 +55,7 @@
         }
     ],
     "python.linting.pylintUseMinimalCheckers": false,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -2,
     "diffEditor.renderSideBySide": true,
     "rust-client.rlsPath": "/home/felix/.cargo/bin/rls",
     "rust-client.rustupPath": "/home/felix/.cargo/bin/rustup",
@@ -70,5 +70,21 @@
     "[nix]": {
         "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt"
     },
-    "python.languageServer": "Pylance"
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "atlascode.showWelcomeOnInstall": false,
+    "atlascode.offlineMode": true,
+    "workbench.startupEditor": "welcomePage",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }

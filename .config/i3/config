@@ -58,8 +58,8 @@ exec_always --no-startup-id flock /tmp/monlock ~/.config/polybar/launch.sh
 # Start compton (and restart if it is already running)
 exec_always --no-startup-id pkill picom; sleep 0.1; picom
 
-# Set keyboard layout to US-International
-exec setxkbmap us intl
+# Set keyboard layout to US-International with no dead keys
+exec setxkbmap us altgr-intl
 
 # Run desired autostart programs
 exec --no-startup-id sleep 5; dex -as ~/.config/autostart
@@ -77,7 +77,7 @@ font pango:MesloLGMDZ Nerd Font 9
 floating_modifier $sup
 
 # lock screen. Set kbmap afterwards to work around it resetting after a long time
-bindsym $sup+colon exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/solarized_mountains_1920x1080.png; xset dpms 300 3600 0; setxkbmap us intl"
+bindsym $sup+colon exec "xset dpms 1 600 0; i3lock -n -t -i ~/.dotfiles/images/solarized_mountains_1920x1080.png; xset dpms 300 3600 0; setxkbmap us altgr-intl"
 
 # Style borders. Wide enough to be resized with mouse
 new_window pixel 5
