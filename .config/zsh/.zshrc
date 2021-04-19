@@ -29,6 +29,9 @@ HISTFILESIZE=200000
 SAVEHIST=100000
 HISTFILE=~/.cache/zsh/history
 setopt appendhistory
+# Ensure the history file is present
+mkdir -p $(dirname $HISTFILE)
+touch $HISTFILE
 
 # Let direnv hook into zsh. Used especially for nix
 eval "$(direnv hook zsh)"
