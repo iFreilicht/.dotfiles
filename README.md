@@ -30,7 +30,7 @@
 ## Installing
 These dotfiles are managed using a bare repo. Clone it like so:
 ```
-git clone --bare https://github.com/iFreilicht/.dotfiles.git .dotfiles/.git
+git clone --bare git@github.com:iFreilicht/.dotfiles.git .dotfiles/.git
 ```
 And check out the files like so:
 ```
