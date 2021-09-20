@@ -17,7 +17,8 @@ if [ $TERM = 'xterm-kitty' ]; then
 fi
 
 # Colorize command output
-alias ls='ls --color=auto'
+unset -f ls # ls was also set by grc, but we only want grc to color ls if the -l flag is specified
+alias ls='ls --color=auto -F'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
@@ -25,8 +26,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Default ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
+alias ll='grc --colour=auto ls --color=always -alF'  # Because ls outputs not directly to stdout, we need to use always
+alias la='ls -AF'
 alias l='ls -CF'
 
 # Better alternative to cp using rsync
