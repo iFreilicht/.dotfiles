@@ -8,9 +8,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Get all the oh-my-zsh stuff running
-source $ZDOTDIR/oh-my-zsh
-
 # Get aliases
 source $ZDOTDIR/aliases
 
@@ -20,6 +17,7 @@ if [ -f "$ZDOTDIR/private" ]; then
 fi
 
 # Configure tab completion
+autoload -Uz compinit
 compinit
 setopt globdots
 
@@ -65,6 +63,9 @@ source $HOME/.config/fzf/zsh
 # Make sure vim is the default editor
 export EDITOR='vim'
 export VISUAL='vim'
+
+# Activate p10k
+source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
