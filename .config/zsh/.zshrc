@@ -1,6 +1,10 @@
 # Make sure instant prompt doesn't throw a warning if direnv hook is run on startup
 emulate zsh -c "$(direnv export zsh)"
 
+# Colourful output for a lot of additional utilities.
+# Needs to be sourced before instant prompt, otherwise it doesn't work
+[ -e "$HOME/.nix-profile/etc/grc.zsh" ] && source $HOME/.nix-profile/etc/grc.zsh
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
