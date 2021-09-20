@@ -16,6 +16,19 @@ if [ $TERM = 'xterm-kitty' ]; then
     alias ssh='TERM=xterm-color ssh'
 fi
 
+# Colorize command output
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Default ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
 # Better alternative to cp using rsync
 # Shows progress, no need for -r
 # -a: Archive, preserve ownership, permissions, so behaves like cp
