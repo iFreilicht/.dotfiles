@@ -19,10 +19,12 @@ set listchars=eol:↵,tab:>-,space:·,trail:⨯,extends:,precedes:
 set colorcolumn=73,80,100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+let g:ycm_python_binary_path = '/usr/bin/python3.8'
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
