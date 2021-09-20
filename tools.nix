@@ -20,7 +20,7 @@
 
 with pkgs; [
     # Basic terminal setup
-    zsh
+    # zsh  # The nix version somehow doesn't honor UTF-8 locales, use the distro's version instead
     zsh-powerlevel10k  # ZSH theme
     direnv  # Automatically switch environments in development folders
     grc  # Colouring output of some default utilities
