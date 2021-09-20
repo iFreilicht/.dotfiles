@@ -1,0 +1,18 @@
+# Delete
+bindkey "^[[3~"     delete-char
+
+# Delete word with Ctrl+Delete and Ctrl+Backspace
+bindkey "^[[3;5~"   delete-word
+bindkey "^H"        backward-delete-word
+
+# Ctrl+Left Ctrl+Right
+bindkey "^[[1;5D"   backward-word
+bindkey "^[[1;5C"   forward-word
+
+# Pos1 End
+bindkey "^[[H"      beginning-of-line
+bindkey "^[[F"      end-of-line
+
+# Arrow Up + Down
+bindkey "^[[A"      history-search-backward
+bindkey "^[[B"      history-search-forward

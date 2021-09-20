@@ -1,0 +1,34 @@
+# Tab completion
+autoload -Uz compinit
+compinit
+setopt glob_dots
+
+# Check https://zsh.sourceforge.io/Doc/Release/Options.html for an explanation of the options below
+
+# Changing Directories
+setopt auto_cd
+
+# Completion
+setopt auto_list
+setopt menu_complete
+setopt always_to_end
+setopt glob_complete
+setopt list_rows_first
+setopt rec_exact
+
+# Expansion and Globbing
+setopt mark_dirs
+setopt nomatch
+setopt numeric_glob_sort
+
+# Advanced history options
+setopt append_history
+setopt extended_history
+setopt inc_append_history
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt share_history
+
+# Spelling correction
+setopt correct
+setopt correct_all

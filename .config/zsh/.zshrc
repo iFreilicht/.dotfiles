@@ -16,10 +16,11 @@ if [ -f "$ZDOTDIR/private" ]; then
     source "$ZDOTDIR/private"
 fi
 
-# Configure tab completion
-autoload -Uz compinit
-compinit
-setopt globdots
+# Enable a list of options
+source $ZDOTDIR/keybinds
+
+# Enable a list of options
+source $ZDOTDIR/options
 
 # Set history options
 HISTSIZE=100000
