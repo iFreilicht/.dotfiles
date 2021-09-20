@@ -5,6 +5,10 @@ bindkey "^[[3~"     delete-char
 bindkey "^[[3;5~"   delete-word
 bindkey "^H"        backward-delete-word
 
+# Ctrl+Z and Ctrl+Y to undo and redo
+bindkey "^Z"        undo
+bindkey "^Y"        redo
+
 # Ctrl+Left Ctrl+Right
 bindkey "^[[1;5D"   backward-word
 bindkey "^[[1;5C"   forward-word
