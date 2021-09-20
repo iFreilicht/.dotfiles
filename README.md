@@ -37,3 +37,9 @@ And check out the files like so:
 git --git-dir=.dotfiles/.git --work-tree=. checkout
 ```
 There's also a `bootstrap.sh` script, but I haven't tested it much. Better you don't use it.
+
+To install all the tools that are required, install nix first.
+Then, simply install everything from `tools.nix`:
+```
+nix-env -if tools.nix
+```
