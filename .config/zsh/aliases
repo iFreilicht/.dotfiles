@@ -26,7 +26,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Default ls aliases
-alias ll='grc --colour=auto ls --color=always -alF'  # Because ls outputs not directly to stdout, we need to use always
+alias ll='grc --colour=auto ls --color=always -alhF'  # Because ls outputs not directly to stdout, we need to use always
 alias la='ls -AF'
 alias l='ls -CF'
 
