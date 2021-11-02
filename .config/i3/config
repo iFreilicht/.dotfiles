@@ -101,8 +101,8 @@ bindsym Print exec teiler --quick image area
 bindsym $sup+d exec rofi -show combi
 # Window switching with rofi
 bindsym $sup+Tab exec rofi -show window
-# Emoji picker
-bindsym $sup+period exec splatmoji type
+# Emoji picker (hide all skin tones)
+bindsym $sup+period exec splatmoji -s "" type
 # Calculator
 bindsym $sup+c exec --no-startup-id calc
 
