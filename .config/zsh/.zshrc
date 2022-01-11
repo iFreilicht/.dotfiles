@@ -40,7 +40,7 @@ touch $HISTFILE
 eval "$(direnv hook zsh)"
 
 # Autojump needs to be sourced to work on Ubuntu
-source /usr/share/autojump/autojump.zsh
+source $HOME/.nix-profile/share/autojump/autojump.zsh
 
 # Source node version manager
 export NVM_DIR="$HOME/.nvm"

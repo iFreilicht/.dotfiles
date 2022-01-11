@@ -24,6 +24,7 @@ with pkgs; [
     zsh-powerlevel10k  # ZSH theme
     direnv  # Automatically switch environments in development folders
     grc  # Colouring output of some default utilities
+    autojump  # Jump to often-visited directories quickly
 
     # Some utilities
     bat  # Colorized file output
