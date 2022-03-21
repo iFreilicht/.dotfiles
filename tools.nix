@@ -1,3 +1,6 @@
+# To install these packages via nix, run
+# nix-env -if tools.nix
+
 # To update the packages, find the current latest release at https://status.nixos.org/,
 # click the commit, and replace the full commit ID in the link below. Also, update the
 # comment saying which version of nixpkgs this is and what the release date was
