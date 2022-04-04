@@ -30,6 +30,3 @@ setopt hist_reduce_blanks
 setopt hist_verify
 setopt share_history
 
-# Spelling correction
-setopt correct
-setopt correct_all
