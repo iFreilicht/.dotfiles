@@ -28,6 +28,7 @@ with pkgs; [
     direnv  # Automatically switch environments in development folders
     grc  # Colouring output of some default utilities
     autojump  # Jump to often-visited directories quickly
+    fzf  # Fuzzy search command history
 
     # Some utilities
     bat  # Colorized file output

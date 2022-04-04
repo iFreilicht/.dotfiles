@@ -1,7 +1,7 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */home/felix/.dotfiles/run/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/home/felix/.dotfiles/run/fzf/bin"
+if [[ ! "$PATH" == *.nix-profile/share/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}$HOME/.nix-profile/share/fzf/bin"
 fi
 
 # Include dotfiles, except .git
@@ -19,8 +19,8 @@ export FZF_COMPLETION_TRIGGER='*'
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/felix/.dotfiles/run/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$HOME/.nix-profile/share/fzf/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/home/felix/.dotfiles/run/fzf/shell/key-bindings.zsh"
+source "$HOME/.nix-profile/share/fzf/key-bindings.zsh"
