@@ -35,7 +35,11 @@ git clone --bare git@github.com:iFreilicht/.dotfiles.git .dotfiles/.git
 And check out the files like so:
 ```
 git --git-dir=.dotfiles/.git --work-tree=. checkout
+git --git-dir=.dotfiles/.git --work-tree=. submodule update --init
 ```
+
+After that, just restart your terminal. Use the `dot` alias instead of `git` for all git operations in this repository.
+
 There's also a `bootstrap.sh` script, but I haven't tested it much. Better you don't use it.
 
 To install all the tools that are required, install nix first.
