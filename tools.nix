@@ -10,7 +10,7 @@
     # Search here: https://search.nixos.org/packages?channel=unstable
     pkgs ? import 
     (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/e0ce3c683ae677cf5aab597d645520cddd13392b.tar.gz") # unstable on 2021-09-20
+      "https://github.com/NixOS/nixpkgs/archive/30d3d79b7d3607d56546dd2a6b49e156ba0ec634.tar.gz") # unstable on 2022-04-05
     { },
     # Stable packages, can be used as a fallback if unstable is broken
     # Search here: https://search.nixos.org/packages?channel=21.05
