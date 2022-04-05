@@ -1,1 +1,1 @@
-/home/felix/.nix-profile/share/vim-plugins/vim-plug/plug.vim
+../../.nix-profile/share/vim-plugins/vim-plug/plug.vim
