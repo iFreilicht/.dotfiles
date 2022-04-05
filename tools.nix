@@ -39,6 +39,10 @@ with pkgs; [
     asdf-vm  # Version manager for all sorts of tools
     # Run `asdf plugin-add direnv` afterwards to enable integration with direnv
     # TODO: Enable direnv integration automatically
+
+    # Containers
+    docker  # Container management CLI
+    colima  # Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
 ]
 ++
 (with stable; [
