@@ -74,3 +74,6 @@ source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# Enable seamless isolated environments in every project dir with asdf-vm and asdf-direnv
+[[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc ]] ||  source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc

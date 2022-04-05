@@ -34,6 +34,11 @@ with pkgs; [
     bat  # Colorized file output
     fd  # Alternative to find, easier to use
     ripgrep  # Alternative to grep, much quicker, uses regex by default
+
+    # Programming stuff
+    asdf-vm  # Version manager for all sorts of tools
+    # Run `asdf plugin-add direnv` afterwards to enable integration with direnv
+    # TODO: Enable direnv integration automatically
 ]
 ++
 (with stable; [
