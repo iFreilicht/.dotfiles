@@ -56,6 +56,12 @@ export NVM_DIR="$HOME/.nvm"
 # Source ROS
 [ -e "/opt/ros/melodic/setup.zsh" ] && source "/opt/ros/melodic/setup.zsh"
 
+# Source gcloud stuff if available
+if [ -e "$HOME/Documents/Apps/google-cloud-sdk/" ]; then
+  source "$HOME/Documents/Apps/google-cloud-sdk/path.zsh.inc"
+  source "$HOME/Documents/Apps/google-cloud-sdk/completion.zsh.inc"
+fi
+
 # Broot is better run as br for functionality reasons
 [ -e "$HOME/.config/broot" ] && source $HOME/.config/broot/launcher/bash/br
 
