@@ -1,3 +1,8 @@
+# Source nix. Try to source global default profile first, then the per-user profile.
+# This is a workaround for https://github.com/NixOS/nix/issues/3616
+[ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
 # Make sure instant prompt doesn't throw a warning if direnv hook is run on startup
 emulate zsh -c "$(direnv export zsh)"
 
@@ -49,11 +54,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Source cargo
 [ -s "$HOME/.cargo/env" ] && source $HOME/.cargo/env
-
-# Source nix. Try to source global default profile first, then the per-user profile.
-# This is a workaround for https://github.com/NixOS/nix/issues/3616
-[ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # Source ROS
 [ -e "/opt/ros/melodic/setup.zsh" ] && source "/opt/ros/melodic/setup.zsh"
