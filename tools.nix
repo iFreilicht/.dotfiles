@@ -29,6 +29,7 @@ with pkgs; [
   grc # Colouring output of some default utilities
   autojump # Jump to often-visited directories quickly
   fzf # Fuzzy search command history
+  (import (./.dotfiles/nix/vim.nix) { inherit pkgs; })
 
   # Some utilities
   bat # Colorized file output
@@ -45,8 +46,3 @@ with pkgs; [
   docker # Container management CLI
   colima # Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
 ]
-++
-(with stable; [
-  vim
-  vimPlugins.vim-plug # Plugin manager. Version from unstable is broken as of 2021-09-20, see https://github.com/NixOS/nixpkgs/issues/138644
-])
