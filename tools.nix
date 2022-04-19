@@ -24,6 +24,7 @@
 with pkgs; [
   # Basic terminal setup
   # zsh  # The nix version somehow doesn't honor UTF-8 locales, use the distro's version instead
+  coreutils # Use consistent coreutils accross all platforms
   zsh-powerlevel10k # ZSH theme
   direnv # Automatically switch environments in development folders
   grc # Colouring output of some default utilities
