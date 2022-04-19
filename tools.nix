@@ -33,6 +33,7 @@ with pkgs; [
   (import (./.dotfiles/nix/vim.nix) { inherit pkgs; })
 
   # Some utilities
+  git # Version management. Consistent version means access to new features on all platforms/distros
   bat # Colorized file output
   fd # Alternative to find, easier to use
   ripgrep # Alternative to grep, much quicker, uses regex by default

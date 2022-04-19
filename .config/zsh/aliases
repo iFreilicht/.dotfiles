@@ -3,7 +3,7 @@
 alias sudo='sudo '
 
 # Alias for dotfiles bare repository
-alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
+alias dot='git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
 # Better alternative to find, has to be aliased on Ubuntu
 if [ $(type fd | grep -o 'not') ]; then
