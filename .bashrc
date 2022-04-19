@@ -119,6 +119,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source /home/felix/.config/broot/launcher/bash/br
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
