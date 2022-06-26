@@ -38,6 +38,7 @@ with pkgs; [
   fd # Alternative to find, easier to use
   ripgrep # Alternative to grep, much quicker, uses regex by default
   jq # Formatting and querrying JSON strings
+  moreutils # Additional useful utils. Especially sponge
 
   # Programming stuff
   asdf-vm # Version manager for all sorts of tools
