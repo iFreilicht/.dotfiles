@@ -44,6 +44,10 @@ alias 'cp+'='rsync -axhW --info=progress2 --no-inc-recursive --no-compress'
 # Never forget to get progress
 alias rsync='rsync --info=progress2'
 
+# terraform aliases
+alias tf='terraform'
+alias tfswitch='terraform workspace select'
+
 # Activate python venv
 alias activate='source .venv/bin/activate'
 
