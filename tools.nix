@@ -39,6 +39,7 @@ with pkgs; [
   ripgrep # Alternative to grep, much quicker, uses regex by default
   jq # Formatting and querrying JSON strings
   moreutils # Additional useful utils. Especially sponge
+  tree # Show directory tree
 
   # Programming stuff
   asdf-vm # Version manager for all sorts of tools
