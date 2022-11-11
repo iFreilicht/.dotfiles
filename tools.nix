@@ -42,6 +42,7 @@ with pkgs; [
   jq # Formatting and querrying JSON strings
   moreutils # Additional useful utils. Especially sponge
   tree # Show directory tree
+  pv # Monitor progress of piped data
 
   # Programming stuff
   asdf-vm # Version manager for all sorts of tools
