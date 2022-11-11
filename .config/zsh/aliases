@@ -64,6 +64,7 @@ alias push='git push'
 alias push-u='git push -u origin HEAD'
 alias amend='git commit --amend --no-edit'
 alias amend-edit='git commit --amend'
+alias absorb='git absorb --and-rebase' # Only works if git-absorb is installed
 alias staged='git diff --staged'
 alias stash='git stash'
 alias pop='git stash pop'

@@ -35,6 +35,7 @@ with pkgs; [
 
   # Some utilities
   git # Version management. Consistent version means access to new features on all platforms/distros
+  git-absorb # Easier fixup-rebase workflow for git
   bat # Colorized file output
   fd # Alternative to find, easier to use
   ripgrep # Alternative to grep, much quicker, uses regex by default
