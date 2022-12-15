@@ -43,6 +43,7 @@ with pkgs; [
   moreutils # Additional useful utils. Especially sponge
   tree # Show directory tree
   pv # Monitor progress of piped data
+  thefuck # Quickly correct common mistakes when typing commands
 
   # Programming stuff
   asdf-vm # Version manager for all sorts of tools

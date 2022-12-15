@@ -44,6 +44,9 @@ touch $HISTFILE
 # Let direnv hook into zsh. Used especially for nix
 eval "$(direnv hook zsh)"
 
+# Enable thefuck alias
+eval $(thefuck --alias)
+
 # Autojump needs to be sourced to work on Ubuntu
 source $HOME/.nix-profile/share/autojump/autojump.zsh
 
