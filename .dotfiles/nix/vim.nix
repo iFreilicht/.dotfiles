@@ -10,7 +10,7 @@ with pkgs;
         set nocompatible
         set encoding=utf-8 "Required for YouCompleteMe to load properly
       '';
-      plug.plugins = with pkgs.vimPlugins; [ vim-colors-solarized YouCompleteMe vim-airline vim-airline-themes vim-fugitive undotree ];
+      plug.plugins = with pkgs.vimPlugins; [ vim-colors-solarized YouCompleteMe vim-airline vim-airline-themes vim-fugitive undotree surround repeat ];
       customRC = ''
         set noerrorbells
         set tabstop=4 softtabstop=4
