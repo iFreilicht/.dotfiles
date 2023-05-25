@@ -88,5 +88,7 @@ source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
 # Enable seamless isolated environments in every project dir with asdf-vm and asdf-direnv
 [[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc ]] ||  source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
+# Enable support for non-deterministic version numbers in .nvmrc for asdf
+export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 # Install some npm packages by default with asdf nodejs
 export ASDF_NPM_DEFAULT_PACKAGES_FILE=$HOME/.config/asdf-default-npm-packages
