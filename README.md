@@ -42,8 +42,8 @@ After that, just restart your terminal. Use the `dot` alias instead of `git` for
 
 There's also a `bootstrap.sh` script, but I haven't tested it much. Better you don't use it.
 
-To install all the tools that are required, install nix first.
-Then, simply install everything from `tools.nix`:
+To install all the tools that are required, install nix first using the [determinate installer](https://github.com/DeterminateSystems/nix-installer) or [activate flakes in your existing installation](https://nixos.wiki/wiki/Flakes).
+Then, simply install everything from `flake.nix`:
 ```
-nix-env -if tools.nix
+nix profile install path:$HOME/.dotfiles
 ```
