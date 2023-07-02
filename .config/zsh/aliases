@@ -17,7 +17,7 @@ if [ $TERM = 'xterm-kitty' ]; then
 fi
 
 # Colorize command output
-unset -f ls # ls was also set by grc, but we only want grc to color ls if the -l flag is specified
+unset -f ls || true # ls was also set by grc, but we only want grc to color ls if the -l flag is specified
 alias ls='ls --color=auto -vF'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -29,6 +29,10 @@ alias egrep='egrep --color=auto'
 alias ll='grc --colour=auto ls --color=always -alhvF'  # Because ls outputs not directly to stdout, we need to use always
 alias la='ls -AF'
 alias l='ls -CF'
+
+mkcd(){
+    mkdir ${@:1} && cd $1
+}
 
 # Better alternative to cp using rsync
 # Shows progress, no need for -r
