@@ -10,14 +10,16 @@
 {
   description = "Default packages to install into user environment";
 
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.nixd.url = "github:nix-community/nixd";
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, nixd }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        defaultPackages = with pkgs; {
-          inherit
+        defaultPackages = {
+          inherit (pkgs)
           # Basic terminal setup
             coreutils # Use consistent coreutils accross all platforms
             gnused # Use GNU sed on all platforms
@@ -36,20 +38,30 @@
             moreutils # Additional useful utils. Especially sponge
             tree # Show directory tree
             pv # Monitor progress of piped data
+            httpie # Modern curl alternative
             thefuck # Quickly correct common mistakes when typing commands
+            imagemagick # Image processing
 
             # Programming stuff
             asdf-vm # Version manager for all sorts of tools
             # Run `asdf plugin-add direnv` afterwards to enable integration with direnv
             # TODO: Enable direnv integration automatically
+            sqlfluff # SQL linter and formatter
+
+            # Nix stuff
+            nixos-rebuild # Even on macOS and non-Nix linux for remote deployments
             nixfmt # Autoformatter for Nix
             rnix-lsp # Language server for Nix
 
             # Containers
             docker # Container management CLI
+            docker-compose # Container composition
             colima # Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
+            dive # Inspecting image contents without starting a container
           ;
+          nixd = nixd.packages.${system}.default;
           vim = (import (./nix/vim.nix) { inherit pkgs; });
+
         };
         linuxPackages = with pkgs; {
           inherit
