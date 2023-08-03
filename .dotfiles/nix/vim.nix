@@ -27,6 +27,8 @@ with pkgs;
 
         set listchars=eol:↵,tab:>-,space:·,trail:⨯,extends:,precedes:
 
+        set backspace=indent,eol,start
+
         set colorcolumn=73,80,100
         highlight ColorColumn ctermbg=0 guibg=lightgrey
 
