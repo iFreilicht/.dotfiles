@@ -1,7 +1,7 @@
 # Source nix. Try to source global default profile first, then the per-user profile.
 # This is a workaround for https://github.com/NixOS/nix/issues/3616
-[ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+[[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+[[ ! $(command -v nix) && -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # Make sure instant prompt doesn't throw a warning if direnv hook is run on startup
 emulate zsh -c "$(direnv export zsh)"
@@ -62,7 +62,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -e "/opt/ros/melodic/setup.zsh" ] && source "/opt/ros/melodic/setup.zsh"
 
 # Source gcloud stuff if available
-if [ -e "$HOME/Documents/Apps/google-cloud-sdk/" ]; then
+if [[ ! $(command -v gcloud) && -e "$HOME/Documents/Apps/google-cloud-sdk/" ]]; then
   source "$HOME/Documents/Apps/google-cloud-sdk/path.zsh.inc"
   source "$HOME/Documents/Apps/google-cloud-sdk/completion.zsh.inc"
 fi
