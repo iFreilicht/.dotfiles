@@ -76,6 +76,7 @@ alias clone='git clone'
 alias merge='git merge'
 alias rebase='git rebase'
 alias reflog='git reflog'
+alias restore='git restore'
 alias log-dog='git log --decorate --oneline --graph'
 alias log-adog='git log --all --decorate --oneline --graph'
 # See https://stackoverflow.com/a/6127884/2533467
