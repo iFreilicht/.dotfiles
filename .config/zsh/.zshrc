@@ -1,7 +1,9 @@
 # Source nix. Try to source global default profile first, then the per-user profile.
 # This is a workaround for https://github.com/NixOS/nix/issues/3616
-[[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-[[ ! $(command -v nix) && -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+#[[ "$(whence vim)" != "$HOME/.nix-profile/bin/vim" ]]
+notSourced=1 #$?
+[[ notSourced && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+[[ notSourced && -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # Make sure instant prompt doesn't throw a warning if direnv hook is run on startup
 emulate zsh -c "$(direnv export zsh)"
@@ -77,8 +79,8 @@ source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.
 source $HOME/.config/fzf/zsh
 
 # Make sure vim is the default editor
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR="$HOME/.nix-profile/bin/vim"
+export VISUAL="$HOME/.nix-profile/bin/vim"
 
 # Activate p10k
 source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
