@@ -5,5 +5,4 @@ export ZDOTDIR="$HOME/.config/zsh"
 export PERL_BADLANG=0
 
 # Make sure programs know about vim
-export EDITOR="/usr/bin/vim"
-if [ -e /home/felix/.nix-profile/etc/profile.d/nix.sh ]; then . /home/felix/.nix-profile/etc/profile.d/nix.sh; fi
+export EDITOR="$HOME/.nix-profile/bin/vim"
