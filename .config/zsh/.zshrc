@@ -72,9 +72,6 @@ fi
 # Broot is better run as br for functionality reasons
 [ -e "$HOME/.config/broot" ] && source $HOME/.config/broot/launcher/bash/br
 
-# ZSH syntax highlighting. This should be sourced last!
-source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Source fzf
 source $HOME/.config/fzf/zsh
 
@@ -94,3 +91,6 @@ source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 # Install some npm packages by default with asdf nodejs
 export ASDF_NPM_DEFAULT_PACKAGES_FILE=$HOME/.config/asdf-default-npm-packages
+
+# ZSH syntax highlighting. This should be sourced last!
+source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
