@@ -24,6 +24,7 @@
             coreutils # Use consistent coreutils accross all platforms
             gnused # Use GNU sed on all platforms
             zsh-powerlevel10k # ZSH theme
+            zsh-syntax-highlighting # Syntax highlighting when typing commands
             direnv # Automatically switch environments in development folders
             grc # Colouring output of some default utilities
             autojump # Jump to often-visited directories quickly
