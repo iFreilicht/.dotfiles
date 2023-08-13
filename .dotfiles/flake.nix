@@ -42,6 +42,8 @@
             httpie # Modern curl alternative
             thefuck # Quickly correct common mistakes when typing commands
             imagemagick # Image processing
+            btop # Richer resource monitor, alternative to htop
+            ranger # Fast navigation through directory tree
 
             # Programming stuff
             asdf-vm # Version manager for all sorts of tools
