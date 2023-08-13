@@ -14,8 +14,8 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixd.url = "github:nix-community/nixd";
 
-  outputs = { self, nixpkgs, flake-utils, nixd }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs = { self, nixpkgs, flake-utils, nixd }@inputs:
+    (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         defaultPackages = {
@@ -91,6 +91,20 @@
           name = "ifreilicht-default-packages";
           paths = builtins.attrValues systemPackages;
         };
-      });
+      })
+    )
+    //
+    {
+      nixosConfigurations = {
+        junction = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs;
+          modules = [
+            ./nixos/configuration.nix
+          ];
+        };
+      };
+    }
+  ;
 }
 
