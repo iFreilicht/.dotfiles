@@ -102,7 +102,7 @@
           system = "x86_64-linux";
           specialArgs = inputs;
           modules = [
-            ./nixos/configuration.nix
+            ./nixos/junction/configuration.nix
           ];
         };
       };
