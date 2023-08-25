@@ -18,6 +18,14 @@
 
   networking.hostName = "junction";
 
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 20*1024; # 20GiB to make hibernation possible
+  } ];
+
+  # Enable hibernation (among other things)
+  powerManagement.enable = true;
+
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -59,12 +67,31 @@
     shell = pkgs.zsh;
   };
 
+  # User account to run remote builds
+  users.users.remote-build = {
+    isSystemUser = true;
+    hashedPassword = ""; # Only allow login via ssh
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMj4suEfNQKtFyYVlO3bgawvKuM/FWYtgu6BPMe5R8ia root@horse"
+    ];
+    shell = pkgs.bash;
+    group = "remote-build";
+  };
+  users.groups.remote-build = {};
+
+  # Ensure both users can actually build derivations
+  nix.settings.trusted-users = [
+    "felix"
+    "remote-build"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
     git
     wget
+    zip
   ];
   # Make vim the default editor
   environment.variables.EDITOR = pkgs.vim;
