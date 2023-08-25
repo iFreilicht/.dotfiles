@@ -15,13 +15,20 @@
 
   # Use the latest kernel compatible with OpenZFS
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  boot.zfs.extraPools = [ "tank" ];
 
+  networking.hostId = "feb10dc9"; # Helps prevent accidental imports of zpools
   networking.hostName = "junction";
 
   swapDevices = [ {
     device = "/var/lib/swapfile";
     size = 20*1024; # 20GiB to make hibernation possible
   } ];
+
+  # Scrub zpool once every week
+  services.zfs.autoScrub.enable = true;
 
   # Enable hibernation (among other things)
   powerManagement.enable = true;
