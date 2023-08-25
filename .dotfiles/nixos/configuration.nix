@@ -24,13 +24,13 @@
 
   swapDevices = [ {
     device = "/var/lib/swapfile";
-    size = 20*1024; # 20GiB to make hibernation possible
+    size = 8*1024; # Half of installed RAM
   } ];
 
   # Scrub zpool once every week
   services.zfs.autoScrub.enable = true;
 
-  # Enable hibernation (among other things)
+  # Enable power saving features
   powerManagement.enable = true;
 
   # Pick only one of the below networking options.
