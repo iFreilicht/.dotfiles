@@ -44,6 +44,8 @@
             imagemagick # Image processing
             btop # Richer resource monitor, alternative to htop
             ranger # Fast navigation through directory tree
+            ncdu # Disk space analyzer
+            gnupg # PGP toolkit
 
             # Programming stuff
             asdf-vm # Version manager for all sorts of tools
