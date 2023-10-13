@@ -105,6 +105,14 @@
             ./nixos/junction/configuration.nix
           ];
         };
+
+        gateway = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs;
+          modules = [
+            ./nixos/gateway/configuration.nix
+          ];
+        };
       };
     }
   ;
