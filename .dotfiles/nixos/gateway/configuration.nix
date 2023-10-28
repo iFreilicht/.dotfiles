@@ -16,10 +16,10 @@
 
   networking.hostName = "gateway";
 
-  swapDevices = [ {                                                                                 
-    device = "/var/lib/swapfile";                                                                   
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
     size = 1*1024; # Half of available RAM
-  } ];    
+  } ];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";

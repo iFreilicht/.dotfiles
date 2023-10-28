@@ -42,7 +42,7 @@ py_deps=(
 sudo python3 -m pip install $py_deps
 
 # install polybar
-cd .dotfiles/run/polybar && ./build.sh --all-features --auto; cd 
+cd .dotfiles/run/polybar && ./build.sh --all-features --auto; cd
 
 # install teiler from git repo
 cd .dotfiles/run/teiler && sudo make install; cd

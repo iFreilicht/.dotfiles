@@ -6,15 +6,15 @@ case $(hostname) in
         echo "On host source"
 
         # If nvidia driver is running
-        if [ $(lshw -c video 2> /dev/null | grep -o 'nvidia') ]; then 
+        if [ $(lshw -c video 2> /dev/null | grep -o 'nvidia') ]; then
             xrandr --output DP-0.8 --auto --primary \
                    --output DP-0.1.8 --auto --right-of DP-0.8 \
-                   --output DP-0.1.1 --auto --left-of DP-0.8 
-        else 
+                   --output DP-0.1.1 --auto --left-of DP-0.8
+        else
             # Default case for nouveau driver
             xrandr --output DP-1-8 --auto --primary \
                    --output DP-1-1-8 --auto --right-of DP-1-8 \
-                   --output DP-1-1-1 --auto --left-of DP-1-8 
+                   --output DP-1-1-1 --auto --left-of DP-1-8
         fi
     ;;
     nomad)
@@ -24,7 +24,7 @@ case $(hostname) in
     ;;
     *)
         echo "On unknown machine"
-        # Failsafe 
+        # Failsafe
         xrandr --auto
     ;;
 esac

@@ -4,7 +4,7 @@ theme_dir=/usr/share/grub/themes/solarized
 
 sudo mkdir -p $theme_dir
 
-sudo cp ~/.dotfiles/grub/theme.txt $theme_dir/theme.txt 
+sudo cp ~/.dotfiles/grub/theme.txt $theme_dir/theme.txt
 sudo cp ~/.dotfiles/images/grub_fanning.png $theme_dir/background.png
 
 cp -an /etc/default/grub /etc/default/grub.bak

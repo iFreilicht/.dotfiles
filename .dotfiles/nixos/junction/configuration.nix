@@ -5,7 +5,7 @@
 
 {
   imports =
-    [ 
+    [
       ./hardware-configuration.nix # Include the results of the hardware scan.
     ];
 
@@ -102,7 +102,7 @@
   ];
   # Make vim the default editor
   environment.variables.EDITOR = pkgs.vim;
-  
+
   # Programs with configuration
   programs.zsh.enable = true;
 
