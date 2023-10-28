@@ -1,9 +1,6 @@
 # Source nix. Try to source global default profile first, then the per-user profile.
 # This is a workaround for https://github.com/NixOS/nix/issues/3616
 #[[ "$(whence vim)" != "$HOME/.nix-profile/bin/vim" ]]
-notSourced=1 #$?
-[[ notSourced && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-[[ notSourced && -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # Make sure instant prompt doesn't throw a warning if direnv hook is run on startup
 emulate zsh -c "$(direnv export zsh)"
@@ -32,6 +29,11 @@ source $ZDOTDIR/keybinds
 
 # Enable a list of options
 source $ZDOTDIR/options
+
+# Enable all autocompletions for nix-installed tools
+for p in ${(z)NIX_PROFILES}; do
+  fpath+=($p/share/zsh/site-functions $p/share/zsh/$ZSH_VERSION/functions $p/share/zsh/vendor-completions)
+done
 
 # Set history options
 HISTSIZE=100000
