@@ -27,13 +27,13 @@ fi
 # Enable a list of options
 source $ZDOTDIR/keybinds
 
-# Enable a list of options
-source $ZDOTDIR/options
-
 # Enable all autocompletions for nix-installed tools
 for p in ${(z)NIX_PROFILES}; do
   fpath+=($p/share/zsh/site-functions $p/share/zsh/$ZSH_VERSION/functions $p/share/zsh/vendor-completions)
 done
+
+# Enable a list of options (after fpath was set, this is important for completions!)
+source $ZDOTDIR/options
 
 # Set history options
 HISTSIZE=100000
