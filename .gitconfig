@@ -1,0 +1,12 @@
+[user]
+	name = Felix Uhl
+	email = github@mail.felix-uhl.de
+
+[rerere]
+	enabled = true
+
+[includeIf "gitdir:~/repos/Elli/**"]
+    path = ~/repos/Elli/.gitconfig-Elli
+
+[includeIf "gitdir:~/repos/Netlight/**"]
+    path = ~/repos/Netlight/.gitconfig-Netlight
