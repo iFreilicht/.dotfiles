@@ -68,7 +68,7 @@ alias push='git push'
 alias push-u='git push -u origin HEAD'
 alias amend='git commit --amend --no-edit'
 alias amend-edit='git commit --amend'
-alias absorb='git stash push --keep-index && git absorb --and-rebase && git stash pop' # Only works if git-absorb is installed
+alias absorb='git stash push --keep-index && git absorb --and-rebase --base=$(main) && git stash pop' # Only works if git-absorb is installed
 alias staged='git diff --staged'
 alias stash='git stash push --keep-index'
 alias pop='git stash pop --index'
@@ -77,6 +77,7 @@ alias merge='git merge'
 alias rebase='git rebase'
 alias reflog='git reflog'
 alias restore='git restore'
+alias main='git rev-parse --verify main >/dev/null 2>&1 && echo "main" || echo "master"'
 alias log-dog='git log --decorate --oneline --graph'
 alias log-adog='git log --all --decorate --oneline --graph'
 # See https://stackoverflow.com/a/6127884/2533467
