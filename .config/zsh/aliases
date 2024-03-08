@@ -70,7 +70,7 @@ alias amend='git commit --amend --no-edit'
 alias amend-edit='git commit --amend'
 alias absorb='git stash push --keep-index && git absorb --and-rebase --base=$(main) && git stash pop' # Only works if git-absorb is installed
 alias staged='git diff --staged'
-alias stash='git stash push --keep-index'
+alias stash='git stash push --keep-index --include-untracked'
 alias pop='git stash pop --index'
 alias clone='git clone'
 alias merge='git merge'
