@@ -45,9 +45,6 @@ setopt appendhistory
 mkdir -p $(dirname $HISTFILE)
 touch $HISTFILE
 
-# Let direnv hook into zsh. Used especially for nix
-eval "$(direnv hook zsh)"
-
 # Enable thefuck alias
 eval $(thefuck --alias)
 
@@ -93,6 +90,9 @@ source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 # Install some npm packages by default with asdf nodejs
 export ASDF_NPM_DEFAULT_PACKAGES_FILE=$HOME/.config/asdf-default-npm-packages
+
+# Let direnv hook into zsh. Used especially for nix
+eval "$(direnv hook zsh)"
 
 # ZSH syntax highlighting. This should be sourced last!
 source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
