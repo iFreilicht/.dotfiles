@@ -59,7 +59,6 @@
             nixos-rebuild# Even on macOS and non-Nix linux for remote deployments
             nixfmt# Autoformatter for Nix
             nixpkgs-fmt# Another autoformatter, specific to nixpkgs
-            rnix-lsp# Language server for Nix
 
             # Containers
             docker# Container management CLI
