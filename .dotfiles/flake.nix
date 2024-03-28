@@ -26,6 +26,7 @@
             gnused# Use GNU sed on all platforms
             zsh-powerlevel10k# ZSH theme
             zsh-syntax-highlighting# Syntax highlighting when typing commands
+            zsh-completions# Additional completions for ZSH
             direnv# Automatically switch environments in development folders
             grc# Colouring output of some default utilities
             autojump# Jump to often-visited directories quickly
