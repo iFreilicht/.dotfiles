@@ -15,6 +15,9 @@ with pkgs;
       opt = [ ];
     };
     customRC = ''
+      " Import default settings, especially syntax highlighting
+      source ${vim-full}/share/vim/vim*/defaults.vim
+
       set noerrorbells
       set tabstop=4 softtabstop=4
       set shiftwidth=4
