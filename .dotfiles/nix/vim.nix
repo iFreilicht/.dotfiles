@@ -11,7 +11,7 @@ with pkgs;
       set encoding=utf-8 "Required for YouCompleteMe to load properly
     '';
     packages.myPlugins = with pkgs.vimPlugins; {
-      start = [ vim-colors-solarized /*YouCompleteMe*/ vim-airline vim-airline-themes vim-fugitive undotree surround-nvim repeat ];
+      start = [ vim-colors-solarized YouCompleteMe vim-airline vim-airline-themes vim-fugitive undotree surround-nvim repeat ];
       opt = [ ];
     };
     customRC = ''

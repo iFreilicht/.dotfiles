@@ -10,16 +10,32 @@
 {
   description = "Default packages to install into user environment";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  # `nix profile upgrade` always upgrades nixpkgs to the latest version as well, which is annoying,
+  # as I need to download nixpkgs again AND risk breakage. Lock the exact commit instead for both
+  # stable and unstable. Stable is only required when unstable breaks (which happens often on darwin)
+  # To upgrade, check https://hydra.nixos.org/jobset/nixpkgs/trunk for unstable
+  # and https://hydra.nixos.org/jobset/nixpkgs/nixpkgs-23.11-darwin for stable
+  # and select the latest commit hash that has no unfinished builds (meaning it's fully cached).
+  # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/2b80ce7707aedcb79be09e412b6dd6c15c578ab2";
+  inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/d52be12b079045912fdfaa027f29c826e9a23e31";
+
   inputs.nix.url = "github:NixOS/nix";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixd.url = "github:nix-community/nixd";
 
-  outputs = { self, nixpkgs, nix, flake-utils, nixd }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nix, flake-utils, nixd }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        pkgs-stable = nixpkgs-stable.legacyPackages.${system};
         defaultPackages = {
+          inherit (pkgs-stable)
+            # Utilities
+            ncdu# Disk usage analyzer
+            # Programming stuff
+            sqlfluff# SQL linter and formatter
+            ;
           inherit (pkgs)
             # Basic terminal setup
             coreutils# Use consistent coreutils accross all platforms
@@ -46,7 +62,6 @@
             imagemagick# Image processing
             btop# Richer resource monitor, alternative to htop
             ranger# Fast navigation through directory tree
-            ncdu# Disk space analyzer
             gnupg# PGP toolkit
             tlrc# Quick command help, tldr rust client. Command is tldr, not tlrc
 
@@ -54,12 +69,11 @@
             asdf-vm# Version manager for all sorts of tools
             # Run `asdf plugin-add direnv` afterwards to enable integration with direnv
             # TODO: Enable direnv integration automatically
-            sqlfluff# SQL linter and formatter
             gh# GitHub CLI
 
             # Nix stuff
             nixos-rebuild# Even on macOS and non-Nix linux for remote deployments
-            nixfmt# Autoformatter for Nix
+            nixfmt-classic# Autoformatter for Nix
             nixpkgs-fmt# Another autoformatter, specific to nixpkgs
 
             # Containers
