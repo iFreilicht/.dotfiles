@@ -64,6 +64,7 @@
             ranger# Fast navigation through directory tree
             gnupg# PGP toolkit
             tlrc# Quick command help, tldr rust client. Command is tldr, not tlrc
+            duf# Quick disk space view
 
             # Programming stuff
             asdf-vm# Version manager for all sorts of tools
