@@ -47,6 +47,7 @@
             grc# Colouring output of some default utilities
             autojump# Jump to often-visited directories quickly
             fzf# Fuzzy search command history
+            zellij# Split views and sessions
 
             # Some utilities
             git-absorb# Easier fixup-rebase workflow for git
