@@ -261,9 +261,11 @@ scrollback_lines_to_serialize 10000
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 
 themes {
-    solarized-dark {
-        fg 253 246 227
-        bg 0 43 54
+    // The names don't match the colors exactly, the assignment was chosen to look good
+    // bg is used for highlighting text selection, do not use actual background color there!
+    solarized-dark-custom {
+        fg 88 110 117
+        bg 7 54 66
         black 7 54 66
         red 220 50 47
         green 133 153 0
@@ -271,16 +273,14 @@ themes {
         blue 38 139 210
         magenta 211 54 130
         cyan 42 161 152
-        white 238 232 213
+        white 131 148 150
         orange 203 75 22
     }
-}
 
-themes {
-    solarized-light {
-        fg 101 123 131
-        bg 253 246 227
-        black 7 54 66
+    solarized-light-custom {
+        fg 218 212 200 // Not actually part of solarized, stolen from vscode
+        bg 238 232 213
+        black 238 232 213
         red 220 50 47
         green 133 153 0
         yellow 181 137 0
@@ -295,7 +295,7 @@ themes {
 // Choose the theme that is specified in the themes section.
 // Default: default
 
-theme "solarized-dark"
+theme "solarized-dark-custom"
 
 // The name of the default layout to load on startup
 // Default: "default"
