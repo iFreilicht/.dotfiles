@@ -74,6 +74,9 @@
             gh# GitHub CLI
 
             # Nix stuff
+            nh# Nix helper, very useful!
+            nix-output-monitor# Much better view of build status
+            nvd# Comprehensive difference between two derivations, especially helpful for profiles
             nixos-rebuild# Even on macOS and non-Nix linux for remote deployments
             nixfmt-classic# Autoformatter for Nix
             nixpkgs-fmt# Another autoformatter, specific to nixpkgs
