@@ -287,8 +287,9 @@ theme "solarized-dark-custom"
 // Options:
 //   - true (default)
 //   - false
-//
-// mouse_mode false
+// Disable mouse mode until I find a good solution for vscode not supporting OSC 52
+// See https://github.com/xtermjs/xterm.js/issues/3260
+mouse_mode false
 
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
