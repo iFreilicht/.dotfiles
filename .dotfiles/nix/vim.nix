@@ -2,8 +2,7 @@
 { pkgs }:
 
 with pkgs;
-(vim-full.customize
-{
+(vim-full.customize {
   name = "vim";
   vimrcConfig = {
     beforePlugins = ''
@@ -11,7 +10,16 @@ with pkgs;
       set encoding=utf-8 "Required for YouCompleteMe to load properly
     '';
     packages.myPlugins = with pkgs.vimPlugins; {
-      start = [ vim-colors-solarized YouCompleteMe vim-airline vim-airline-themes vim-fugitive undotree surround-nvim repeat ];
+      start = [
+        vim-colors-solarized # Simple solarized theme, works well OOTB
+        YouCompleteMe # Autocomplete
+        vim-airline # Better status line
+        vim-airline-themes # Themes for that status line
+        vim-fugitive # Git integration
+        undotree # Richer undo history
+        surround-nvim # Surround content with braces, replace surrounding braces
+        repeat # Makes built-in repeat command work with other scripts (for example surround)
+      ];
       opt = [ ];
     };
     customRC = ''
