@@ -54,6 +54,33 @@ with pkgs;
       let g:airline#extensions#tabline#enabled = 1
 
       let mapleader = " "
+
+      " Remap y in visual mode to yank to unnamed register AND pipe that to https://github.com/Slackadays/clipboard
+      " This makes yank copy to the system clipboard on all platforms, even via ssh
+      function! CopyUnnamedRegisterToClipboard()
+        call system('cb copy', @")
+        if v:shell_error != 0
+          echohl ErrorMsg
+          echo "Error: `cb copy` failed with exit code " . v:shell_error
+        else
+          echohl InfoMessage
+          echo "Successfully copied " . strlen(@") . " chars to system clipboard!"
+        endif
+        echohl None
+      endfunction
+
+      vnoremap y y:call CopyUnnamedRegisterToClipboard()<CR>
+
+      " Also map Ctrl+C to copy for easier mouse interaction (Cmd+C (<D-c>) is caught by the terminal emulator)
+      vnoremap <C-c> y:call CopyUnnamedRegisterToClipboard()<CR>
+
+      " Make y in normal mode (suffixed by motions) yank to system clipboard as well
+      function! YankMotionToClipboard(type)
+        exec 'normal! `[v`]y'
+        call CopyUnnamedRegisterToClipboard()
+      endfunction
+
+      nmap <silent> y :set opfunc=YankMotionToClipboard<CR>g@
     '';
   };
 })
