@@ -287,9 +287,8 @@ theme "solarized-dark-custom"
 // Options:
 //   - true (default)
 //   - false
-// Disable mouse mode until I find a good solution for vscode not supporting OSC 52
-// See https://github.com/xtermjs/xterm.js/issues/3260
-mouse_mode false
+//
+// mouse_mode false
 
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -308,6 +307,8 @@ scroll_buffer_size 100000
 // copy_command "xclip -selection clipboard" // x11
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
+
+copy_command "cb copy" // Uses https://github.com/Slackadays/Clipboard, supports all desktops and OSC 52
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.

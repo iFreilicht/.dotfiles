@@ -48,6 +48,7 @@
             autojump# Jump to often-visited directories quickly
             fzf# Fuzzy search command history
             zellij# Split views and sessions
+            clipboard-jh# Clipboard integration for X11, Wayland, macOS, Windows and OSC 52
 
             # Some utilities
             git-absorb# Easier fixup-rebase workflow for git
