@@ -6,8 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
+      ../common.nix
+      ./hardware-configuration.nix # Include the results of the hardware scan.
     ];
 
   # Use the GRUB 2 boot loader.
@@ -16,19 +17,13 @@
 
   networking.hostName = "gateway";
 
-  swapDevices = [ {
+  swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 1*1024; # Half of available RAM
-  } ];
+    size = 1 * 1024; # Half of available RAM
+  }];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  # Nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   users.users.felix = {
     isNormalUser = true;
@@ -41,19 +36,9 @@
     shell = pkgs.zsh;
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    wget
-    zip
-  ];
-  # Make vim the default editor
-  environment.variables.EDITOR = pkgs.vim;
-
-  # Programs with configuration
-  programs.zsh.enable = true;
+  # Allow my own user to use sudo without a password. This works around an issue with remote nixos-rebuild switch,
+  # see https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/7?u=ifreilicht
+  security.sudo.wheelNeedsPassword = false;
 
   # List services that you want to enable:
 

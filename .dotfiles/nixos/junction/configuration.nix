@@ -6,6 +6,7 @@
 {
   imports =
     [
+      ../common.nix
       ./hardware-configuration.nix # Include the results of the hardware scan.
     ];
 
@@ -22,10 +23,10 @@
   networking.hostId = "feb10dc9"; # Helps prevent accidental imports of zpools
   networking.hostName = "junction";
 
-  swapDevices = [ {
+  swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 8*1024; # Half of installed RAM
-  } ];
+    size = 8 * 1024; # Half of installed RAM
+  }];
 
   # Scrub zpool once every week
   services.zfs.autoScrub.enable = true;
@@ -33,34 +34,8 @@
   # Enable power saving features
   powerManagement.enable = true;
 
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
-  # Nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.felix = {
@@ -74,6 +49,10 @@
     shell = pkgs.zsh;
   };
 
+  # Allow my own user to use sudo without a password. This works around an issue with remote nixos-rebuild switch,
+  # see https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/7?u=ifreilicht
+  security.sudo.wheelNeedsPassword = false;
+
   # User account to run remote builds
   users.users.remote-build = {
     isSystemUser = true;
@@ -84,27 +63,13 @@
     shell = pkgs.bash;
     group = "remote-build";
   };
-  users.groups.remote-build = {};
+  users.groups.remote-build = { };
 
   # Ensure both users can actually build derivations
   nix.settings.trusted-users = [
     "felix"
     "remote-build"
   ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    wget
-    zip
-  ];
-  # Make vim the default editor
-  environment.variables.EDITOR = pkgs.vim;
-
-  # Programs with configuration
-  programs.zsh.enable = true;
 
   # List services that you want to enable:
 
