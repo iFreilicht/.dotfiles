@@ -9,6 +9,7 @@
     [
       ../common.nix
       ./hardware-configuration.nix # Include the results of the hardware scan.
+      (import ../wireguard.nix { inherit (pkgs) lib; }).gateway
     ];
 
   # Use the GRUB 2 boot loader.

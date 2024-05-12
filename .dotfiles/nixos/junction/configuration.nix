@@ -8,6 +8,7 @@
     [
       ../common.nix
       ./hardware-configuration.nix # Include the results of the hardware scan.
+      (import ../wireguard.nix { inherit (pkgs) lib; }).junction
     ];
 
   # Use the systemd-boot EFI boot loader.
