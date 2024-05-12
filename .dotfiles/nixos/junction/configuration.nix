@@ -111,8 +111,46 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # User-facing services
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb_106;
+    dataDir = "/mnt/mysql";
+    ensureDatabases = [
+      "nextcloud"
+    ];
+    ensureUsers = [
+      {
+        name = "nextcloud";
+        ensurePermissions = {
+          "nextcloud.*" = "ALL PRIVILEGES";
+        };
+      }
+    ];
+  };
+
+  environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
+  services.nextcloud = {
+    enable = true;
+    package = pkgs.nextcloud27;
+    hostName = "cloud.uhl.cx";
+    home = "/mnt/nextcloud";
+    configureRedis = true;
+    config = {
+      dbtype = "mysql";
+      adminpassFile = "/etc/nextcloud-admin-pass";
+      extraTrustedDomains = [
+        # Required for local access
+        "junction"
+        "192.168.178.48"
+      ];
+    };
+  };
+
+
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

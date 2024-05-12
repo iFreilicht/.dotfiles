@@ -19,12 +19,14 @@
   # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/2e359fb3162c85095409071d131e08252d91a14f";
   inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/d52be12b079045912fdfaa027f29c826e9a23e31";
+  # Nextcloud 27 is currently broken in unstable (24.05), so I need 23.11 for junction
+  inputs.nixpkgs-23_11.url = "github:NixOS/nixpkgs/27c13997bf450a01219899f5a83bd6ffbfc70d3c";
 
   inputs.nix.url = "github:NixOS/nix";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixd.url = "github:nix-community/nixd";
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nix, flake-utils, nixd }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-23_11, nix, flake-utils, nixd }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -126,7 +128,7 @@
     //
     {
       nixosConfigurations = {
-        junction = nixpkgs.lib.nixosSystem {
+        junction = nixpkgs-23_11.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = inputs;
           modules = [
