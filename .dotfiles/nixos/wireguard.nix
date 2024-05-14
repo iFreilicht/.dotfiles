@@ -39,10 +39,10 @@ in
         allowedUDPPorts = [ port ];
       };
 
-      networking.wireguard.interfaces = {
+      networking.wg-quick.interfaces = {
         wg0 = {
-          ips = makeIps gateway;
-          inherit privateKeyFile generatePrivateKeyFile;
+          address = makeIps gateway;
+          inherit privateKeyFile;
           listenPort = port;
           peers = [
             (makePeer junction)
@@ -54,10 +54,14 @@ in
   };
   junction = {
     config = {
-      networking.wireguard.interfaces = {
+      networking.firewall = {
+        allowedUDPPorts = [ port ];
+      };
+
+      networking.wg-quick.interfaces = {
         wg0 = {
-          ips = makeIps junction;
-          inherit privateKeyFile generatePrivateKeyFile;
+          address = makeIps junction;
+          inherit privateKeyFile;
           listenPort = port;
           peers = [
             (makeServer gateway {
