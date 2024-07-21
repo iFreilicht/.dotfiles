@@ -1,32 +1,35 @@
-# To install these packages via nix, run
-#     nix profile install path:$HOME/.dotfiles
+# To install these packages via nix, run:
+#     nix run path:$HOME/.dotfiles#profile.switch
+
+# I also recommend pinning the flakes registry and channels to avoid unnecessary downloads:
+#     nix run path:$HOME/.dotfiles#profile.pin
 
 # To use nix flake commands, you'll also have to refer to this flake by path (because of the bare repo, see README.md):
 #     nix flake show path:$HOME/.dotfiles
 
-# To update the environment after changing this file or any files it imports, run
-#     nix profile upgrade '.*'
-
 {
   description = "Default packages to install into user environment";
 
-  # `nix profile upgrade` always upgrades nixpkgs to the latest version as well, which is annoying,
-  # as I need to download nixpkgs again AND risk breakage. Lock the exact commit instead for both
-  # stable and unstable. Stable is only required when unstable breaks (which happens often on darwin)
-  # To upgrade, check https://hydra.nixos.org/jobset/nixpkgs/trunk for unstable
-  # and https://hydra.nixos.org/jobset/nixpkgs/nixpkgs-23.11-darwin for stable
-  # and select the latest commit hash that has no unfinished builds (meaning it's fully cached).
-  # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/2e359fb3162c85095409071d131e08252d91a14f";
-  inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/d52be12b079045912fdfaa027f29c826e9a23e31";
-  # Nextcloud 27 is currently broken in unstable (24.05), so I need 23.11 for junction
-  inputs.nixpkgs-23_11.url = "github:NixOS/nixpkgs/27c13997bf450a01219899f5a83bd6ffbfc70d3c";
+  inputs = {
+    flakey-profile.url = "github:lf-/flakey-profile";
+    # `nix flake update` always upgrades nixpkgs to the latest version as well, which is annoying,
+    # as I need to download nixpkgs again AND risk breakage. Lock the exact commit instead for both
+    # stable and unstable. Stable is only required when unstable breaks (which happens often on darwin)
+    # To upgrade, check https://hydra.nixos.org/jobset/nixpkgs/trunk for unstable
+    # and https://hydra.nixos.org/jobset/nixpkgs/nixpkgs-23.11-darwin for stable
+    # and select the latest commit hash that has no unfinished builds (meaning it's fully cached).
+    # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
+    nixpkgs.url = "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/d52be12b079045912fdfaa027f29c826e9a23e31";
+    # Nextcloud 27 is currently broken in unstable (24.05), so I need 23.11 for junction
+    nixpkgs-23_11.url = "github:NixOS/nixpkgs/27c13997bf450a01219899f5a83bd6ffbfc70d3c";
 
-  inputs.nix.url = "github:NixOS/nix";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.nixd.url = "github:nix-community/nixd";
+    nix.url = "github:NixOS/nix";
+    flake-utils.url = "github:numtide/flake-utils";
+    nixd.url = "github:nix-community/nixd";
+  };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-23_11, nix, flake-utils, nixd }@inputs:
+  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-23_11, nix, flake-utils, nixd }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -119,9 +122,13 @@
             (builtins.attrValues systemPackages);
       in
       {
-        packages.default = pkgs.buildEnv {
-          name = "ifreilicht-default-packages";
+        packages.profile = flakey-profile.lib.mkProfile {
+          inherit pkgs;
           paths = builtins.attrValues systemPackages;
+          pinned = {
+            nixpkgs = toString nixpkgs;
+            stable = toString nixpkgs-stable;
+          };
         };
       })
     )

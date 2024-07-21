@@ -45,5 +45,10 @@ There's also a `bootstrap.sh` script, but I haven't tested it much. Better you d
 To install all the tools that are required, install nix first using the [determinate installer](https://github.com/DeterminateSystems/nix-installer) or [activate flakes in your existing installation](https://nixos.wiki/wiki/Flakes).
 Then, simply install everything from `flake.nix`:
 ```
-nix profile install path:$HOME/.dotfiles
+nix run path:$HOME/.dotfiles#profile.switch
+```
+
+I also recommend pinning the flakes registry and channels to avoid unnecessary downloads:
+```
+nix run path:$HOME/.dotfiles#profile.pin
 ```
