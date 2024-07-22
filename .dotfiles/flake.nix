@@ -24,12 +24,11 @@
     # Nextcloud 27 is currently broken in unstable (24.05), so I need 23.11 for junction
     nixpkgs-23_11.url = "github:NixOS/nixpkgs/27c13997bf450a01219899f5a83bd6ffbfc70d3c";
 
-    nix.url = "github:NixOS/nix";
     flake-utils.url = "github:numtide/flake-utils";
     nixd.url = "github:nix-community/nixd";
   };
 
-  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-23_11, nix, flake-utils, nixd }@inputs:
+  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-23_11, flake-utils, nixd }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -93,7 +92,6 @@
             colima# Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
             dive# Inspecting image contents without starting a container
             ;
-          nix = nix.packages.${system}.default;
           nixd = nixd.packages.${system}.default;
           vim = (import (./nix/vim.nix) { inherit pkgs; });
 
