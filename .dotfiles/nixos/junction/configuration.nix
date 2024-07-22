@@ -8,6 +8,7 @@
     [
       ../common.nix
       ./hardware-configuration.nix # Include the results of the hardware scan.
+      ./disko.nix # Drive configuration
       (import ../wireguard.nix { inherit (pkgs) lib; }).junction
     ];
 
@@ -23,11 +24,6 @@
 
   networking.hostId = "feb10dc9"; # Helps prevent accidental imports of zpools
   networking.hostName = "junction";
-
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 8 * 1024; # Half of installed RAM
-  }];
 
   # Scrub zpool once every week
   services.zfs.autoScrub.enable = true;
@@ -78,6 +74,10 @@
   services.openssh.enable = true;
 
   # User-facing services
+  # This is a workaround, I'm trying to get it upstreamed in https://github.com/NixOS/nixpkgs/pull/331296
+  systemd.tmpfiles.rules = [
+    "d /mnt/mysql 0750 mysql mysql - -"
+  ];
   services.mysql = {
     enable = true;
     package = pkgs.mariadb_106;
@@ -127,6 +127,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
 

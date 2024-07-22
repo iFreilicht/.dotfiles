@@ -26,9 +26,10 @@
 
     flake-utils.url = "github:numtide/flake-utils";
     nixd.url = "github:nix-community/nixd";
+    disko.url = "github:nix-community/disko";
   };
 
-  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-23_11, flake-utils, nixd }@inputs:
+  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-23_11, flake-utils, nixd, disko }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -137,6 +138,7 @@
           system = "x86_64-linux";
           specialArgs = inputs;
           modules = [
+            disko.nixosModules.disko
             ./nixos/junction/configuration.nix
           ];
         };
