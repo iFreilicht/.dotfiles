@@ -87,27 +87,32 @@ in
     dataDir = mnt.mysql;
   };
 
+  # ON REINSTALL: Change the admin password to a new random one
   environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud27;
-    hostName = "cloud.uhl.cx";
+    hostName = "cloud2.uhl.cx";
     home = mnt.nextcloud;
     configureRedis = true;
     database.createLocally = true;
     config = {
       dbtype = "mysql";
       adminpassFile = "/etc/nextcloud-admin-pass";
+      overwriteProtocol = "https";
+      trustedProxies = [
+        net.gateway.wireguard.ip
+      ];
       extraTrustedDomains = [
         # Required for local access
         "junction"
         "192.168.178.48"
+        # Allow access via wireguard
+        net.junction.wireguard.ip
       ];
       defaultPhoneRegion = "DE";
     };
   };
-
-
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 80 443 ];

@@ -43,13 +43,51 @@ in
   # see https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/7?u=ifreilicht
   security.sudo.wheelNeedsPassword = false;
 
+  # Automatically renewing SSL certificates
+  security.acme = {
+    defaults.email = "letsencrypt@mail.felix-uhl.de";
+    acceptTerms = true;
+  };
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.nginx = {
+    enable = true;
+
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+
+    # Harden nginx as described in https://nixos.wiki/wiki/nginx#Hardened_setup_with_TLS_and_HSTS_preloading
+    # Not all settings from the article are compatible with nextcloud.
+    appendHttpConfig = ''
+      # Add HSTS header with preloading to HTTPS requests.
+      # Adding this header to HTTP requests is discouraged
+      map $scheme $hsts_header {
+          https   "max-age=31536000; includeSubdomains";
+      }
+      add_header Strict-Transport-Security $hsts_header;
+
+      # Enable CSP
+      add_header Content-Security-Policy "object-src 'none'; base-uri 'none';" always;
+
+      # Minimize information leaked to other domains
+      add_header 'Referrer-Policy' 'origin-when-cross-origin';
+    '';
+
+    virtualHosts."cloud2.uhl.cx" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${net.junction.wireguard.ip}";
+    };
+  };
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
