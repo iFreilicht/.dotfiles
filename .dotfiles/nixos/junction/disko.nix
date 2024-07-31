@@ -1,3 +1,6 @@
+let
+  mnt = import ./mountpoints.nix;
+in
 {
   disko.devices = {
     zpool = {
@@ -15,11 +18,11 @@
             type = "zfs_fs";
             # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
             # See also https://github.com/nix-community/disko/issues/581#issuecomment-2260602290
-            options.mountpoint = "/mnt/nextcloud";
+            options.mountpoint = mnt.nextcloud;
           };
           "mysql" = {
             type = "zfs_fs";
-            options.mountpoint = "/mnt/mysql";
+            options.mountpoint = mnt.mysql;
           };
         };
       };
@@ -96,7 +99,7 @@
                 type = "filesystem";
                 format = "ext4";
                 extraArgs = [ "-L" "scratch" ];
-                mountpoint = "/mnt/scratch";
+                mountpoint = mnt.scratch;
               };
             };
           };

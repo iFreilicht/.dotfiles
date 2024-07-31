@@ -2,7 +2,9 @@
 # and in the NixOS manual (accessible by running `nixos-help`).
 
 { config, pkgs, ... }:
-
+let
+  mnt = import ./mountpoints.nix;
+in
 {
   imports =
     [
@@ -76,12 +78,12 @@
   # User-facing services
   # This is a workaround, I'm trying to get it upstreamed in https://github.com/NixOS/nixpkgs/pull/331296
   systemd.tmpfiles.rules = [
-    "d /mnt/mysql 0750 mysql mysql - -"
+    "d ${mnt.mysql} 0750 mysql mysql - -"
   ];
   services.mysql = {
     enable = true;
     package = pkgs.mariadb_106;
-    dataDir = "/mnt/mysql";
+    dataDir = mnt.mysql;
   };
 
   environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
@@ -89,7 +91,7 @@
     enable = true;
     package = pkgs.nextcloud27;
     hostName = "cloud.uhl.cx";
-    home = "/mnt/nextcloud";
+    home = mnt.nextcloud;
     configureRedis = true;
     database.createLocally = true;
     config = {
