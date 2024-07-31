@@ -100,6 +100,7 @@
         "junction"
         "192.168.178.48"
       ];
+      defaultPhoneRegion = "DE";
     };
   };
 
