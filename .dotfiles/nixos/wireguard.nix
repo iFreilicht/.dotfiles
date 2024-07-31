@@ -1,23 +1,13 @@
 { lib, ... }:
 
 let
+  net = import ./network.nix;
+  gateway = net.gateway.wireguard;
+  junction = net.junction.wireguard;
+  horse = net.horse.wireguard;
+
   port = 51820;
   privateKeyFile = "/etc/wireguard/private";
-  gateway = {
-    ip = "10.100.0.1";
-    # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
-    publicKey = "70NDFa+EmxNDZLW3QFO3blILT3oRA5K3aIofjLPdIxg=";
-    initialIP = "49.12.239.37"; # The static IP the server can be reached at
-  };
-  horse = {
-    ip = "10.100.0.8";
-    publicKey = "adcMoJUfbf+RTtRt6oXCggop1XDWGfiWyGQzA9gmpB0=";
-  };
-  junction = {
-    ip = "10.100.0.13";
-    # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
-    publicKey = "ocMusNfO8N6z4kc2FEJMwhFTdRV4VWbKyAhGZMDzJSE=";
-  };
   makeIps = a: [ "${a.ip}/24" ];
   makePeer = a: {
     inherit (a) publicKey;
@@ -42,6 +32,9 @@ let
   '';
 in
 {
+  peers = {
+    inherit junction gateway;
+  };
   gateway = {
     config = {
       networking.nat.enable = true;

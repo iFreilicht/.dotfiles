@@ -4,6 +4,7 @@
 { config, pkgs, ... }:
 let
   mnt = import ./mountpoints.nix;
+  net = import ../network.nix;
 in
 {
   imports =
@@ -41,8 +42,8 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB9OOXhRhYgpaFLwbkfcQsSYYUTr+qsbf0WIHcUm2fFQ felix@horse"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0TI3HN6e00Bv29ui7BUCYSa4FBjcWBs4fE5R1ODc9+ felix@source"
+      net.horse.ssh.publicKey
+      net.source.ssh.publicKey
     ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
