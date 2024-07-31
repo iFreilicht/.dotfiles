@@ -82,17 +82,6 @@
     enable = true;
     package = pkgs.mariadb_106;
     dataDir = "/mnt/mysql";
-    ensureDatabases = [
-      "nextcloud"
-    ];
-    ensureUsers = [
-      {
-        name = "nextcloud";
-        ensurePermissions = {
-          "nextcloud.*" = "ALL PRIVILEGES";
-        };
-      }
-    ];
   };
 
   environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
@@ -102,6 +91,7 @@
     hostName = "cloud.uhl.cx";
     home = "/mnt/nextcloud";
     configureRedis = true;
+    database.createLocally = true;
     config = {
       dbtype = "mysql";
       adminpassFile = "/etc/nextcloud-admin-pass";
