@@ -89,10 +89,13 @@ in
 
   # ON REINSTALL: Change the admin password to a new random one
   environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
+  services.nginx.virtualHosts."${net.nextcloud.domain}".listen = [
+    { addr = "0.0.0.0"; port = net.nextcloud.port; }
+  ];
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud27;
-    hostName = "cloud2.uhl.cx";
+    hostName = net.nextcloud.domain;
     home = mnt.nextcloud;
     configureRedis = true;
     database.createLocally = true;
@@ -115,7 +118,9 @@ in
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    net.nextcloud.port
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

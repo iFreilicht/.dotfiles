@@ -1,4 +1,5 @@
 {
+  nextcloud = { domain = "cloud2.uhl.cx"; port = 33001; };
   gateway = {
     wireguard = {
       ip = "10.100.0.1";

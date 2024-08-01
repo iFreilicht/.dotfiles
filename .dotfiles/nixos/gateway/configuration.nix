@@ -79,10 +79,10 @@ in
       add_header 'Referrer-Policy' 'origin-when-cross-origin';
     '';
 
-    virtualHosts."cloud2.uhl.cx" = {
+    virtualHosts."${net.nextcloud.domain}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/".proxyPass = "http://${net.junction.wireguard.ip}";
+      locations."/".proxyPass = "http://${net.junction.wireguard.ip}:${toString net.nextcloud.port}";
     };
   };
 
