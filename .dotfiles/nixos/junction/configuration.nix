@@ -117,9 +117,20 @@ in
     };
   };
 
+  virtualisation.oci-containers.containers = {
+    "snapdrop" = {
+      image = "linuxserver/snapdrop";
+      ports = [
+        "${toString net.snapdrop.port}:80"
+      ];
+    };
+
+  };
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     net.nextcloud.port
+    net.snapdrop.port
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.

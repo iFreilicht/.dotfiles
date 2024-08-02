@@ -1,5 +1,6 @@
 {
   nextcloud = { domain = "cloud2.uhl.cx"; port = 33001; };
+  snapdrop = { domain = "drop.uhl.cx"; port = 33002; };
   gateway = {
     wireguard = {
       ip = "10.100.0.1";

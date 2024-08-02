@@ -84,6 +84,14 @@ in
       forceSSL = true;
       locations."/".proxyPass = "http://${net.junction.wireguard.ip}:${toString net.nextcloud.port}";
     };
+    virtualHosts."${net.snapdrop.domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${net.junction.wireguard.ip}:${toString net.snapdrop.port}";
+        proxyWebsockets = true;
+      };
+    };
   };
 
   # Open ports in the firewall.
