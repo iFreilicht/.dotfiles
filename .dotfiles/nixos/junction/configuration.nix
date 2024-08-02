@@ -125,12 +125,19 @@ in
       ];
     };
 
+    "kritzeln" = {
+      image = "biosmarcel/scribble.rs";
+      ports = [
+        "${toString net.kritzeln.port}:8080"
+      ];
+    };
   };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     net.nextcloud.port
     net.snapdrop.port
+    net.kritzeln.port
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.

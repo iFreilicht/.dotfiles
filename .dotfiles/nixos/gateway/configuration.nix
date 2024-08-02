@@ -92,6 +92,14 @@ in
         proxyWebsockets = true;
       };
     };
+    virtualHosts."${net.kritzeln.domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${net.junction.wireguard.ip}:${toString net.kritzeln.port}";
+        proxyWebsockets = true;
+      };
+    };
   };
 
   # Open ports in the firewall.
