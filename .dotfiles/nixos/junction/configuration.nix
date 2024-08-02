@@ -102,18 +102,18 @@ in
     config = {
       dbtype = "mysql";
       adminpassFile = "/etc/nextcloud-admin-pass";
-      overwriteProtocol = "https";
-      trustedProxies = [
-        net.gateway.wireguard.ip
-      ];
-      extraTrustedDomains = [
+    };
+    settings = {
+      trusted_proxies = [ net.gateway.wireguard.ip ];
+      trusted_domains = [
         # Required for local access
         "junction"
         "192.168.178.48"
         # Allow access via wireguard
         net.junction.wireguard.ip
       ];
-      defaultPhoneRegion = "DE";
+      overwriteprotocol = "https";
+      default_phone_region = "DE";
     };
   };
 
