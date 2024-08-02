@@ -89,7 +89,7 @@ in
 
   # ON REINSTALL: Change the admin password to a new random one
   environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
-  services.nginx.virtualHosts."${net.nextcloud.domain}".listen = [
+  services.nginx.virtualHosts.${net.nextcloud.domain}.listen = [
     { addr = "0.0.0.0"; port = net.nextcloud.port; }
   ];
   services.nextcloud = {

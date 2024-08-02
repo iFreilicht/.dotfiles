@@ -79,25 +79,29 @@ in
       add_header 'Referrer-Policy' 'origin-when-cross-origin';
     '';
 
-    virtualHosts."${net.nextcloud.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${net.junction.wireguard.ip}:${toString net.nextcloud.port}";
-    };
-    virtualHosts."${net.snapdrop.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${net.junction.wireguard.ip}:${toString net.snapdrop.port}";
-        proxyWebsockets = true;
+    virtualHosts = {
+      ${net.nextcloud.domain} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/".proxyPass = "http://${net.junction.wireguard.ip}:${toString net.nextcloud.port}";
       };
-    };
-    virtualHosts."${net.kritzeln.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${net.junction.wireguard.ip}:${toString net.kritzeln.port}";
-        proxyWebsockets = true;
+
+      ${net.snapdrop.domain} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://${net.junction.wireguard.ip}:${toString net.snapdrop.port}";
+          proxyWebsockets = true;
+        };
+      };
+
+      ${net.kritzeln.domain} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://${net.junction.wireguard.ip}:${toString net.kritzeln.port}";
+          proxyWebsockets = true;
+        };
       };
     };
   };
