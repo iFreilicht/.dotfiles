@@ -1,0 +1,12 @@
+keys:
+  - &admin_felix age1vhkq8lq7zlq0l7mt6dqsuc3nv6hnnnszpq6xqp83xjyh7t9zay5syy72yn
+  # ON REINSTALL: Run `sudo nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
+  # on the target machine, then insert the output here as the new server key for that machine, und run
+  # `sops updatekeys` for all files that were encrypted with the old key.
+  - &server_junction age10lw7g8yq6vmul3d8gl0d6ampkeeghcmxtqmt7kguma5x3sfcmqcqzxyrg7
+creation_rules:
+  - path_regex: nixos/junction/secrets.yaml
+    key_groups:
+    - age:
+      - *admin_felix
+      - *server_junction

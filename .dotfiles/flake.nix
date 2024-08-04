@@ -28,9 +28,10 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixd.url = "github:nix-community/nixd";
     disko.url = "github:nix-community/disko";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-nc27, flake-utils, nixd, disko }@inputs:
+  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-nc27, flake-utils, nixd, disko, sops-nix }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -71,6 +72,7 @@
             btop# Richer resource monitor, alternative to htop
             ranger# Fast navigation through directory tree
             gnupg# PGP toolkit
+            age# Encryption tool
             tlrc# Quick command help, tldr rust client. Command is tldr, not tlrc
             duf# Quick disk space view
 
@@ -79,6 +81,7 @@
             # Run `asdf plugin-add direnv` afterwards to enable integration with direnv
             # TODO: Enable direnv integration automatically
             gh# GitHub CLI
+            sops# Store secrets safely in git repositories
 
             # Nix stuff
             nh# Nix helper, very useful!
@@ -141,6 +144,7 @@
           modules = [
             disko.nixosModules.disko
             ./nixos/junction/configuration.nix
+            sops-nix.nixosModules.sops
           ];
         };
 

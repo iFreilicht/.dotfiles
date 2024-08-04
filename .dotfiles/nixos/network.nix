@@ -1,7 +1,22 @@
+let
+  mkBorgbaseRepo = id: label: {
+    id = id;
+    host = "${id}.repo.borgbase.com";
+    path = "ssh://${id}@${id}.repo.borgbase.com/./repo";
+    label = label;
+  };
+in
 {
   nextcloud = { domain = "cloud2.uhl.cx"; port = 33001; };
   snapdrop = { domain = "drop.uhl.cx"; port = 33002; };
   kritzeln = { domain = "kritzeln.uhl.cx"; port = 33003; };
+  borgbase = {
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
+    repos = {
+      files = mkBorgbaseRepo "a9518u4s" "junction.uhl.cx - files";
+      databases = mkBorgbaseRepo "qhu6ppjs" "junction.uhl.cx - databases";
+    };
+  };
   gateway = {
     wireguard = {
       ip = "10.100.0.1";
