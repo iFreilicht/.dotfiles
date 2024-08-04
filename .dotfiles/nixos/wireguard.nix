@@ -15,7 +15,7 @@ let
   };
   makeServer = a: additionalOpts: {
     inherit (a) publicKey;
-    allowedIPs = [ "0.0.0.0/0" ];
+    allowedIPs = [ a.subnet ];
     endpoint = "${a.initialIP}:${builtins.toString port}";
   } // additionalOpts;
 

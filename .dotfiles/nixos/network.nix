@@ -20,6 +20,8 @@ in
   gateway = {
     wireguard = {
       ip = "10.100.0.1";
+      # Only route traffic of the wireguard subnet through the VPN, not the whole internet
+      subnet = "10.100.0.0/24";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
       publicKey = "70NDFa+EmxNDZLW3QFO3blILT3oRA5K3aIofjLPdIxg=";
       initialIP = "49.12.239.37"; # The static IP the server can be reached at
