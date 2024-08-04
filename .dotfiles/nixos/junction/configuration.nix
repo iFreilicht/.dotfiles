@@ -206,6 +206,7 @@ in
       overwriteprotocol = "https";
       default_phone_region = "DE";
     };
+    phpOptions."opcache.interned_strings_buffer" = "23";
   };
 
   virtualisation.oci-containers.containers = {
