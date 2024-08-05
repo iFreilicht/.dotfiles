@@ -1,0 +1,63 @@
+diff --git a/nixos/modules/services/networking/wg-quick.nix b/nixos/modules/services/networking/wg-quick.nix
+index 2062f2806d79..6bb6f2463a35 100644
+--- a/nixos/modules/services/networking/wg-quick.nix
++++ b/nixos/modules/services/networking/wg-quick.nix
+@@ -268,41 +268,7 @@ let
+         else
+           "${configDir}/${name}.conf";
+     in
+-    nameValuePair "wg-quick-${name}"
+-      {
+-        description = "wg-quick WireGuard Tunnel - ${name}";
+-        requires = [ "network-online.target" ];
+-        after = [ "network.target" "network-online.target" ];
+-        wantedBy = optional values.autostart "multi-user.target";
+-        environment.DEVICE = name;
+-        path = [
+-          pkgs.wireguard-tools
+-          config.networking.firewall.package   # iptables or nftables
+-          config.networking.resolvconf.package # openresolv or systemd
+-        ];
+-
+-        serviceConfig = {
+-          Type = "oneshot";
+-          RemainAfterExit = true;
+-        };
+-
+-        script = ''
+-          ${optionalString (!config.boot.isContainer) "${pkgs.kmod}/bin/modprobe wireguard"}
+-          ${optionalString (values.configFile != null) ''
+-            cp ${values.configFile} ${configPath}
+-          ''}
+-          wg-quick up ${configPath}
+-        '';
+-
+-        serviceConfig = {
+-          # Used to privately store renamed copies of external config files during activation
+-          PrivateTmp = true;
+-        };
+-
+-        preStop = ''
+-          wg-quick down ${configPath}
+-        '';
+-      };
++    nameValuePair name configDir;
+ in {
+ 
+   ###### interface
+@@ -332,14 +298,6 @@ in {
+   ###### implementation
+ 
+   config = mkIf (cfg.interfaces != {}) {
+-    boot.extraModulePackages = optional (versionOlder kernel.kernel.version "5.6") kernel.wireguard;
+-    environment.systemPackages = [ pkgs.wireguard-tools ];
+-    systemd.services = mapAttrs' generateUnit cfg.interfaces;
+-
+-    # Prevent networkd from clearing the rules set by wg-quick when restarted (e.g. when waking up from suspend).
+-    systemd.network.config.networkConfig.ManageForeignRoutingPolicyRules = mkDefault false;
+-
+-    # WireGuard interfaces should be ignored in determining whether the network is online.
+-    systemd.network.wait-online.ignoredInterfaces = builtins.attrNames cfg.interfaces;
++    wg-quick-configs = mapAttrs' generateUnit cfg.interfaces;
+   };
+ }

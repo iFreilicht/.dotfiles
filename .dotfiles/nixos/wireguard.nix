@@ -82,4 +82,17 @@ in
       };
     };
   };
+  horse = {
+    networking.wg-quick.interfaces = {
+      wg0 = {
+        address = makeIps horse;
+        dns = makeIps gateway;
+        listenPort = port;
+        privateKey = "AAAA-Replace-with-real-key-AAAA";
+        peers = [
+          (makeServer gateway { })
+        ];
+      };
+    };
+  };
 }

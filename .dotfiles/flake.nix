@@ -36,6 +36,8 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+        mk-wg-quick-config = import ./nix/mk-wg-quick-config.nix;
+
         defaultPackages = {
           inherit (pkgs-stable)
             # Utilities
@@ -125,13 +127,17 @@
             (builtins.attrValues systemPackages);
       in
       {
-        packages.profile = flakey-profile.lib.mkProfile {
-          inherit pkgs;
-          paths = builtins.attrValues systemPackages;
-          pinned = {
-            nixpkgs = toString nixpkgs;
-            stable = toString nixpkgs-stable;
+        packages = {
+          profile = flakey-profile.lib.mkProfile {
+            inherit pkgs;
+            paths = builtins.attrValues systemPackages;
+            pinned = {
+              nixpkgs = toString nixpkgs;
+              stable = toString nixpkgs-stable;
+            };
           };
+
+          horse-wireguard-config = (mk-wg-quick-config { inherit pkgs; name = "horse"; }).wg0;
         };
       })
     )
