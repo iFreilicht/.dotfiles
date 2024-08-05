@@ -7,7 +7,7 @@ let
   };
 in
 {
-  nextcloud = { domain = "cloud2.uhl.cx"; port = 33001; };
+  nextcloud = { domain = "cloud.uhl.cx"; port = 33001; };
   snapdrop = { domain = "drop.uhl.cx"; port = 33002; };
   kritzeln = { domain = "kritzeln.uhl.cx"; port = 33003; };
   borgbase = {
