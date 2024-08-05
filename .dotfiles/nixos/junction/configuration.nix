@@ -166,6 +166,12 @@ in
       BORG_PASSCOMMAND = "cat ${config.sops.secrets."borg/passphrase".path}";
     };
   };
+  systemd.timers.borgmatic.timerConfig = {
+    # Run the backup every 15 minutes starting 5 minutes past the hour
+    OnCalendar = "*-*-* *:5/15";
+    RandomizedDelaySec = "0"; # Default is 3h, which makes no sense for a 15min interval
+  };
+
 
   # User-facing services
   # This is a workaround, I'm trying to get it upstreamed in https://github.com/NixOS/nixpkgs/pull/331296
