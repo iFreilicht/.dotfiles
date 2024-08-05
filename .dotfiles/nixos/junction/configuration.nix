@@ -138,6 +138,9 @@ in
           source_directories = [
             "/mnt/nextcloud/"
           ];
+          exclude_patterns = [
+            "nextcloud.log" # Changes often, not important for nextcloud to run
+          ];
           repositories = [
             { inherit (net.borgbase.repos.files) path label; }
           ];
