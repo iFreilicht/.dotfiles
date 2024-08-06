@@ -26,12 +26,11 @@
     nixpkgs-nc27.url = "github:NixOS/nixpkgs/c00d587b1a1afbf200b1d8f0b0e4ba9deb1c7f0e";
 
     flake-utils.url = "github:numtide/flake-utils";
-    nixd.url = "github:nix-community/nixd";
     disko.url = "github:nix-community/disko";
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-nc27, flake-utils, nixd, disko, sops-nix }@inputs:
+  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-nc27, flake-utils, disko, sops-nix }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -92,6 +91,7 @@
             nixos-rebuild# Even on macOS and non-Nix linux for remote deployments
             nixfmt-classic# Autoformatter for Nix
             nixpkgs-fmt# Another autoformatter, specific to nixpkgs
+            nixd# Nix LSP language server
 
             # Containers
             docker# Container management CLI
@@ -99,7 +99,6 @@
             colima# Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
             dive# Inspecting image contents without starting a container
             ;
-          nixd = nixd.packages.${system}.default;
           vim = (import (./nix/vim.nix) { inherit pkgs; });
 
         };
