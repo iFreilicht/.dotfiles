@@ -36,6 +36,13 @@
         pkgs = nixpkgs.legacyPackages.${system};
         pkgs-stable = nixpkgs-stable.legacyPackages.${system};
         mk-wg-quick-config = import ./nix/mk-wg-quick-config.nix;
+        vim = (import ./nix/vim.nix { inherit pkgs; });
+
+        # This is a small hack to get the vimrc file into the profile so I can point vscode to it
+        vimRc = pkgs.runCommandNoCC "custom-vimrc" { } ''
+          mkdir -p $out/share/
+          ln -s $(cat ${vim}/bin/vim | grep -oP "(?<=')[^']+(?=')") $out/share/custom-vimrc
+        '';
 
         defaultPackages = {
           inherit (pkgs-stable)
@@ -99,7 +106,7 @@
             colima# Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
             dive# Inspecting image contents without starting a container
             ;
-          vim = (import (./nix/vim.nix) { inherit pkgs; });
+          inherit vim vimRc;
 
         };
         linuxPackages = with pkgs; {
