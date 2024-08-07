@@ -12,7 +12,10 @@
   config = {
     users.users.felix = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [
+        "wheel" # Enable ‘sudo’ for the user
+        "samba" # Allow moving files to/from Samba shares
+      ];
       openssh.authorizedKeys.keys = config.felix.authorizedKeys;
       packages = with pkgs; [ ];
       shell = pkgs.zsh;

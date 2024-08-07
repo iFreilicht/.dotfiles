@@ -12,6 +12,7 @@
       ./modules/nextcloud.nix
       ./modules/borg.nix
       ./modules/containerized-apps.nix
+      ./modules/samba.nix
       wireguard.junction
     ];
 

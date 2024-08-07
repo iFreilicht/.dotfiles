@@ -21,6 +21,7 @@ in
     };
   };
   junction = {
+    name = "junction";
     wireguard = {
       ip = "10.100.0.13";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value

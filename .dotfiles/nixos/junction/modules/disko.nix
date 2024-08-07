@@ -24,6 +24,10 @@ in
             type = "zfs_fs";
             options.mountpoint = mnt.mysql;
           };
+          "samba" = {
+            type = "zfs_fs";
+            options.mountpoint = mnt.samba;
+          };
         };
       };
     };
