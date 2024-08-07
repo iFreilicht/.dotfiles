@@ -163,7 +163,9 @@
         nixosConfigurations = {
           junction = nixpkgs-nc27.lib.nixosSystem {
             system = "x86_64-linux";
-            inherit specialArgs;
+            specialArgs = specialArgs // {
+              mnt = import ./nixos/junction/mountpoints.nix;
+            };
             modules = [
               disko.nixosModules.disko
               ./nixos/junction/configuration.nix

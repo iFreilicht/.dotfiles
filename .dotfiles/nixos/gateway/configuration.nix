@@ -2,12 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, net, wireguard, ... }:
+{ net, wireguard, ... }:
 {
   imports =
     [
       ../common.nix
+      ../modules/user-felix.nix
       ./hardware-configuration.nix # Include the results of the hardware scan.
+      ./modules/nginx.nix
       wireguard.gateway
     ];
 
@@ -25,89 +27,17 @@
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  users.users.felix = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = [
-      net.horse.ssh.publicKey
-      net.source.ssh.publicKey
-    ];
-    packages = with pkgs; [ ];
-    shell = pkgs.zsh;
-  };
+  felix.authorizedKeys = [
+    net.horse.felix.publicKey
+    net.source.felix.publicKey
+  ];
 
   # Allow my own user to use sudo without a password. This works around an issue with remote nixos-rebuild switch,
   # see https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/7?u=ifreilicht
   security.sudo.wheelNeedsPassword = false;
 
-  # Automatically renewing SSL certificates
-  security.acme = {
-    defaults.email = "letsencrypt@mail.felix-uhl.de";
-    acceptTerms = true;
-  };
-
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  services.nginx = {
-    enable = true;
-
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-
-    # Harden nginx as described in https://nixos.wiki/wiki/nginx#Hardened_setup_with_TLS_and_HSTS_preloading
-    # Not all settings from the article are compatible with nextcloud.
-    appendHttpConfig = ''
-      # Add HSTS header with preloading to HTTPS requests.
-      # Adding this header to HTTP requests is discouraged
-      map $scheme $hsts_header {
-          https   "max-age=31536000; includeSubdomains";
-      }
-      add_header Strict-Transport-Security $hsts_header;
-
-      # Enable CSP
-      add_header Content-Security-Policy "object-src 'none'; base-uri 'none';" always;
-
-      # Minimize information leaked to other domains
-      add_header 'Referrer-Policy' 'origin-when-cross-origin';
-    '';
-
-    virtualHosts = {
-      ${net.nextcloud.domain} = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/".proxyPass = "http://${net.junction.wireguard.ip}:${toString net.nextcloud.port}";
-      };
-
-      ${net.snapdrop.domain} = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://${net.junction.wireguard.ip}:${toString net.snapdrop.port}";
-          proxyWebsockets = true;
-        };
-      };
-
-      ${net.kritzeln.domain} = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://${net.junction.wireguard.ip}:${toString net.kritzeln.port}";
-          proxyWebsockets = true;
-        };
-      };
-    };
-  };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

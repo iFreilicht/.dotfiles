@@ -1,5 +1,5 @@
 let
-  mnt = import ./mountpoints.nix;
+  mnt = import ../mountpoints.nix;
 in
 {
   disko.devices = {
