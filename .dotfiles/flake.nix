@@ -45,12 +45,8 @@
           ln -s $(cat ${vim}/bin/vim | grep -oP "(?<=')[^']+(?=')") $out/share/custom-vimrc
         '';
 
-        defaultPackages = (with pkgs-stable; [
-          # Utilities
-          ncdu # Disk usage analyzer
-          # Programming stuff
-          sqlfluff # SQL linter and formatter
-        ]) ++ (with pkgs; [
+        defaultPackages = (with pkgs-stable; [ ])
+        ++ (with pkgs; [
           # Basic terminal setup
           coreutils # Use consistent coreutils accross all platforms
           gnused # Use GNU sed on all platforms
@@ -82,6 +78,7 @@
           age # Encryption tool
           tlrc # Quick command help, tldr rust client. Command is tldr, not tlrc
           duf # Quick disk space view
+          ncdu # Disk usage analyzer
 
           # Programming stuff
           asdf-vm # Version manager for all sorts of tools
@@ -89,6 +86,7 @@
           # TODO: Enable direnv integration automatically
           gh # GitHub CLI
           sops # Store secrets safely in git repositories
+          sqlfluff # SQL linter and formatter
 
           # Nix stuff
           nh # Nix helper, very useful!
