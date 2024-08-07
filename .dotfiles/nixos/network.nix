@@ -10,13 +10,6 @@ in
   nextcloud = { domain = "cloud.uhl.cx"; port = 33001; };
   snapdrop = { domain = "drop.uhl.cx"; port = 33002; };
   kritzeln = { domain = "kritzeln.uhl.cx"; port = 33003; };
-  borgbase = {
-    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
-    repos = {
-      files = mkBorgbaseRepo "a9518u4s" "junction.uhl.cx - files";
-      databases = mkBorgbaseRepo "qhu6ppjs" "junction.uhl.cx - databases";
-    };
-  };
   gateway = {
     wireguard = {
       ip = "10.100.0.1";
@@ -32,6 +25,13 @@ in
       ip = "10.100.0.13";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
       publicKey = "ocMusNfO8N6z4kc2FEJMwhFTdRV4VWbKyAhGZMDzJSE=";
+    };
+    borgbase = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
+      repos = {
+        files = mkBorgbaseRepo "a9518u4s" "junction.uhl.cx - files";
+        databases = mkBorgbaseRepo "qhu6ppjs" "junction.uhl.cx - databases";
+      };
     };
   };
   horse = {

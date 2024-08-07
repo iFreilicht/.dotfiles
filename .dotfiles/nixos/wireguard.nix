@@ -1,5 +1,3 @@
-{ lib, ... }:
-
 let
   net = import ./network.nix;
   gateway = net.gateway.wireguard;

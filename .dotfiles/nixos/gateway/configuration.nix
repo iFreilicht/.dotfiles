@@ -2,16 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
-let
-  net = import ../network.nix;
-in
+{ config, pkgs, net, wireguard, ... }:
 {
   imports =
     [
       ../common.nix
       ./hardware-configuration.nix # Include the results of the hardware scan.
-      (import ../wireguard.nix { inherit (pkgs) lib; }).gateway
+      wireguard.gateway
     ];
 
   # Use the GRUB 2 boot loader.

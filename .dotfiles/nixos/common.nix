@@ -1,5 +1,5 @@
 # Options I want to enable on every system
-{ config, pkgs, nixpkgs, ... }:
+{ pkgs, nixpkgs, ... }:
 
 {
   # Select internationalisation properties.

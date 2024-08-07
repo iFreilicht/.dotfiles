@@ -1,10 +1,10 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, pkgs, net, wireguard, ... }:
 let
   mnt = import ./mountpoints.nix;
-  net = import ../network.nix;
+  borgbase = net.junction.borgbase;
 in
 {
   imports =
@@ -12,7 +12,7 @@ in
       ../common.nix
       ./hardware-configuration.nix # Include the results of the hardware scan.
       ./disko.nix # Drive configuration
-      (import ../wireguard.nix { inherit (pkgs) lib; }).junction
+      wireguard.junction
     ];
 
   sops = {
@@ -86,9 +86,9 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  programs.ssh.knownHosts = with net.borgbase.repos; {
-    ${files.host}.publicKey = net.borgbase.publicKey;
-    ${databases.host}.publicKey = net.borgbase.publicKey;
+  programs.ssh.knownHosts = with borgbase; {
+    ${repos.files.host}.publicKey = publicKey;
+    ${repos.databases.host}.publicKey = publicKey;
   };
 
   # The root user needs an ssh key for borgmatic to be able to connect to the backup repos
@@ -142,14 +142,14 @@ in
             "nextcloud.log" # Changes often, not important for nextcloud to run
           ];
           repositories = [
-            { inherit (net.borgbase.repos.files) path label; }
+            { inherit (borgbase.repos.files) path label; }
           ];
         };
 
         databases = commonSettings // {
           source_directories = [ ];
           repositories = [
-            { inherit (net.borgbase.repos.databases) path label; }
+            { inherit (borgbase.repos.databases) path label; }
           ];
 
           mysql_databases = [

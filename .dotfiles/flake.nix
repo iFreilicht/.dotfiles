@@ -162,27 +162,35 @@
       })
     )
     //
-    {
-      nixosConfigurations = {
-        junction = nixpkgs-nc27.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = inputs;
-          modules = [
-            disko.nixosModules.disko
-            ./nixos/junction/configuration.nix
-            sops-nix.nixosModules.sops
-          ];
+    (
+      let
+        specialArgs = inputs // {
+          net = import nixos/network.nix;
+          wireguard = import nixos/wireguard.nix;
         };
+      in
+      {
+        nixosConfigurations = {
+          junction = nixpkgs-nc27.lib.nixosSystem {
+            system = "x86_64-linux";
+            inherit specialArgs;
+            modules = [
+              disko.nixosModules.disko
+              ./nixos/junction/configuration.nix
+              sops-nix.nixosModules.sops
+            ];
+          };
 
-        gateway = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = inputs;
-          modules = [
-            ./nixos/gateway/configuration.nix
-          ];
+          gateway = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            inherit specialArgs;
+            modules = [
+              ./nixos/gateway/configuration.nix
+            ];
+          };
         };
-      };
-    }
+      }
+    )
   ;
 }
 
