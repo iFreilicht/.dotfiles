@@ -128,19 +128,28 @@
           darwinPackages
         else
           { });
-        packageListString =
-          pkgs.lib.strings.concatMapStringsSep "\n" (x: "${x}")
-            (builtins.attrValues systemPackages);
       in
       {
         packages = {
-          profile = flakey-profile.lib.mkProfile {
-            inherit pkgs;
-            paths = builtins.attrValues systemPackages;
-            pinned = {
-              nixpkgs = toString nixpkgs;
-              stable = toString nixpkgs-stable;
-            };
+          profile = flakey-profile.lib.mkProfile
+            {
+              inherit pkgs;
+              paths = builtins.attrValues systemPackages;
+              pinned = {
+                nixpkgs = toString nixpkgs;
+                stable = toString nixpkgs-stable;
+              };
+            } // {
+            list =
+              let
+                empty-profile = pkgs.runCommand "empty-profile" { } "mkdir -p $out";
+              in
+              pkgs.writeShellScriptBin "history" ''
+                # Workaround for https://github.com/NixOS/nix/issues/1807
+                ln -snf ${empty-profile} "$(dirname $(readlink ~/.nix-profile))/profile-0-link"
+                # Nix profile is not stable, this might break!
+                nix profile diff-closures
+              '';
           };
 
           horse-wireguard-config = (mk-wg-quick-config { inherit pkgs; name = "horse"; }).wg0;
