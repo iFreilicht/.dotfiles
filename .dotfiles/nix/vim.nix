@@ -9,7 +9,7 @@ with pkgs;
       set nocompatible
       set encoding=utf-8 "Required for YouCompleteMe to load properly
     '';
-    packages.myPlugins = with pkgs.vimPlugins; {
+    packages.myPlugins = with vimPlugins; {
       start = [
         vim-colors-solarized # Simple solarized theme, works well OOTB
         YouCompleteMe # Autocomplete
