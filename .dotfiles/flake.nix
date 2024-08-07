@@ -139,18 +139,23 @@
                 nixpkgs = toString nixpkgs;
                 stable = toString nixpkgs-stable;
               };
-            } // {
-            list =
-              let
-                empty-profile = pkgs.runCommand "empty-profile" { } "mkdir -p $out";
-              in
-              pkgs.writeShellScriptBin "history" ''
-                # Workaround for https://github.com/NixOS/nix/issues/1807
-                ln -snf ${empty-profile} "$(dirname $(readlink ~/.nix-profile))/profile-0-link"
-                # Nix profile is not stable, this might break!
-                nix profile diff-closures
+            } // (
+            let
+              empty-profile = pkgs.runCommand "empty" { } "mkdir -p $out";
+            in
+            {
+              history =
+                pkgs.writeShellScriptBin "history" ''
+                  # Workaround for https://github.com/NixOS/nix/issues/1807
+                  ln -snf ${empty-profile} "$(dirname $(readlink ~/.nix-profile))/profile-0-link"
+                  # Nix profile is not stable, this might break!
+                  nix profile diff-closures
+                '';
+              list = pkgs.writeShellScriptBin "list" ''
+                ${pkgs.nvd}/bin/nvd list --root ~/.nix-profile
               '';
-          };
+            }
+          );
 
           horse-wireguard-config = (mk-wg-quick-config { inherit pkgs; name = "horse"; }).wg0;
         };
