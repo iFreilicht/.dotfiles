@@ -10,6 +10,7 @@ in
   nextcloud = { domain = "cloud.uhl.cx"; port = 33001; };
   snapdrop = { domain = "drop.uhl.cx"; port = 33002; };
   kritzeln = { domain = "kritzeln.uhl.cx"; port = 33003; };
+  home.subnet = "192.168.178.0/24";
   gateway = {
     wireguard = {
       ip = "10.100.0.1";
