@@ -38,8 +38,14 @@
   networking.hostId = "feb10dc9"; # Helps prevent accidental imports of zpools
   networking.hostName = "junction";
 
-  # Scrub zpool once every week
+  # Scrub zpool once every month
   services.zfs.autoScrub.enable = true;
+  # Snapshot every 15 minutes, automatically discard old ones
+  services.zfs.autoSnapshot = {
+    # ON REINSTALL: Set `com.sun:auto-snapshot=true` on all datasets that should be snapshotted automatically!
+    enable = true;
+    flags = "-k -p --utc"; # UTC is recommended as local time can cause conflicts due to DST
+  };
 
   # Enable power saving features
   powerManagement.enable = true;
