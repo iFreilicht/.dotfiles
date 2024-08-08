@@ -9,6 +9,7 @@ let
 
   # Valid values are documented here: https://callumgare.github.io/macos-device-icons/
   # However, most don't seem to work. TimeCapsule8,119 was the only one that reliably displayed a custom icon
+  # (at least in the beginning, now that doesn't work either)
   macOsIcon = "TimeCapsule8,119";
 in
 {
@@ -114,10 +115,8 @@ in
     publish = {
       enable = true;
       userServices = true;
-      hinfo = true;
-      domain = true;
+      # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`
     };
-    # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`
     nssmdns4 = true;
     # ^^ Not one hundred percent sure if this is needed- if it aint broke, don't fix it
     enable = true;
@@ -128,7 +127,7 @@ in
         <?xml version="1.0" standalone='no'?>
         <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
         <service-group>
-          <name>%h</name>
+          <name replace-wildcards="yes">%h</name>
           <service>
             <type>_smb._tcp</type>
             <port>445</port>
@@ -140,8 +139,8 @@ in
           </service>
           <service>
             <type>_adisk._tcp</type>
-            <txt-record>dk0=adVN=timemachine</txt-record>
-            <txt-record>sys=waMa=0</txt-record>
+            <txt-record>dk0=adVN=timemachine,adVF=0x82</txt-record>
+            <txt-record>sys=waMa=0,adVF=0x100</txt-record>
           </service>
         </service-group>
       '';
