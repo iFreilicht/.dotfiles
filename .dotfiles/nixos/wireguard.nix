@@ -3,6 +3,7 @@ let
   gateway = net.gateway.wireguard;
   junction = net.junction.wireguard;
   horse = net.horse.wireguard;
+  uhl'siphone = net.uhl'siphone.wireguard;
 
   port = 51820;
   privateKeyFile = "/etc/wireguard/private";
@@ -51,6 +52,7 @@ in
           peers = [
             (makePeer junction)
             (makePeer horse)
+            (makePeer uhl'siphone)
           ];
         };
       };
