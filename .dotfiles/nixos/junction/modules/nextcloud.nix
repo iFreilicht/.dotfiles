@@ -72,6 +72,7 @@
       ];
       overwriteprotocol = "https";
       default_phone_region = "DE";
+      log_type = "file"; # When using file logging, logs are displayed in the admin panel
     };
     phpOptions."opcache.interned_strings_buffer" = "23";
   };
