@@ -5,17 +5,29 @@ let
     path = "ssh://${id}@${id}.repo.borgbase.com/./repo";
     label = label;
   };
+  rootDomain = "uhl.cx";
+  mkService = subDomain: port: {
+    inherit subDomain port;
+    domain = "${subDomain}.${rootDomain}";
+  };
+  homeBaseIP = "192.168.178";
+  wgBaseIP = "10.100.0";
 in
 {
-  nextcloud = { domain = "cloud.uhl.cx"; port = 33001; };
-  snapdrop = { domain = "drop.uhl.cx"; port = 33002; };
-  kritzeln = { domain = "kritzeln.uhl.cx"; port = 33003; };
-  home.subnet = "192.168.178.0/24";
+  domain = rootDomain;
+  nextcloud = mkService "cloud" 33001;
+  snapdrop = mkService "drop" 33002;
+  kritzeln = mkService "kritzeln" 33003;
+  home = {
+    subnet = "${homeBaseIP}.0/24";
+    router = "${homeBaseIP}.1";
+    zone = "fritz.box";
+  };
   gateway = {
     wireguard = {
-      ip = "10.100.0.1";
+      ip = "${wgBaseIP}.1";
       # Only route traffic of the wireguard subnet through the VPN, not the whole internet
-      subnet = "10.100.0.0/24";
+      subnet = "${wgBaseIP}.0/24";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
       publicKey = "70NDFa+EmxNDZLW3QFO3blILT3oRA5K3aIofjLPdIxg=";
       initialIP = "49.12.239.37"; # The static IP the server can be reached at
@@ -23,8 +35,10 @@ in
   };
   junction = {
     name = "junction";
+    # ON REINSTALL: Ensure the router is statically setting the IP of junction to this
+    home.ip = "${homeBaseIP}.13"; # Statically set in router
     wireguard = {
-      ip = "10.100.0.13";
+      ip = "${wgBaseIP}.13";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
       publicKey = "ocMusNfO8N6z4kc2FEJMwhFTdRV4VWbKyAhGZMDzJSE=";
     };
@@ -40,7 +54,7 @@ in
     felix.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB9OOXhRhYgpaFLwbkfcQsSYYUTr+qsbf0WIHcUm2fFQ felix@horse";
     root.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMj4suEfNQKtFyYVlO3bgawvKuM/FWYtgu6BPMe5R8ia root@horse";
     wireguard = {
-      ip = "10.100.0.8";
+      ip = "${wgBaseIP}.8";
       publicKey = "adcMoJUfbf+RTtRt6oXCggop1XDWGfiWyGQzA9gmpB0=";
     };
   };

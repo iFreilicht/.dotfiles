@@ -28,12 +28,8 @@ in
     ${repos.databases.host}.publicKey = publicKey;
   };
 
-  sops = {
-    secrets = {
-      "borg/passphrase" = {
-        reloadUnits = [ "borgmatic.service" ];
-      };
-    };
+  sops.secrets."borg/passphrase" = {
+    reloadUnits = [ "borgmatic.service" ];
   };
 
   services.borgmatic =

@@ -9,6 +9,8 @@
       ../modules/user-felix.nix
       ./modules/hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/disko.nix # Drive configuration
+      ./modules/nginx.nix
+      ./modules/dns.nix
       ./modules/nextcloud.nix
       ./modules/borg.nix
       ./modules/containerized-apps.nix

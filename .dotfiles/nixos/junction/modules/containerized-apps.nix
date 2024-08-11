@@ -31,6 +31,32 @@ in
     };
   };
 
+  security.acme.certs.${net.domain} = {
+    extraDomainNames = [
+      net.snapdrop.domain
+      net.kritzeln.domain
+    ];
+  };
+
+  services.nginx.virtualHosts = {
+    ${net.snapdrop.domain} = {
+      useACMEHost = net.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${toString net.snapdrop.port}";
+        proxyWebsockets = true;
+      };
+    };
+    ${net.kritzeln.domain} = {
+      useACMEHost = net.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${toString net.kritzeln.port}";
+        proxyWebsockets = true;
+      };
+    };
+  };
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     net.snapdrop.port

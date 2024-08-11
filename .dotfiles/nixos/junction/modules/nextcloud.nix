@@ -17,9 +17,25 @@
   environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
 
   # Set port nextcloud is reachable on
-  services.nginx.virtualHosts.${net.nextcloud.domain}.listen = [
-    { addr = "0.0.0.0"; port = net.nextcloud.port; }
-  ];
+  services.nginx.virtualHosts.${net.nextcloud.domain} = {
+    listen = [
+      # Port to listen on for traffic from gateway
+      { addr = "0.0.0.0"; port = net.nextcloud.port; }
+      # Default addresses to listen on for local access
+      { addr = "0.0.0.0"; port = 80; }
+      { addr = "[::0]"; port = 80; }
+      { addr = "0.0.0.0"; port = 443; ssl = true; }
+      { addr = "[::0]"; port = 443; ssl = true; }
+    ];
+    useACMEHost = net.domain;
+    addSSL = true;
+    # TODO: enforce SSL
+  };
+
+  # Ensure our certificate also covers the nextcloud domain
+  security.acme.certs.${net.domain} = {
+    extraDomainNames = [ net.nextcloud.domain ];
+  };
 
   # Nextcloud itself
   services.nextcloud = {
