@@ -8,7 +8,7 @@
     [
       ../common.nix
       ../modules/user-felix.nix
-      ./hardware-configuration.nix # Include the results of the hardware scan.
+      ./modules/hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/nginx.nix
       wireguard.gateway
     ];
