@@ -3,6 +3,7 @@ let
   pullImage = pkgs.dockerTools.pullImage;
 in
 {
+  # Host the apps at regular HTTP ports
   virtualisation.oci-containers.containers = {
     "snapdrop" = {
       image = "linuxserver/snapdrop";
@@ -38,6 +39,7 @@ in
     ];
   };
 
+  # Make nginx serve the apps with SSL at the default ports
   services.nginx.virtualHosts = {
     ${net.snapdrop.domain} = {
       useACMEHost = net.domain;
@@ -55,6 +57,12 @@ in
         proxyWebsockets = true;
       };
     };
+  };
+
+  # Ensure apps will be accessed directly by clients in the same network
+  uhl.dns.entries = {
+    ${net.snapdrop.subDomain} = net.junction.home.ip;
+    ${net.kritzeln.subDomain} = net.junction.home.ip;
   };
 
   # Open ports in the firewall.

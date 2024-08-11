@@ -41,6 +41,9 @@
     '';
   };
 
+  # Ensure nextcloud will be accessed directly by clients in the same network
+  uhl.dns.entries.${net.nextcloud.subDomain} = net.junction.home.ip;
+
   # Ensure our certificate also covers the nextcloud domain
   security.acme.certs.${net.domain} = {
     extraDomainNames = [ net.nextcloud.domain ];
