@@ -19,17 +19,26 @@
   # Set port nextcloud is reachable on
   services.nginx.virtualHosts.${net.nextcloud.domain} = {
     listen = [
-      # Port to listen on for traffic from gateway
-      { addr = "0.0.0.0"; port = net.nextcloud.port; }
+      # Port to listen on for traffic from the wireguard network
+      { addr = net.junction.wireguard.ip; port = net.nextcloud.port; }
       # Default addresses to listen on for local access
-      { addr = "0.0.0.0"; port = 80; }
-      { addr = "[::0]"; port = 80; }
       { addr = "0.0.0.0"; port = 443; ssl = true; }
       { addr = "[::0]"; port = 443; ssl = true; }
     ];
     useACMEHost = net.domain;
     addSSL = true;
-    # TODO: enforce SSL
+    # gateway proxies traffic to an HTTP port, so we can't use forceSSL.
+    # Instead, we forward the default port to the SSL port manually.
+    extraConfig = ''
+      }
+      server {
+        listen 0.0.0.0:80 ;
+        listen [::0]:80 ;
+        server_name ${net.nextcloud.domain} ;
+        location / {
+          return 301 https://$host$request_uri;
+        }
+    '';
   };
 
   # Ensure our certificate also covers the nextcloud domain
