@@ -75,6 +75,8 @@
       log_type = "file"; # When using file logging, logs are displayed in the admin panel
     };
     phpOptions."opcache.interned_strings_buffer" = "23";
+    # Makes big video uploads quicker (because they don't need to be uploaded in chunks) and increases memory limit
+    maxUploadSize = "8G";
   };
 
   # Peer dependencies of store-installed apps
