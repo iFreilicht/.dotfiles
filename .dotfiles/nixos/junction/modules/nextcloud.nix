@@ -77,6 +77,13 @@
     phpOptions."opcache.interned_strings_buffer" = "23";
   };
 
+  # Peer dependencies of store-installed apps
+  environment.systemPackages = with pkgs; [
+    # Required for recognize. I checked `/mnt/nextcloud/store-apps/recognize/bin/x64.tar.gz`
+    # and it contains nodejs 14.18.2, but 18 is the oldest that's not EOL
+    nodejs_18
+  ];
+
   # Backups
   services.borgmatic.configurations = {
     files = {
