@@ -9,9 +9,9 @@ let
     mkdir $out
     patch -o "$out/wg-quick.nix" ${originalWgQuick} ${./mk-wg-quick.patch}
   '';
-  wgQuickPatchedModule = (import "${wgQuickPatched}/wg-quick.nix");
+  wgQuickPatchedModule = import "${wgQuickPatched}/wg-quick.nix";
 
-  wireguard = (import ../nixos/wireguard.nix { inherit lib; });
+  wireguard = import ../nixos/wireguard.nix;
 
   # Define a module that makes `wg-quick-configs` a valid config option
   wgQuickConfigsModule = {
