@@ -87,6 +87,7 @@ in
       wg0 = {
         address = makeIps horse;
         listenPort = port;
+        dns = [ gateway.ip "gateway" ]; # IP is the DNS server, hostname is the search domain
         privateKey = "AAAA-Replace-with-real-key-AAAA";
         peers = [
           (makeServer gateway { })

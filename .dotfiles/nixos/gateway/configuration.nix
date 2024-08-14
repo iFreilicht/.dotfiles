@@ -9,6 +9,7 @@
       ../common.nix
       ../modules/user-felix.nix
       ./modules/hardware-configuration.nix # Include the results of the hardware scan.
+      ./modules/dns.nix
       ./modules/nginx.nix
       wireguard.gateway
     ];
@@ -38,6 +39,13 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Enable automatic access to all services via wireguard
+  uhl.dns.entries = {
+    ${net.nextcloud.subDomain} = net.junction.wireguard.ip;
+    ${net.snapdrop.subDomain} = net.junction.wireguard.ip;
+    ${net.kritzeln.subDomain} = net.junction.wireguard.ip;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
