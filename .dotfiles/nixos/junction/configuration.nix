@@ -15,6 +15,7 @@
       ./modules/borg.nix
       ./modules/containerized-apps.nix
       ./modules/samba.nix
+      ./modules/git.nix
       wireguard.junction
     ];
 

@@ -13,6 +13,13 @@ in
         };
         postCreateHook = "zfs snapshot tank@blank";
 
+        # Unless you're completely re-creating the entire system from scratch, disko (or nixos-rebuild)
+        # will not create new datasets when adding them here. You have to do that manually.
+        # For example, to create a new dataset for /mnt/asdf, run:
+        #     zfs create -o mountpoint=/mnt/asdf tank/asdf
+        # If you want automatic snapshots to be enabled for that dataset, run:
+        #     zfs set com.sun:auto-snapshot=true tank/asdf
+        # ON REINSTALL: Enable automatic snapshots for all datasets that should be snapshotted regularly as shown above
         datasets = {
           "nextcloud" = {
             type = "zfs_fs";
@@ -27,6 +34,10 @@ in
           "samba" = {
             type = "zfs_fs";
             options.mountpoint = mnt.samba;
+          };
+          "forgejo" = {
+            type = "zfs_fs";
+            options.mountpoint = mnt.forgejo;
           };
         };
       };

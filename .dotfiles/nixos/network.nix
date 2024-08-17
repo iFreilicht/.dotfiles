@@ -18,6 +18,7 @@ in
   nextcloud = mkService "cloud" 33001;
   snapdrop = mkService "drop" 33002;
   kritzeln = mkService "kritzeln" 33003;
+  git = mkService "git" 33004;
   home = {
     subnet = "${homeBaseIP}.0/24";
     router = "${homeBaseIP}.1";

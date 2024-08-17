@@ -54,6 +54,14 @@
           proxyWebsockets = true;
         };
       };
+
+      ${net.git.domain} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://${net.junction.wireguard.ip}:${toString net.git.port}";
+        };
+      };
     };
   };
 
