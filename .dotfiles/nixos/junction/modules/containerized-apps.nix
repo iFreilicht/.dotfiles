@@ -3,7 +3,7 @@ let
   pullImage = pkgs.dockerTools.pullImage;
 in
 {
-  # Host the apps at regular HTTP ports
+  # Host the apps at regular HTTP ports, but only accessible to localhost or via wireguard
   virtualisation.oci-containers.containers = {
     "snapdrop" = {
       image = "linuxserver/snapdrop";
@@ -14,7 +14,8 @@ in
         sha256 = "sha256-8OLtduEkPBwG248iAQ7crj+QkG8NCksX4LYalH/bMYA=";
       };
       ports = [
-        "${toString net.snapdrop.port}:80"
+        "127.0.0.1:${toString net.snapdrop.port}:80"
+        "${net.junction.wireguard.ip}:${toString net.snapdrop.port}:80"
       ];
     };
 
@@ -27,7 +28,8 @@ in
         sha256 = "sha256-NjR6fKh7uONWZ3leQd6dYGQhLtFXWjcFd+mhITKzVXg=";
       };
       ports = [
-        "${toString net.kritzeln.port}:8080"
+        "127.0.0.1:${toString net.kritzeln.port}:8080"
+        "${net.junction.wireguard.ip}:${toString net.kritzeln.port}:8080"
       ];
     };
   };
@@ -39,7 +41,7 @@ in
     ];
   };
 
-  # Make nginx serve the apps with SSL at the default ports
+  # Make nginx serve the apps with SSL at the default HTTP(S) ports at the relevant subdomains
   services.nginx.virtualHosts = {
     ${net.snapdrop.domain} = {
       useACMEHost = net.domain;
@@ -64,10 +66,4 @@ in
     ${net.snapdrop.subDomain} = net.junction.home.ip;
     ${net.kritzeln.subDomain} = net.junction.home.ip;
   };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    net.snapdrop.port
-    net.kritzeln.port
-  ];
 }

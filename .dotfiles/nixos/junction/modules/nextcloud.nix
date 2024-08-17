@@ -99,8 +99,8 @@
     };
   };
 
-  # Firewall
-  networking.firewall.allowedTCPPorts = [
+  # Allow direct HTTP access to nextcloud from wireguard only
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [
     net.nextcloud.port
   ];
 }
