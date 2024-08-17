@@ -11,6 +11,9 @@
       extraDomainNames = [ ];
       dnsProvider = "hetzner";
       dnsPropagationCheck = true;
+      # Use Cloudflare as resolver for DNS propagation check, as my local DNS will not recursively
+      # resolve entries like _acme-challenge.cloud.uhl.cx properly, making the check fail
+      dnsResolver = "1.1.1.1:53";
       credentialFiles = {
         HETZNER_API_KEY_FILE = config.sops.secrets.hetzner-dns-api-key.path;
       };
