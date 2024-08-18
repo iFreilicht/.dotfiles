@@ -31,6 +31,9 @@
     };
   };
 
+  # Manage users and their passwords fully declaratively
+  users.mutableUsers = false;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
