@@ -39,6 +39,10 @@ in
             type = "zfs_fs";
             options.mountpoint = mnt.forgejo;
           };
+          "ftp" = {
+            type = "zfs_fs";
+            options.mountpoint = mnt.ftp;
+          };
         };
       };
     };

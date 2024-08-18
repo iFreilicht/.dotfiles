@@ -16,6 +16,7 @@
       ./modules/containerized-apps.nix
       ./modules/samba.nix
       ./modules/git.nix
+      ./modules/ftp.nix
       wireguard.junction
     ];
 
