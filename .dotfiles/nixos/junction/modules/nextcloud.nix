@@ -1,4 +1,4 @@
-{ pkgs, net, mnt, ... }:
+{ pkgs, lib, net, mnt, ... }:
 
 {
   # This is a workaround, I'm trying to get it upstreamed in https://github.com/NixOS/nixpkgs/pull/331296
@@ -74,9 +74,12 @@
       default_phone_region = "DE";
       log_type = "file"; # When using file logging, logs are displayed in the admin panel
     };
-    phpOptions."opcache.interned_strings_buffer" = "23";
-    # Makes big video uploads quicker (because they don't need to be uploaded in chunks) and increases memory limit
-    maxUploadSize = "8G";
+    phpOptions = {
+      upload_max_filesize = lib.mkForce "4G";
+      memory_limit = lib.mkForce "8G";
+      "opcache.interned_strings_buffer" = "23";
+    };
+    maxUploadSize = lib.mkForce net.nextcloud.nginx_max_body_size;
   };
 
   # Peer dependencies of store-installed apps

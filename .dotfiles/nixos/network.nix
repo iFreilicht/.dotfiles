@@ -15,7 +15,7 @@ let
 in
 {
   domain = rootDomain;
-  nextcloud = mkService "cloud" 33001;
+  nextcloud = (mkService "cloud" 33001) // { nginx_max_body_size = "512M"; };
   snapdrop = mkService "drop" 33002;
   kritzeln = mkService "kritzeln" 33003;
   git = mkService "git" 33004;
