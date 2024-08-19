@@ -73,6 +73,7 @@
       overwriteprotocol = "https";
       default_phone_region = "DE";
       log_type = "file"; # When using file logging, logs are displayed in the admin panel
+      loglevel = 1;
     };
     phpOptions = {
       upload_max_filesize = lib.mkForce "4G";
@@ -95,6 +96,7 @@
       source_directories = [ mnt.nextcloud ];
       exclude_patterns = [
         "nextcloud.log" # Changes often, not important for nextcloud to run
+        "audit.log" # Provided by the Auditing / Logging app
       ];
     };
     databases = {
