@@ -10,8 +10,6 @@ locals {
     "drop",
     "kritzeln",
     "git",
-    "transmission",
-    "cloud2",
   ])
 }
 
