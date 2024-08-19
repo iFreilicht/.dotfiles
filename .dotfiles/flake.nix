@@ -87,6 +87,7 @@
           gh # GitHub CLI
           sops # Store secrets safely in git repositories
           sqlfluff # SQL linter and formatter
+          opentofu # IAC, open-source fork of Terraform
 
           # Nix stuff
           nh # Nix helper, very useful!

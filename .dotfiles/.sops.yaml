@@ -10,3 +10,7 @@ creation_rules:
     - age:
       - *admin_felix
       - *server_junction
+  - path_regex: tofu/secrets.env
+    key_groups:
+    - age:
+      - *admin_felix
