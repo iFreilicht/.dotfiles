@@ -72,6 +72,8 @@
       ];
       overwriteprotocol = "https";
       default_phone_region = "DE";
+      default_language = "de";
+      default_locale = "de_DE";
       log_type = "file"; # When using file logging, logs are displayed in the admin panel
       loglevel = 1;
     };
