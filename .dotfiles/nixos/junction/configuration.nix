@@ -12,6 +12,7 @@
       ./modules/nginx.nix
       ./modules/dns.nix
       ./modules/nextcloud.nix
+      ./modules/home-assistant.nix
       ./modules/borg.nix
       ./modules/containerized-apps.nix
       ./modules/samba.nix

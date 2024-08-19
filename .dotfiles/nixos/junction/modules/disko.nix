@@ -43,6 +43,10 @@ in
             type = "zfs_fs";
             options.mountpoint = mnt.ftp;
           };
+          "home-assistant" = {
+            type = "zfs_fs";
+            options.mountpoint = mnt.home-assistant;
+          };
         };
       };
     };

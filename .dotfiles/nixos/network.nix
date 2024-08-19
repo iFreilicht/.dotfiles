@@ -19,6 +19,7 @@ in
   snapdrop = mkService "drop" 33002;
   kritzeln = mkService "kritzeln" 33003;
   git = mkService "git" 33004;
+  home-assistant = mkService "home" 33005;
   home = {
     subnet = "${homeBaseIP}.0/24";
     router = "${homeBaseIP}.1";

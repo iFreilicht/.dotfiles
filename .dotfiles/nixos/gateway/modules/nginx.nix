@@ -1,4 +1,23 @@
-{ net, ... }: {
+{ net, ... }:
+let
+  privateServiceResponse = {
+    return = ''
+      403
+      '
+        <html>
+          <body>
+            <h1>403 - Forbidden</h1>
+            <p>This service is not publicly accessible. Please log in to the ${net.domain} VPN and try again.</p>
+          </body>
+        </html>
+      '
+    '';
+    extraConfig = ''
+      default_type text/html;
+    '';
+  };
+in
+{
   # Automatically renewing SSL certificates
   security.acme = {
     defaults.email = "letsencrypt@mail.felix-uhl.de";
@@ -65,6 +84,12 @@
         locations."/" = {
           proxyPass = "http://${net.junction.wireguard.ip}:${toString net.git.port}";
         };
+      };
+
+      ${net.home-assistant.domain} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = privateServiceResponse;
       };
     };
   };

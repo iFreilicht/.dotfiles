@@ -4,5 +4,6 @@
   samba = "/mnt/samba";
   forgejo = "/mnt/forgejo";
   ftp = "/mnt/ftp";
+  home-assistant = "/mnt/home-assistant";
   scratch = "/mnt/scratch";
 }

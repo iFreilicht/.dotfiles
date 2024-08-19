@@ -10,6 +10,7 @@ locals {
     "drop",
     "kritzeln",
     "git",
+    "home",
   ])
 }
 
