@@ -37,7 +37,7 @@
         lib = pkgs.lib;
         pkgs-stable = nixpkgs-stable.legacyPackages.${system};
         mkWgQuickConfigs = import ./nix/mk-wg-quick-configs.nix;
-        mkSystem = import ./nix/mk-system.nix;
+        mkDeploy = import ./nix/mk-deploy.nix;
         vim = (import ./nix/vim.nix { inherit pkgs; });
 
         # This is a small hack to get the vimrc file into the profile so I can point vscode to it
@@ -149,8 +149,7 @@
             }
           );
 
-          junction = mkSystem { name = "junction"; inherit self pkgs; };
-          gateway = mkSystem { name = "gateway"; inherit self pkgs; };
+          deploy = mkDeploy { inherit self pkgs; };
 
           wg-quick-configs = (mkWgQuickConfigs { inherit pkgs; names = [ "horse" ]; });
         };
