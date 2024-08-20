@@ -1,0 +1,72 @@
+esphomeyaml:
+  name: my-first-d1-mini
+  platform: ESP8266
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret my-first-d1-mini_encryption_key
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "My-F-D1-Mini Fallback Hotspot"
+    password: "jQgkgeP65f1F"
+
+captive_portal:
+    
+output:
+  - platform: esp8266_pwm
+    id: gpio_d2
+    pin: D2
+
+light:
+  - platform: monochromatic
+    name: "Shelf status indicator"
+    output: gpio_d2
+  - platform: neopixelbus
+    name: "RGB Light Strip"
+    type: GRB
+    variant: ws2812x
+    pin: D4
+    num_leds: 1
+    effects:
+      - random:
+      - random:
+          name: Quick Random
+          transition_length: 0.3s
+          update_interval: 0.3s
+      - pulse:
+      - pulse:
+          name: Quick Pulse
+          transition_length: 0.3s
+          update_interval: 0.3s
+      - strobe:
+      - strobe:
+          name: Quick Strobe
+          colors:
+            - state: true
+              duration: 50ms
+            - state: false
+              duration: 50ms
+      - flicker:
+
+binary_sensor:
+  - platform: gpio
+    name: "Shelf enabled button"
+    pin:
+      number: D7
+      inverted: true
+      mode:
+        input: true
+        pullup: true
