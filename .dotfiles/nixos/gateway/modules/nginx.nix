@@ -91,6 +91,12 @@ in
         forceSSL = true;
         locations."/" = privateServiceResponse;
       };
+
+      ${net.pihole.domain} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = privateServiceResponse;
+      };
     };
   };
 

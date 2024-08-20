@@ -25,13 +25,8 @@ in
     services.bind = {
       enable = true;
       forwarders = [
-        # The router gets its DNS from the ISP, which might publish some routes other DNS servers don't know about
-        net.home.router
-        # Fall back on Cloudflare and Google DNS servers
-        "1.1.1.1"
-        "1.0.0.1"
-        "8.8.8.8"
-        "8.8.4.4"
+        # Forward only to pihole
+        "127.0.0.1 port ${toString net.pihole.dnsPort}"
       ];
 
       # Only allow queries from my private networks

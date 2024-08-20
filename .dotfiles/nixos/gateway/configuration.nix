@@ -47,6 +47,7 @@
     ${net.kritzeln.subDomain} = net.junction.wireguard.ip;
     ${net.git.subDomain} = net.junction.wireguard.ip;
     ${net.home-assistant.subDomain} = net.junction.wireguard.ip;
+    ${net.pihole.subDomain} = net.junction.wireguard.ip;
   };
 
   # This value determines the NixOS release from which the default

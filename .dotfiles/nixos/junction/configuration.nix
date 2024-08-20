@@ -18,6 +18,7 @@
       ./modules/samba.nix
       ./modules/git.nix
       ./modules/ftp.nix
+      ./modules/pihole.nix
       wireguard.junction
     ];
 

@@ -25,11 +25,8 @@ in
     services.bind = {
       enable = true;
       forwarders = [
-        # Fall back on Cloudflare and Google DNS servers
-        "1.1.1.1"
-        "1.0.0.1"
-        "8.8.8.8"
-        "8.8.4.4"
+        # Only forward to pihole on junction so we get adblocking when connected to the VPN
+        "${net.junction.wireguard.ip} port ${toString net.pihole.dnsPort}"
       ];
 
       # Only allow queries from wireguard

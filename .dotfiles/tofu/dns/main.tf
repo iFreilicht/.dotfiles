@@ -11,6 +11,7 @@ locals {
     "kritzeln",
     "git",
     "home",
+    "pihole",
   ])
 }
 
