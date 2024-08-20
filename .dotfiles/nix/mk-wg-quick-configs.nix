@@ -1,4 +1,4 @@
-{ pkgs, name }:
+{ pkgs, names }:
 
 let
   lib = pkgs.lib;
@@ -21,8 +21,7 @@ let
     };
   };
 
-  # Evaluate modules in isolation so no full NixOS system is required
-  evalOutput = lib.evalModules
+  evaluateWgQuickModule = name: lib.evalModules
     {
       modules = [
         wgQuickConfigsModule
@@ -31,5 +30,22 @@ let
       ];
       specialArgs = { inherit pkgs; };
     };
+
+
+  # Evaluate modules in isolation so no full NixOS system is required
+  evalOutput = lib.pipe names [
+    (builtins.map
+      (name: {
+        inherit name; value = evaluateWgQuickModule name;
+      }))
+    lib.listToAttrs
+    (lib.mapAttrs (
+      name: value: value.config.wg-quick-configs
+    ))
+  ];
+
+  # list all names
 in
-evalOutput.config.wg-quick-configs
+pkgs.writeText "wg-quick-configs" ''
+  Use `nix build path:.#wireguard-configs.horse.wg0` to build the configuration for the `wg0` interface.
+'' // evalOutput
