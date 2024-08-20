@@ -27,7 +27,10 @@ let
   '';
 
 in
-{
+pkgs.writeShellScriptBin "flakey-system" ''
+  echo "Usage: nix run path:.#${name}.<switch|boot|test|build|list-generations>"
+  exit 1
+'' // {
   switch = writeBuildScript "switch";
   boot = writeBuildScript "boot";
   test = writeBuildScript "test";
