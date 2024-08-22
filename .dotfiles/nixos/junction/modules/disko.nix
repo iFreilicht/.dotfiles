@@ -15,7 +15,7 @@ in
           # LZ4 is the default compression algorithm since 2020, which is an improvement over no compression for any workload
           compression = "on";
         };
-        postCreateHook = "zfs snapshot tank@blank";
+        postCreateHook = "zfs list -t snapshot -o name tank | grep -q '^tank@blank$' || zfs snapshot tank@blank";
 
         datasets = {
           "nextcloud" = {
