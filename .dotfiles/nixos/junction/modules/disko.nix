@@ -2,6 +2,10 @@ let
   mnt = import ../mountpoints.nix;
 in
 {
+  # After making changes here, apply them like so:
+  # $ vim $(disko --mode format --dry-run disko.nix)
+  # Review this script first! This feature is new and may cause data loss! Once done, you can run:
+  # disko --mode format --dry-run disko.nix
   disko.devices = {
     zpool = {
       tank = {
@@ -13,39 +17,48 @@ in
         };
         postCreateHook = "zfs snapshot tank@blank";
 
-        # Unless you're completely re-creating the entire system from scratch, disko (or nixos-rebuild)
-        # will not create new datasets when adding them here. You have to do that manually.
-        # For example, to create a new dataset for /mnt/asdf, run:
-        #     zfs create -o mountpoint=/mnt/asdf tank/asdf
-        # If you want automatic snapshots to be enabled for that dataset, run:
-        #     zfs set com.sun:auto-snapshot=true tank/asdf
-        # ON REINSTALL: Enable automatic snapshots for all datasets that should be snapshotted regularly as shown above
         datasets = {
           "nextcloud" = {
             type = "zfs_fs";
             # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
             # See also https://github.com/nix-community/disko/issues/581#issuecomment-2260602290
-            options.mountpoint = mnt.nextcloud;
+            options = {
+              mountpoint = mnt.nextcloud;
+              "com.sun:auto-snapshot" = "true";
+            };
           };
           "mysql" = {
             type = "zfs_fs";
-            options.mountpoint = mnt.mysql;
+            options = {
+              mountpoint = mnt.mysql;
+              "com.sun:auto-snapshot" = "true";
+            };
           };
           "samba" = {
             type = "zfs_fs";
-            options.mountpoint = mnt.samba;
+            options = {
+              mountpoint = mnt.samba;
+            };
           };
           "forgejo" = {
             type = "zfs_fs";
-            options.mountpoint = mnt.forgejo;
+            options = {
+              mountpoint = mnt.forgejo;
+              "com.sun:auto-snapshot" = "true";
+            };
           };
           "ftp" = {
             type = "zfs_fs";
-            options.mountpoint = mnt.ftp;
+            options = {
+              mountpoint = mnt.ftp;
+            };
           };
           "home-assistant" = {
             type = "zfs_fs";
-            options.mountpoint = mnt.home-assistant;
+            options = {
+              mountpoint = mnt.home-assistant;
+              "com.sun:auto-snapshot" = "true";
+            };
           };
         };
       };
