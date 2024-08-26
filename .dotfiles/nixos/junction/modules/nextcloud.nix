@@ -52,7 +52,7 @@
   # Nextcloud itself
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud27;
+    package = pkgs.nextcloud28;
     hostName = net.nextcloud.domain;
     home = mnt.nextcloud;
     configureRedis = true;
@@ -76,6 +76,7 @@
       default_locale = "de_DE";
       log_type = "file"; # When using file logging, logs are displayed in the admin panel
       loglevel = 1;
+      maintenance_window_start = 1; # Run maintenance tasks from 1-5am UTC (3-7am local time in summer, 2-6am in winter)
     };
     phpOptions = {
       upload_max_filesize = lib.mkForce "4G";
