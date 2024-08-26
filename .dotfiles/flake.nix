@@ -19,18 +19,15 @@
     # and https://hydra.nixos.org/jobset/nixpkgs/nixpkgs-23.11-darwin for stable
     # and select the latest commit hash that has no unfinished builds (meaning it's fully cached).
     # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
-    nixpkgs.url = "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/d52be12b079045912fdfaa027f29c826e9a23e31";
-    # Nextcloud 27 was removed in commit 77e77688497b4985f4e672bf1e1397c165602ef5, so I need to use a commit before that for junction
-    # c00d587b1a1 was part of https://hydra.nixos.org/eval/1807082, not quite the last one with 27, but the one with the least failures
-    nixpkgs-nc27.url = "github:NixOS/nixpkgs/c00d587b1a1afbf200b1d8f0b0e4ba9deb1c7f0e";
+    nixpkgs.url = "github:NixOS/nixpkgs/5e0ca22929f3342b19569b21b2f3462f053e497b";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40";
 
     flake-utils.url = "github:numtide/flake-utils";
     disko.url = "github:nix-community/disko";
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, nixpkgs-nc27, flake-utils, disko, sops-nix }@inputs:
+  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, flake-utils, disko, sops-nix }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -46,7 +43,9 @@
           ln -s $(cat ${vim}/bin/vim | grep -oP "(?<=')[^']+(?=')") $out/share/custom-vimrc
         '';
 
-        defaultPackages = (with pkgs-stable; [ ])
+        defaultPackages = (with pkgs-stable; [
+          tlrc # Quick command help, tldr rust client. Command is tldr, not tlrc
+        ])
         ++ (with pkgs; [
           # Basic terminal setup
           coreutils # Use consistent coreutils accross all platforms
@@ -77,7 +76,6 @@
           ranger # Fast navigation through directory tree
           gnupg # PGP toolkit
           age # Encryption tool
-          tlrc # Quick command help, tldr rust client. Command is tldr, not tlrc
           duf # Quick disk space view
           ncdu # Disk usage analyzer
 
@@ -165,7 +163,7 @@
       in
       {
         nixosConfigurations = {
-          junction = nixpkgs-nc27.lib.nixosSystem {
+          junction = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = specialArgs // {
               mnt = import ./nixos/junction/mountpoints.nix;
