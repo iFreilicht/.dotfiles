@@ -12,7 +12,10 @@
 
   # Nix settings
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
 
     # Lock 'nixpkgs' in flake-refs to the same nixpkgs this configuration is built from
     # This prevents downloads of newer versions of nixpkgs when using `nix shell` or `nix run`
