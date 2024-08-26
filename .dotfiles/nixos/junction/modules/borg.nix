@@ -77,6 +77,7 @@ in
     path = [
       # borgmatic requires mysqldump to be in the path to be able to backup MySQL databases
       pkgs.mariadb_106
+      pkgs.sqlite # Required for backing up sqlite databases
     ];
     environment = {
       BORG_PASSCOMMAND = "cat ${config.sops.secrets."borg/passphrase".path}";
