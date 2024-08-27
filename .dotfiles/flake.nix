@@ -34,9 +34,20 @@
         nixpkgs-stable.follows = "nixpkgs-stable";
       };
     };
+
+    # Only use tagged version of module. Should avoid compilation, but currently doesn't,
+    # see https://git.lix.systems/lix-project/lix/issues/489
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        flakey-profile.follows = "flakey-profile";
+      };
+    };
   };
 
-  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, flake-utils, disko, sops-nix }@inputs:
+  outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, flake-utils, disko, sops-nix, ... }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};

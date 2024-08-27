@@ -1,7 +1,11 @@
 # Options I want to enable on every system
-{ pkgs, nixpkgs, ... }:
+{ pkgs, nixpkgs, lix-module, ... }:
 
 {
+  imports = [
+    lix-module.nixosModules.default
+  ];
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   # console = {
