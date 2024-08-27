@@ -23,8 +23,17 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40";
 
     flake-utils.url = "github:numtide/flake-utils";
-    disko.url = "github:nix-community/disko";
-    sops-nix.url = "github:Mic92/sops-nix";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs-stable";
+      };
+    };
   };
 
   outputs = { self, flakey-profile, nixpkgs, nixpkgs-stable, flake-utils, disko, sops-nix }@inputs:
