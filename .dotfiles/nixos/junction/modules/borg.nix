@@ -5,23 +5,7 @@ in
 {
   # The root user needs an ssh key for borgmatic to be able to connect to the backup repos
   # ON REINSTALL: Run `sudo cat /root/.ssh/id_ed25519.pub` and add the output to the allowed keys in borgbase
-  systemd.services.ensure-root-ssh-key = {
-    enable = true;
-    description = "Ensure that the root user has an ssh key. Generate one if necessary.";
-    script = ''
-      mkdir -p /root/.ssh
-      chmod 700 /root/.ssh
-      chown root:root /root/.ssh
-      if [ ! -f /root/.ssh/id_ed25519 ]; then
-        ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f /root/.ssh/id_ed25519 -N ""
-      fi
-    '';
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-  };
+  uhl.ensure-root-ssh-key.enable = true;
 
   programs.ssh.knownHosts = with borgbase; {
     ${repos.files.host}.publicKey = publicKey;

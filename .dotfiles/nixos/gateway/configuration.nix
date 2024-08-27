@@ -8,6 +8,7 @@
     [
       ../common.nix
       ../modules/user-felix.nix
+      ../modules/ensure-root-ssh-key.nix
       ./modules/hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/dns.nix
       ./modules/nginx.nix
@@ -39,6 +40,21 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Allow using junction for builds, as it has a much faster CPU
+  nix = {
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "${net.junction.name}";
+        system = "x86_64-linux";
+        sshUser = "remote-build";
+        maxJobs = 4;
+        speedFactor = 4;
+      }
+    ];
+  };
+  uhl.ensure-root-ssh-key.enable = true; # Root user needs ssh key so nix-daemon can connect to remote builders
 
   # Enable automatic access to all services via wireguard
   uhl.dns.entries = {

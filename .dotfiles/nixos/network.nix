@@ -27,6 +27,8 @@ in
     zone = "fritz.box";
   };
   gateway = {
+    # ON REINSTALL: Run `sudo cat /root/.ssh/id_ed25519.pub` and update this value
+    root.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKO5US+fVZqaeWR6UjNWBU31xOOenn+Bj/zuYhme4mxL root@gateway";
     wireguard = {
       ip = "${wgBaseIP}.1";
       # Only route traffic of the wireguard subnet through the VPN, not the whole internet

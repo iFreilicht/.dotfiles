@@ -7,6 +7,7 @@
     [
       ../common.nix
       ../modules/user-felix.nix
+      ../modules/ensure-root-ssh-key.nix
       ./modules/hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/disko.nix # Drive configuration
       ./modules/nginx.nix
@@ -74,6 +75,7 @@
     hashedPassword = ""; # Only allow login via ssh
     openssh.authorizedKeys.keys = [
       net.horse.root.publicKey
+      net.gateway.root.publicKey
     ];
     shell = pkgs.bash;
     group = "remote-build";
