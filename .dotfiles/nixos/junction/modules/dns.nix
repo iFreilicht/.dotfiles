@@ -25,7 +25,7 @@ in
     services.bind = {
       enable = true;
       forwarders = [
-        # Forward only to pihole
+        # Forward only to pihole to get ad blocking
         "127.0.0.1 port ${toString net.pihole.dnsPort}"
       ];
 

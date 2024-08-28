@@ -27,8 +27,6 @@ in
         FTLCONF_LOCAL_IPV4 = "127.0.0.1"; # Not sure what this is for, but it's in the example
       };
       extraOptions = [
-        # The router gets its DNS from the ISP, which might publish some routes other DNS servers don't know about
-        "--dns=${net.home.router}"
         # Fall back on Cloudflare and Google DNS servers
         "--dns=1.1.1.1"
         "--dns=1.0.0.1"

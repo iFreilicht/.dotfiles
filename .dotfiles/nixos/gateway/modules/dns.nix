@@ -25,8 +25,8 @@ in
     services.bind = {
       enable = true;
       forwarders = [
-        # Only forward to pihole on junction so we get adblocking when connected to the VPN
-        "${net.junction.wireguard.ip} port ${toString net.pihole.dnsPort}"
+        # Only forward to junction so we get adblocking when connected to the VPN
+        net.junction.wireguard.ip
       ];
 
       # Only allow queries from wireguard
