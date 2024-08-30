@@ -26,6 +26,9 @@ in
     router = "${homeBaseIP}.1";
     zone = "fritz.box";
   };
+  wireguard = {
+    subnet = "${wgBaseIP}.0/24";
+  };
   gateway = {
     # ON REINSTALL: Run `sudo cat /root/.ssh/id_ed25519.pub` and update this value
     root.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKO5US+fVZqaeWR6UjNWBU31xOOenn+Bj/zuYhme4mxL root@gateway";

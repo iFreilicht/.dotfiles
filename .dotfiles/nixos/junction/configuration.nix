@@ -11,6 +11,7 @@
       ./modules/hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/disko.nix # Drive configuration
       ./modules/nginx.nix
+      ./modules/ntp.nix
       ./modules/dns.nix
       ./modules/nextcloud.nix
       ./modules/home-assistant.nix

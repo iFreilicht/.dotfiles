@@ -12,6 +12,7 @@
       ./modules/hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/dns.nix
       ./modules/nginx.nix
+      ./modules/ntp.nix
       wireguard.gateway
     ];
 
