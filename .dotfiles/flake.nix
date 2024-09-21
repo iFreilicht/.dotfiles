@@ -183,6 +183,14 @@
       in
       {
         nixosConfigurations = {
+          source = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            inherit specialArgs;
+            modules = [
+              ./nixos/source/configuration.nix
+            ];
+          };
+
           junction = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = specialArgs // {
