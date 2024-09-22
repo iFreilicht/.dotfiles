@@ -54,6 +54,7 @@
       firefox
       nextcloud-client
       keepassxc
+      vorta
     ];
   };
 
