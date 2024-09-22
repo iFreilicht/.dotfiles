@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, net, ... }:
 
 {
@@ -38,7 +34,6 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "altgr-intl";
-    options = "nodeadkeys";
   };
 
   # Enable CUPS to print documents.
@@ -55,14 +50,22 @@
   users.mutableUsers = lib.mkForce true; # Allow users to change their own passwords
   users.users.felix = {
     initialPassword = "changeimmediately";
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+      firefox
+      nextcloud-client
+      keepassxc
+    ];
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  environment.systemPackages = with pkgs; [
+    kitty
+  ];
+
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   # List services that you want to enable:
