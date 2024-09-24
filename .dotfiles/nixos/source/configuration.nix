@@ -67,6 +67,7 @@
       keepassxc
       vorta
       vscode
+      joplin-desktop
     ];
   };
 
