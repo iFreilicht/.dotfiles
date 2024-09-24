@@ -40,7 +40,7 @@ in
           The attribute name is the title of the menu entry.
         '';
         example = lib.literalExpression ''
-          { 
+          {
             "Windows 10".efiDeviceHandle = "HD0c3";
             "Windows 11... Are you sure about this?" = {
               efiDeviceHandle = "FS1";

@@ -76,12 +76,15 @@
     python3
   ];
 
+  # Unlock GnuPG and SSH keys on login
   programs = {
     gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
+      pinentryPackage = pkgs.callPackage ../packages/pinentry-kwallet.nix { };
     };
+    ssh.startAgent = true;
   };
+  security.pam.services.sshd.kwallet.enable = true;
 
   # List services that you want to enable:
 
