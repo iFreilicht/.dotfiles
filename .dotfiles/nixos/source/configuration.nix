@@ -72,6 +72,8 @@
     jack.enable = true;
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   users.mutableUsers = lib.mkForce true; # Allow users to change their own passwords
   users.users.felix = {
     initialPassword = "changeimmediately";
@@ -80,6 +82,7 @@
       nextcloud-client
       keepassxc
       vorta
+      vscode
     ];
   };
 
