@@ -17,6 +17,9 @@
     systemd-boot.windows."Windows 10".efiDeviceHandle = "FS1";
   };
 
+  # Ensure clock is synchronized between Windows and Linux
+  time.hardwareClockInLocalTime = true;
+
   networking.hostName = "source";
 
   networking.networkmanager.enable = true;
