@@ -68,6 +68,9 @@
       vorta
       vscode
       joplin-desktop
+
+      kdePackages.discover
+      flatpak
     ];
   };
 
@@ -75,6 +78,8 @@
     kitty
     python3
   ];
+
+  services.flatpak.enable = true;
 
   # Unlock GnuPG and SSH keys on login
   programs = {
