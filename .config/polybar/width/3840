@@ -1,8 +1,0 @@
-[host/bar]
-width = 3800
-height = 56
-offset-x = 20
-offset-y = 20
-border-left = 16
-border-right = 16
-line-size = 4

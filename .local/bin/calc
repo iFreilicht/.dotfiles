@@ -1,6 +1,0 @@
-#!/bin/sh
-# Script to start rofi in calculator mode
-# Requires rofi-calc to be installed
-# Mostly called from within rofi
-
-rofi -show calc -modi calc -no-show-match -no-sort
