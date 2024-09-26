@@ -22,6 +22,11 @@
 
   networking.hostName = "source";
 
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 8 * 1024; # Half of available RAM
+  }];
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Berlin";
