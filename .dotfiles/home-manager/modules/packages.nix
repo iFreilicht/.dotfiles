@@ -3,14 +3,6 @@ let
   lib = pkgs.lib;
   system = pkgs.stdenv.system;
 
-  vim = (import ./vim.nix { inherit pkgs; });
-
-  # This is a small hack to get the vimrc file into the profile so I can point vscode to it
-  vimRc = pkgs.runCommandNoCC "custom-vimrc" { } ''
-    mkdir -p $out/share/
-    ln -s $(cat ${vim}/bin/vim | grep -oP "(?<=')[^']+(?=')") $out/share/custom-vimrc
-  '';
-
   defaultPackages =
     (with pkgs-stable; [
       tlrc # Quick command help, tldr rust client. Command is tldr, not tlrc
@@ -70,11 +62,7 @@ let
       docker-compose # Container composition
       colima # Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
       dive # Inspecting image contents without starting a container
-    ])
-    ++ [
-      vim
-      vimRc
-    ];
+    ]);
 in
 {
   home.packages =

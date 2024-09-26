@@ -3,6 +3,7 @@
   imports = [
     ./modules/packages.nix
     ./modules/registry.nix
+    ./modules/vim.nix
   ];
 
   home.username = "felix";
