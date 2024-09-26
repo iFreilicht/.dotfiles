@@ -78,7 +78,6 @@
           autojump # Jump to often-visited directories quickly
           fzf # Fuzzy search command history
           zellij # Split views and sessions
-          clipboard-jh # Clipboard integration for X11, Wayland, macOS, Windows and OSC 52
 
           # Some utilities
           git-absorb # Easier fixup-rebase workflow for git
@@ -132,11 +131,23 @@
           (with pkgs; [
             # MacOS git supports unlocking with keychain, which is conventient
             git # Version management. Consistent version means access to new features on all platforms/distros.
+            # Clipboard has a bug on Wayland, use custom fix from https://github.com/Slackadays/Clipboard/pull/203
+            (clipboard-jh.overrideAttrs (oldAttrs: {
+              version = "0.9.0.2+pre+fix_wayland_flicker";
+              src = fetchFromGitHub {
+                owner = "iFreilicht";
+                repo = "Clipboard";
+                rev = "15bb982412e3134a09eab28d8c27d9a60f5f9aef";
+                hash = "sha256-g0YNnpqpGx17j4JzGVgDWanY0AqNtTfUffh9IKon0rc=";
+              };
+              buildInputs = oldAttrs.buildInputs ++ [ pkgs.openssl ];
+            }))
           ])
         ++ lib.lists.optionals (lib.strings.hasInfix "darwin" system)
           (with pkgs; [
             # The nix version somehow doesn't honor UTF-8 locales on linux, use the distro's version instead
             zsh
+            clipboard-jh # Clipboard integration for X11, Wayland, macOS, Windows and OSC 52
           ]);
       in
       {
