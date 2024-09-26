@@ -47,5 +47,8 @@
   users.users.nginx.extraGroups = [ "acme" ];
 
   # Allow HTTP and HTTPS traffic to reach nginx
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 }

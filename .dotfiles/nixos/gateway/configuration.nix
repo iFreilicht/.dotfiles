@@ -4,17 +4,16 @@
 
 { net, wireguard, ... }:
 {
-  imports =
-    [
-      ../common.nix
-      ../modules/user-felix.nix
-      ../modules/ensure-root-ssh-key.nix
-      ./modules/hardware-configuration.nix # Include the results of the hardware scan.
-      ./modules/dns.nix
-      ./modules/nginx.nix
-      ./modules/ntp.nix
-      wireguard.gateway
-    ];
+  imports = [
+    ../common.nix
+    ../modules/user-felix.nix
+    ../modules/ensure-root-ssh-key.nix
+    ./modules/hardware-configuration.nix # Include the results of the hardware scan.
+    ./modules/dns.nix
+    ./modules/nginx.nix
+    ./modules/ntp.nix
+    wireguard.gateway
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -22,10 +21,12 @@
 
   networking.hostName = "gateway";
 
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 1 * 1024; # Half of available RAM
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 1 * 1024; # Half of available RAM
+    }
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -76,4 +77,3 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
-

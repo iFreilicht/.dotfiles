@@ -1,4 +1,10 @@
-{ config, pkgs, lib, net, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  net,
+  ...
+}:
 
 let
   # YYYYMMDDRR where RR can be increased every time a change is made on the same day
@@ -40,8 +46,8 @@ in
         # Redirect access to public services through wireguard
         ${net.domain} = {
           master = true;
-          file = pkgs.writeText "${net.domain}.zone"
-            (''
+          file = pkgs.writeText "${net.domain}.zone" (
+            ''
               $TTL 86400
               @   IN  SOA ns1.${net.domain}. ${adminEmail}. (
                     ${serialn} ; Serial
@@ -52,41 +58,39 @@ in
                   NS  ns1.${net.domain}.
               ns1 IN A ${net.gateway.wireguard.ip}
               @   IN A ${net.junction.wireguard.ip}
-            '' +
-            (lib.concatStringsSep "\n" (
-              lib.mapAttrsToList
-                (name: ip: "${name} IN A ${ip}")
-                config.uhl.dns.entries
-            )) + "\n");
+            ''
+            + (lib.concatStringsSep "\n" (
+              lib.mapAttrsToList (name: ip: "${name} IN A ${ip}") config.uhl.dns.entries
+            ))
+            + "\n"
+          );
         };
 
         # Set up a TLD zone under which all hosts can be found. This is the search domain for the VPN
         gateway = {
           master = true;
-          file = pkgs.writeText "gateway.zone"
-            ''
-              $TTL 86400
-              @   IN  SOA ns1.gateway. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
-                  NS  ns1.gateway.
-              ns1      IN A ${net.gateway.wireguard.ip}
-              @        IN A ${net.gateway.wireguard.ip}
-              gateway  IN A ${net.gateway.wireguard.ip}
-              junction IN A ${net.junction.wireguard.ip}
-            '';
+          file = pkgs.writeText "gateway.zone" ''
+            $TTL 86400
+            @   IN  SOA ns1.gateway. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
+                NS  ns1.gateway.
+            ns1      IN A ${net.gateway.wireguard.ip}
+            @        IN A ${net.gateway.wireguard.ip}
+            gateway  IN A ${net.gateway.wireguard.ip}
+            junction IN A ${net.junction.wireguard.ip}
+          '';
         };
 
         # Publish a TLD for every host we want to be permanently accessible
         # This is more reliable than using a search domain, which can be overridden by other network adapters
         junction = {
           master = true;
-          file = pkgs.writeText "junction.zone"
-            ''
-              $TTL 86400
-              @   IN  SOA ns1.junction. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
-                  NS  ns1.junction.
-              ns1      IN A ${net.junction.wireguard.ip}
-              @        IN A ${net.junction.wireguard.ip}
-            '';
+          file = pkgs.writeText "junction.zone" ''
+            $TTL 86400
+            @   IN  SOA ns1.junction. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
+                NS  ns1.junction.
+            ns1      IN A ${net.junction.wireguard.ip}
+            @        IN A ${net.junction.wireguard.ip}
+          '';
         };
       };
     };

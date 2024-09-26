@@ -1,4 +1,10 @@
-{ config, pkgs, net, lib, ... }:
+{
+  config,
+  pkgs,
+  net,
+  lib,
+  ...
+}:
 let
   borgbase = net.junction.borgbase;
 in
@@ -41,18 +47,14 @@ in
           # Leave empty on purpose, application modules should set this themselves
           source_directories = [ ];
           exclude_patterns = [ ];
-          repositories = [
-            { inherit (borgbase.repos.files) path label; }
-          ];
+          repositories = [ { inherit (borgbase.repos.files) path label; } ];
         };
 
         databases = commonSettings // {
           source_directories = lib.mkForce [ ]; # Should never be set for the databases repo
           # Leave empty on purpose, application modules should set this themselves
           mysql_databases = [ ];
-          repositories = [
-            { inherit (borgbase.repos.databases) path label; }
-          ];
+          repositories = [ { inherit (borgbase.repos.databases) path label; } ];
 
         };
       };

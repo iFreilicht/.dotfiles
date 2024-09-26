@@ -1,10 +1,13 @@
 # Options I want to enable on every system
-{ pkgs, nixpkgs, lix-module, ... }:
+{
+  pkgs,
+  nixpkgs,
+  lix-module,
+  ...
+}:
 
 {
-  imports = [
-    lix-module.nixosModules.default
-  ];
+  imports = [ lix-module.nixosModules.default ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -17,15 +20,14 @@
   # Nix settings
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
 
-      substituters = [
-        "https://cache.lix.systems"
-      ];
-      trusted-public-keys = [
-        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-      ];
+      substituters = [ "https://cache.lix.systems" ];
+      trusted-public-keys = [ "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o=" ];
     };
 
     # Lock 'nixpkgs' in flake-refs to the same nixpkgs this configuration is built from

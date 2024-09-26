@@ -1,10 +1,14 @@
-{ pkgs, lib, net, mnt, ... }:
+{
+  pkgs,
+  lib,
+  net,
+  mnt,
+  ...
+}:
 
 {
   # This is a workaround, I'm trying to get it upstreamed in https://github.com/NixOS/nixpkgs/pull/331296
-  systemd.tmpfiles.rules = [
-    "d ${mnt.mysql} 0750 mysql mysql - -"
-  ];
+  systemd.tmpfiles.rules = [ "d ${mnt.mysql} 0750 mysql mysql - -" ];
   # DB for nextcloud
   services.mysql = {
     enable = true;
@@ -20,10 +24,21 @@
   services.nginx.virtualHosts.${net.nextcloud.domain} = {
     listen = [
       # Port to listen on for traffic from the wireguard network
-      { addr = net.junction.wireguard.ip; port = net.nextcloud.port; }
+      {
+        addr = net.junction.wireguard.ip;
+        port = net.nextcloud.port;
+      }
       # Default addresses to listen on for local access
-      { addr = "0.0.0.0"; port = 443; ssl = true; }
-      { addr = "[::0]"; port = 443; ssl = true; }
+      {
+        addr = "0.0.0.0";
+        port = 443;
+        ssl = true;
+      }
+      {
+        addr = "[::0]";
+        port = 443;
+        ssl = true;
+      }
     ];
     useACMEHost = net.domain;
     addSSL = true;
@@ -103,12 +118,10 @@
       ];
     };
     databases = {
-      mysql_databases = [{ name = "nextcloud"; }];
+      mysql_databases = [ { name = "nextcloud"; } ];
     };
   };
 
   # Allow direct HTTP access to nextcloud from wireguard only
-  networking.firewall.interfaces.wg0.allowedTCPPorts = [
-    net.nextcloud.port
-  ];
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [ net.nextcloud.port ];
 }

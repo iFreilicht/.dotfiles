@@ -1,14 +1,14 @@
 {
   # The flake the configuration is in
-  self
-, # System-specific nixpkgs (i.e. pkgs.legacyPackages.${system})
+  self,
+  # System-specific nixpkgs (i.e. pkgs.legacyPackages.${system})
   # This is the nixpkgs of the host running the rebuild command, not the target!
-  pkgs
+  pkgs,
   # Whether to use the --fast flag for nixos-rebuild. This will avoid rebuilding nix
   # before deployment, which is usually what you want
-, fast ? true
+  fast ? true,
   # Extra arguments to pass to nixos-rebuild switch, boot, test, build, 
-, extraBuildArgs ? [ ]
+  extraBuildArgs ? [ ],
 }:
 let
   lib = pkgs.lib;
@@ -43,43 +43,43 @@ in
 pkgs.writeShellScriptBin "flake-deploy" ''
   cat ${helpFile}
   exit 1
-'' // (
-  lib.pipe
-    self.nixosConfigurations
-    [
-      (lib.mapAttrs (name: value:
-        let
-          flake = "--flake path:${self}#${name}";
-          remoteDeploy = "--target-host ${name} --build-host ${name} --use-remote-sudo";
-          writeBuildScript = action: pkgs.writeShellScriptBin "flakey-system_${action}" ''
-            if [[ "$(${hostname})" == "${name}" ]]; then
-              ${nixos-rebuild} ${action} ${flake} ${fastFlag} ${toString extraBuildArgs} "$@"
-            else
-              ${nixos-rebuild} ${action} ${flake} ${fastFlag} ${remoteDeploy} ${toString extraBuildArgs} "$@"
-            fi
-          '';
-        in
-        {
-          build = writeBuildScript "build";
-          test = writeBuildScript "test";
-          boot = writeBuildScript "boot";
-          switch = writeBuildScript "switch";
-          list-generations = pkgs.writeShellScriptBin "flake-deploy_list-generations" ''
-            if [[ "$(${hostname})" == "${name}" ]]; then
-              ${nixos-rebuild} list-generations "$@"
-            else
-              # Use natively installed ssh so it interacts properly with keychains and agents
-              ssh ${name} nixos-rebuild list-generations "$@"
-            fi
-          '';
-          # Warning! I got this from my command history, but haven't tested it in this context yet!
-          install-on-blank-remote = pkgs.writeShellScriptBin "flake-deploy_install-on-blank-remote" ''
-            # Use nix run instead of adding nixos-anywhere as an input so it's only loaded when needed and always the latest version
-            nix run github:nix-community/nixos-anywhere -- --build-on-remote ${flake} "$@"
-          '';
-        }
-      ))
-    ]
-
+''
+// (lib.pipe self.nixosConfigurations [
+  (lib.mapAttrs (
+    name: value:
+    let
+      flake = "--flake path:${self}#${name}";
+      remoteDeploy = "--target-host ${name} --build-host ${name} --use-remote-sudo";
+      writeBuildScript =
+        action:
+        pkgs.writeShellScriptBin "flakey-system_${action}" ''
+          if [[ "$(${hostname})" == "${name}" ]]; then
+            ${nixos-rebuild} ${action} ${flake} ${fastFlag} ${toString extraBuildArgs} "$@"
+          else
+            ${nixos-rebuild} ${action} ${flake} ${fastFlag} ${remoteDeploy} ${toString extraBuildArgs} "$@"
+          fi
+        '';
+    in
+    {
+      build = writeBuildScript "build";
+      test = writeBuildScript "test";
+      boot = writeBuildScript "boot";
+      switch = writeBuildScript "switch";
+      list-generations = pkgs.writeShellScriptBin "flake-deploy_list-generations" ''
+        if [[ "$(${hostname})" == "${name}" ]]; then
+          ${nixos-rebuild} list-generations "$@"
+        else
+          # Use natively installed ssh so it interacts properly with keychains and agents
+          ssh ${name} nixos-rebuild list-generations "$@"
+        fi
+      '';
+      # Warning! I got this from my command history, but haven't tested it in this context yet!
+      install-on-blank-remote = pkgs.writeShellScriptBin "flake-deploy_install-on-blank-remote" ''
+        # Use nix run instead of adding nixos-anywhere as an input so it's only loaded when needed and always the latest version
+        nix run github:nix-community/nixos-anywhere -- --build-on-remote ${flake} "$@"
+      '';
+    }
+  ))
+]
 
 )

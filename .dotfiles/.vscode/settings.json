@@ -1,1 +1,11 @@
-{}
+{
+    "nix.serverSettings": {
+        "nixd": {
+            "formatting": {
+                "command": [
+                    "/home/felix/.nix-profile/bin/nixfmt"
+                ],
+            }
+        }
+    }
+}

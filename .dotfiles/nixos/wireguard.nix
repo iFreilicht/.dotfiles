@@ -12,11 +12,14 @@ let
     inherit (a) publicKey;
     allowedIPs = [ "${a.ip}/32" ];
   };
-  makeServer = a: additionalOpts: {
-    inherit (a) publicKey;
-    allowedIPs = [ a.subnet ];
-    endpoint = "${a.initialIP}:${builtins.toString port}";
-  } // additionalOpts;
+  makeServer =
+    a: additionalOpts:
+    {
+      inherit (a) publicKey;
+      allowedIPs = [ a.subnet ];
+      endpoint = "${a.initialIP}:${builtins.toString port}";
+    }
+    // additionalOpts;
 
   # I stole this script from nixpkgs nixos/modules/services/networking/wireguard.nix
   # because nixos/modules/services/networking/wg-quick.nix doesn't have a generatePrivateKeyFile option yet.
@@ -87,11 +90,12 @@ in
       wg0 = {
         address = makeIps horse;
         listenPort = port;
-        dns = [ gateway.ip "gateway" ]; # IP is the DNS server, hostname is the search domain
+        dns = [
+          gateway.ip
+          "gateway"
+        ]; # IP is the DNS server, hostname is the search domain
         privateKey = "AAAA-Replace-with-real-key-AAAA";
-        peers = [
-          (makeServer gateway { })
-        ];
+        peers = [ (makeServer gateway { }) ];
       };
     };
   };

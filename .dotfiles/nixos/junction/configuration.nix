@@ -1,28 +1,33 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, net, wireguard, ... }:
 {
-  imports =
-    [
-      ../common.nix
-      ../modules/user-felix.nix
-      ../modules/ensure-root-ssh-key.nix
-      ./modules/hardware-configuration.nix # Include the results of the hardware scan.
-      ./modules/disko.nix # Drive configuration
-      ./modules/nginx.nix
-      ./modules/ntp.nix
-      ./modules/dns.nix
-      ./modules/nextcloud.nix
-      ./modules/home-assistant.nix
-      ./modules/borg.nix
-      ./modules/containerized-apps.nix
-      ./modules/samba.nix
-      ./modules/git.nix
-      ./modules/ftp.nix
-      ./modules/pihole.nix
-      wireguard.junction
-    ];
+  config,
+  pkgs,
+  net,
+  wireguard,
+  ...
+}:
+{
+  imports = [
+    ../common.nix
+    ../modules/user-felix.nix
+    ../modules/ensure-root-ssh-key.nix
+    ./modules/hardware-configuration.nix # Include the results of the hardware scan.
+    ./modules/disko.nix # Drive configuration
+    ./modules/nginx.nix
+    ./modules/ntp.nix
+    ./modules/dns.nix
+    ./modules/nextcloud.nix
+    ./modules/home-assistant.nix
+    ./modules/borg.nix
+    ./modules/containerized-apps.nix
+    ./modules/samba.nix
+    ./modules/git.nix
+    ./modules/ftp.nix
+    ./modules/pihole.nix
+    wireguard.junction
+  ];
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
@@ -100,4 +105,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-

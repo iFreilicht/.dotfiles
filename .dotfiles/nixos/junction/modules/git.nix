@@ -1,4 +1,9 @@
-{ config, mnt, net, ... }:
+{
+  config,
+  mnt,
+  net,
+  ...
+}:
 {
   services.forgejo = {
     enable = true;
@@ -43,12 +48,10 @@
       ];
     };
     databases = {
-      mysql_databases = [{ name = "nextcloud"; }];
+      mysql_databases = [ { name = "nextcloud"; } ];
     };
   };
 
   # Allow direct HTTP access to forgejo from wireguard only
-  networking.firewall.interfaces.wg0.allowedTCPPorts = [
-    net.git.port
-  ];
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [ net.git.port ];
 }

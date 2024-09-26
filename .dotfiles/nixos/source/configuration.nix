@@ -1,4 +1,10 @@
-{ config, lib, pkgs, net, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  net,
+  ...
+}:
 
 {
   imports = [
@@ -22,18 +28,18 @@
 
   networking.hostName = "source";
 
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 8 * 1024; # Half of available RAM
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024; # Half of available RAM
+    }
+  ];
 
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Berlin";
 
-  felix.authorizedKeys = [
-    net.horse.felix.publicKey
-  ];
+  felix.authorizedKeys = [ net.horse.felix.publicKey ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -121,4 +127,3 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
-

@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   options = {
     uhl.ensure-root-ssh-key.enable = lib.mkOption {
       type = lib.types.bool;

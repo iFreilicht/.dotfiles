@@ -1,4 +1,10 @@
-{ config, pkgs, lib, net, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  net,
+  ...
+}:
 
 let
   # YYYYMMDDRR where RR can be increased every time a change is made on the same day
@@ -47,12 +53,11 @@ in
         };
       '';
 
-
       zones = {
         ${net.domain} = {
           master = true;
-          file = pkgs.writeText "${net.domain}.zone"
-            (''
+          file = pkgs.writeText "${net.domain}.zone" (
+            ''
               $TTL 86400
               @   IN  SOA ns1.${net.domain}. ${adminEmail}. (
                     ${serialn} ; Serial
@@ -63,12 +68,12 @@ in
                   NS  ns1.${net.domain}.
               ns1 IN A ${net.junction.home.ip}
               @   IN A ${net.junction.home.ip}
-            '' +
-            (lib.concatStringsSep "\n" (
-              lib.mapAttrsToList
-                (name: ip: "${name} IN A ${ip}")
-                config.uhl.dns.entries
-            )) + "\n");
+            ''
+            + (lib.concatStringsSep "\n" (
+              lib.mapAttrsToList (name: ip: "${name} IN A ${ip}") config.uhl.dns.entries
+            ))
+            + "\n"
+          );
         };
       };
     };

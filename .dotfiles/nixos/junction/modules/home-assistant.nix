@@ -21,9 +21,7 @@
       http = {
         server_host = "::1";
         server_port = net.home-assistant.port;
-        trusted_proxies = [
-          "::1"
-        ];
+        trusted_proxies = [ "::1" ];
         use_x_forwarded_for = true;
       };
     };
@@ -64,10 +62,12 @@
       ];
     };
     databases = {
-      sqlite_databases = [{
-        name = "home-assistant";
-        path = "${mnt.home-assistant}/home-assistant_v2.db";
-      }];
+      sqlite_databases = [
+        {
+          name = "home-assistant";
+          path = "${mnt.home-assistant}/home-assistant_v2.db";
+        }
+      ];
     };
   };
 }

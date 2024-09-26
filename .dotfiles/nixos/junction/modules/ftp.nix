@@ -1,4 +1,9 @@
-{ config, lib, mnt, ... }:
+{
+  config,
+  lib,
+  mnt,
+  ...
+}:
 let
   # To be able to open the ports in the firewall that FTP will randomly assign when entering
   # passive mode, we need to restrict the range, else we'd have to open all of them.
@@ -27,9 +32,7 @@ in
 
   # As the home directory can't be written to, create writeable subdirectories.
   # These can then be accessed fully via FTP.
-  systemd.tmpfiles.rules = [
-    "d ${mnt.ftp}/stefan/album 0700 stefan ftp -"
-  ];
+  systemd.tmpfiles.rules = [ "d ${mnt.ftp}/stefan/album 0700 stefan ftp -" ];
 
   services.vsftpd = {
     enable = true;
@@ -38,14 +41,15 @@ in
     # Prevent access to any files outside of the user's home directory 
     chrootlocalUser = true;
     # Only allow access through these accounts by default
-    userlist = [
-      "stefan"
-    ];
+    userlist = [ "stefan" ];
     extraConfig = ''
       pasv_min_port=${toString ftp-pasv-min-port}
       pasv_max_port=${toString ftp-pasv-max-port}
     '';
   };
 
-  networking.firewall.allowedTCPPorts = [ 20 21 ] ++ (lib.range ftp-pasv-min-port ftp-pasv-max-port);
+  networking.firewall.allowedTCPPorts = [
+    20
+    21
+  ] ++ (lib.range ftp-pasv-min-port ftp-pasv-max-port);
 }

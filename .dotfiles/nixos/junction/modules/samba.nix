@@ -1,4 +1,9 @@
-{ lib, mnt, net, ... }:
+{
+  lib,
+  mnt,
+  net,
+  ...
+}:
 
 let
   shares = {
@@ -97,12 +102,9 @@ in
   };
 
   # Ensure directories for shares exist
-  systemd.tmpfiles.rules =
-    (lib.lists.map
-      (path:
-        "d ${path} 0750 samba samba - -"
-      )
-      ([ mnt.samba ] ++ (lib.attrValues shares)));
+  systemd.tmpfiles.rules = (
+    lib.lists.map (path: "d ${path} 0750 samba samba - -") ([ mnt.samba ] ++ (lib.attrValues shares))
+  );
 
   # Advertise shares to Windows clients
   services.samba-wsdd = {
@@ -121,7 +123,10 @@ in
     # ^^ Not one hundred percent sure if this is needed- if it aint broke, don't fix it
     enable = true;
     openFirewall = true;
-    allowInterfaces = [ "enp2s0" "wg0" ];
+    allowInterfaces = [
+      "enp2s0"
+      "wg0"
+    ];
     extraServiceFiles = {
       timemachine = ''
         <?xml version="1.0" standalone='no'?>

@@ -15,37 +15,40 @@ let
 
   # Define a module that makes `wg-quick-configs` a valid config option
   wgQuickConfigsModule = {
-    options.wg-quick-configs = with lib; mkOption {
-      default = { };
-      type = types.attrs;
-    };
+    options.wg-quick-configs =
+      with lib;
+      mkOption {
+        default = { };
+        type = types.attrs;
+      };
   };
 
-  evaluateWgQuickModule = name: lib.evalModules
-    {
+  evaluateWgQuickModule =
+    name:
+    lib.evalModules {
       modules = [
         wgQuickConfigsModule
         wgQuickPatchedModule
         wireguard.${name}
       ];
-      specialArgs = { inherit pkgs; };
+      specialArgs = {
+        inherit pkgs;
+      };
     };
-
 
   # Evaluate modules in isolation so no full NixOS system is required
   evalOutput = lib.pipe names [
-    (builtins.map
-      (name: {
-        inherit name; value = evaluateWgQuickModule name;
-      }))
+    (builtins.map (name: {
+      inherit name;
+      value = evaluateWgQuickModule name;
+    }))
     lib.listToAttrs
-    (lib.mapAttrs (
-      name: value: value.config.wg-quick-configs
-    ))
+    (lib.mapAttrs (name: value: value.config.wg-quick-configs))
   ];
 
-  # list all names
 in
+# list all names
 pkgs.writeText "wg-quick-configs" ''
   Use `nix build path:.#wireguard-configs.horse.wg0` to build the configuration for the `wg0` interface.
-'' // evalOutput
+''
+// evalOutput

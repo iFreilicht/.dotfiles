@@ -15,12 +15,16 @@ let
 in
 {
   domain = rootDomain;
-  nextcloud = (mkService "cloud" 33001) // { nginx_max_body_size = "512M"; };
+  nextcloud = (mkService "cloud" 33001) // {
+    nginx_max_body_size = "512M";
+  };
   snapdrop = mkService "drop" 33002;
   kritzeln = mkService "kritzeln" 33003;
   git = mkService "git" 33004;
   home-assistant = mkService "home" 33005;
-  pihole = mkService "pihole" 33006 // { dnsPort = 33353; };
+  pihole = mkService "pihole" 33006 // {
+    dnsPort = 33353;
+  };
   home = {
     subnet = "${homeBaseIP}.0/24";
     router = "${homeBaseIP}.1";

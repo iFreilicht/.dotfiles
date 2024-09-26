@@ -109,7 +109,10 @@ in
               content = {
                 type = "filesystem";
                 format = "ext4";
-                extraArgs = [ "-L" "nix_store" ];
+                extraArgs = [
+                  "-L"
+                  "nix_store"
+                ];
                 mountpoint = "/nix/store";
               };
             };
@@ -134,7 +137,10 @@ in
               content = {
                 type = "filesystem";
                 format = "ext4";
-                extraArgs = [ "-L" "scratch" ];
+                extraArgs = [
+                  "-L"
+                  "scratch"
+                ];
                 mountpoint = mnt.scratch;
               };
             };
@@ -154,8 +160,14 @@ in
               content = {
                 type = "filesystem";
                 format = "vfat";
-                extraArgs = [ "-n" "BOOT" ];
-                mountOptions = [ "fmask=0022" "dmask=0022" ];
+                extraArgs = [
+                  "-n"
+                  "BOOT"
+                ];
+                mountOptions = [
+                  "fmask=0022"
+                  "dmask=0022"
+                ];
                 mountpoint = "/boot";
               };
             };
@@ -164,7 +176,10 @@ in
               content = {
                 type = "filesystem";
                 format = "ext4";
-                extraArgs = [ "-L" "nixos" ];
+                extraArgs = [
+                  "-L"
+                  "nixos"
+                ];
                 mountpoint = "/";
               };
             };
