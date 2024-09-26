@@ -48,8 +48,21 @@
 
   home.file.".ssh/hm_known_hosts".text = ''
     # This file was created by home-manager
+
+    # Known public hosts
     github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
     git.sr.ht ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZvRd4EtM7R+IHVMWmDkVU3VLQTSwQDSAvW0t2Tkj60
     gitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf
+
+    # Known self-hosted hosts
+    gateway ${net.gateway.hostKey}
+    ${net.gateway.wireguard.initialIP} ${net.gateway.hostKey}
+    ${net.gateway.wireguard.ip} ${net.gateway.hostKey}
+
+    junction ${net.junction.hostKey}
+    ${net.junction.home.ip} ${net.junction.hostKey}
+    ${net.junction.wireguard.ip} ${net.junction.hostKey}
+
+    source ${net.source.hostKey}
   '';
 }

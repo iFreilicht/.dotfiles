@@ -36,6 +36,8 @@ in
   gateway = {
     # ON REINSTALL: Run `sudo cat /root/.ssh/id_ed25519.pub` and update this value
     root.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKO5US+fVZqaeWR6UjNWBU31xOOenn+Bj/zuYhme4mxL root@gateway";
+    # On REINSTALL: Run `cat /etc/ssh/ssh_host_ed25519_key.pub` and update this value
+    hostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+y8cm1qUCUdZYJBmlcP3i/CN5xzMLhv9n+CSr5RXHm";
     wireguard = {
       ip = "${wgBaseIP}.1";
       # Only route traffic of the wireguard subnet through the VPN, not the whole internet
@@ -49,6 +51,8 @@ in
     name = "junction";
     # ON REINSTALL: Ensure the router is statically setting the IP of junction to this
     home.ip = "${homeBaseIP}.13"; # Statically set in router
+    # On REINSTALL: Run `cat /etc/ssh/ssh_host_ed25519_key.pub` and update this value
+    hostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb5fncMa9mndIB6+rIElTvgxHoziZWgHA6llkw2yJg/";
     wireguard = {
       ip = "${wgBaseIP}.13";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
@@ -76,5 +80,9 @@ in
       publicKey = "6fKbTyEIkY0bBG4iL5JENfJNc465UucjZoZcebx4wFc=";
     };
   };
-  source.felix.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0TI3HN6e00Bv29ui7BUCYSa4FBjcWBs4fE5R1ODc9+ felix@source";
+  source = {
+    felix.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0TI3HN6e00Bv29ui7BUCYSa4FBjcWBs4fE5R1ODc9+ felix@source";
+    # On REINSTALL: Run `cat /etc/ssh/ssh_host_ed25519_key.pub` and update this value
+    hostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJbNR9YHoKGaj46GvJlVi6z/30YFN3mbHvVs/oXjY/4X";
+  };
 }
