@@ -2,6 +2,7 @@
 {
   imports = [
     ./modules/packages.nix
+    ./modules/registry.nix
   ];
 
   home.username = "felix";

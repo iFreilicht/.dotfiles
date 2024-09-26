@@ -77,7 +77,7 @@
               inherit pkgs;
               modules = [ ./home-manager/felix.nix ];
               extraSpecialArgs = {
-                inherit pkgs-stable;
+                inherit pkgs-stable inputs;
               };
             };
 
@@ -86,7 +86,7 @@
               inherit pkgs;
               modules = [ ./home-manager/feuh.nix ];
               extraSpecialArgs = {
-                inherit pkgs-stable;
+                inherit pkgs-stable inputs;
               };
             };
           };
