@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   net,
@@ -91,6 +90,8 @@
   ];
 
   services.flatpak.enable = true;
+
+  programs.kdeconnect.enable = true;
 
   # Unlock GnuPG and SSH keys on login
   programs = {
