@@ -3,6 +3,7 @@
   imports = [
     ./modules/packages.nix
     ./modules/registry.nix
+    ./modules/ssh.nix
     ./modules/vim.nix
   ];
 

@@ -1,12 +1,12 @@
-{ inputs, ... }:
+{ nixpkgs, nixpkgs-stable, ... }:
 
 {
   nix.registry = {
     nixpkgs.flake = {
-      inherit (inputs.nixpkgs) outPath;
+      inherit (nixpkgs) outPath;
     };
     stable.flake = {
-      inherit (inputs.nixpkgs-stable) outPath;
+      inherit (nixpkgs-stable) outPath;
     };
   };
 }

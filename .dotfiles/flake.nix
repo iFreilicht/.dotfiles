@@ -62,6 +62,12 @@
       sops-nix,
       ...
     }@inputs:
+    let
+      specialArgs = inputs // {
+        net = import nixos/network.nix;
+        wireguard = import nixos/wireguard.nix;
+      };
+    in
     (flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -69,25 +75,22 @@
         pkgs-stable = nixpkgs-stable.legacyPackages.${system};
         mkWgQuickConfigs = import ./nix/mk-wg-quick-configs.nix;
         mkDeploy = import ./nix/mk-deploy.nix;
+        extraSpecialArgs = specialArgs // {
+          inherit pkgs-stable;
+        };
       in
       {
         packages = {
           homeConfigurations = {
             "felix" = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
+              inherit pkgs extraSpecialArgs;
               modules = [ ./home-manager/felix.nix ];
-              extraSpecialArgs = {
-                inherit pkgs-stable inputs;
-              };
             };
 
             # On my mac
             "feuh" = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
+              inherit pkgs extraSpecialArgs;
               modules = [ ./home-manager/feuh.nix ];
-              extraSpecialArgs = {
-                inherit pkgs-stable inputs;
-              };
             };
           };
 
@@ -100,39 +103,31 @@
         };
       }
     ))
-    // (
-      let
-        specialArgs = inputs // {
-          net = import nixos/network.nix;
-          wireguard = import nixos/wireguard.nix;
+    // {
+      nixosConfigurations = {
+        source = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          inherit specialArgs;
+          modules = [ ./nixos/source/configuration.nix ];
         };
-      in
-      {
-        nixosConfigurations = {
-          source = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            inherit specialArgs;
-            modules = [ ./nixos/source/configuration.nix ];
-          };
 
-          junction = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = specialArgs // {
-              mnt = import ./nixos/junction/mountpoints.nix;
-            };
-            modules = [
-              disko.nixosModules.disko
-              ./nixos/junction/configuration.nix
-              sops-nix.nixosModules.sops
-            ];
+        junction = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = specialArgs // {
+            mnt = import ./nixos/junction/mountpoints.nix;
           };
-
-          gateway = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            inherit specialArgs;
-            modules = [ ./nixos/gateway/configuration.nix ];
-          };
+          modules = [
+            disko.nixosModules.disko
+            ./nixos/junction/configuration.nix
+            sops-nix.nixosModules.sops
+          ];
         };
-      }
-    );
+
+        gateway = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          inherit specialArgs;
+          modules = [ ./nixos/gateway/configuration.nix ];
+        };
+      };
+    };
 }
