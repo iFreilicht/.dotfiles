@@ -84,5 +84,10 @@ in
     felix.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0TI3HN6e00Bv29ui7BUCYSa4FBjcWBs4fE5R1ODc9+ felix@source";
     # On REINSTALL: Run `cat /etc/ssh/ssh_host_ed25519_key.pub` and update this value
     hostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJbNR9YHoKGaj46GvJlVi6z/30YFN3mbHvVs/oXjY/4X";
+    wireguard = {
+      ip = "${wgBaseIP}.33";
+      # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
+      publicKey = "T5RIZ2K07nyBcRd5dKpgL5TWsF4coLOkl6NMFIMMtkY=";
+    };
   };
 }

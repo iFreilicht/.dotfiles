@@ -3,6 +3,7 @@ let
   gateway = net.gateway.wireguard;
   junction = net.junction.wireguard;
   horse = net.horse.wireguard;
+  source = net.source.wireguard;
   uhl'siphone = net.uhl'siphone.wireguard;
 
   port = 51820;
@@ -55,6 +56,7 @@ in
           peers = [
             (makePeer junction)
             (makePeer horse)
+            (makePeer source)
             (makePeer uhl'siphone)
           ];
         };
@@ -96,6 +98,23 @@ in
         ]; # IP is the DNS server, hostname is the search domain
         privateKey = "AAAA-Replace-with-real-key-AAAA";
         peers = [ (makeServer gateway { }) ];
+      };
+    };
+  };
+  source = {
+    config = {
+      networking.firewall = {
+        allowedUDPPorts = [ port ];
+      };
+
+      networking.wg-quick.interfaces = {
+        wg0 = {
+          address = makeIps source;
+          inherit privateKeyFile;
+          preUp = createPrivateKey;
+          listenPort = port;
+          peers = [ (makeServer gateway { }) ];
+        };
       };
     };
   };

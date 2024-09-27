@@ -2,6 +2,7 @@
   lib,
   pkgs,
   net,
+  wireguard,
   ...
 }:
 
@@ -11,6 +12,7 @@
     ../modules/user-felix.nix
     ../modules/extra-boot-options.nix
     ./modules/hardware-configuration.nix
+    wireguard.source
   ];
 
   # Use the systemd-boot EFI boot loader.
