@@ -2,7 +2,9 @@
 {
   imports = [
     ./modules/aliases.nix
+    ./modules/config-files
     ./modules/env.nix
+    ./modules/home-files
     ./modules/packages.nix
     ./modules/registry.nix
     ./modules/ssh.nix
