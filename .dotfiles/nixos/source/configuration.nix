@@ -12,6 +12,7 @@
     ../modules/be-remote-builder.nix
     ../modules/extra-boot-options.nix
     ../modules/user-felix.nix
+    ./modules/gaming.nix
     ./modules/hardware-configuration.nix
     wireguard.source
   ];
