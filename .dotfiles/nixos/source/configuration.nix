@@ -38,6 +38,8 @@
 
   networking.networkmanager.enable = true;
 
+  nix.settings.cores = 6; # Use less than all available cores when building to avoid overloading the system
+
   time.timeZone = "Europe/Berlin";
 
   felix.authorizedKeys = [ net.horse.felix.publicKey ];

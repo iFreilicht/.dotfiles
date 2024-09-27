@@ -21,6 +21,13 @@
 
   networking.hostName = "gateway";
 
+  nix.settings = {
+    # Use less than all available cores when building to avoid overloading the system.
+    # In general, I don't want to build anything on this system at all, but it sometimes happens by accident.
+    # Having this limit ensures I can easily abort builds.
+    cores = 1;
+  };
+
   swapDevices = [
     {
       device = "/var/lib/swapfile";

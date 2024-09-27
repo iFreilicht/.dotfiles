@@ -88,11 +88,14 @@
   };
   users.groups.remote-build = { };
 
-  # Ensure both users can actually build derivations
-  nix.settings.trusted-users = [
-    "felix"
-    "remote-build"
-  ];
+  nix.settings = {
+    # Ensure both users can actually build derivations
+    trusted-users = [
+      "felix"
+      "remote-build"
+    ];
+    cores = 6; # Use less than all available cores when building to avoid overloading the system
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
