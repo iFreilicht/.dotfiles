@@ -9,8 +9,21 @@
 let
   # YYYYMMDDRR where RR can be increased every time a change is made on the same day
   # Only ever increase this number!
-  serialn = "2024081401"; # Substitution ${serialn} has same length as string itself
+  serialn = "2024092701"; # Substitution ${serialn} has same length as string itself
   adminEmail = "admin.${net.domain}"; # Doesn't actually exist, but DNS is private, so doesn't matter
+
+  mkTLDForHost = hostname: extraEntries: {
+    master = true;
+    file =
+      pkgs.writeText "${hostname}.zone" ''
+        $TTL 86399
+        @   IN  SOA ns1.${hostname}. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
+            NS  ns1.${hostname}.
+        ns1      IN A ${net.${hostname}.wireguard.ip}
+        @        IN A ${net.${hostname}.wireguard.ip}
+      ''
+      + extraEntries;
+  };
 in
 {
   options = {
@@ -67,31 +80,15 @@ in
         };
 
         # Set up a TLD zone under which all hosts can be found. This is the search domain for the VPN
-        gateway = {
-          master = true;
-          file = pkgs.writeText "gateway.zone" ''
-            $TTL 86400
-            @   IN  SOA ns1.gateway. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
-                NS  ns1.gateway.
-            ns1      IN A ${net.gateway.wireguard.ip}
-            @        IN A ${net.gateway.wireguard.ip}
-            gateway  IN A ${net.gateway.wireguard.ip}
-            junction IN A ${net.junction.wireguard.ip}
-          '';
-        };
+        gateway = mkTLDForHost "gateway" ''
+          junction IN A ${net.junction.wireguard.ip}
+          source   IN A ${net.source.wireguard.ip}
+        '';
 
         # Publish a TLD for every host we want to be permanently accessible
         # This is more reliable than using a search domain, which can be overridden by other network adapters
-        junction = {
-          master = true;
-          file = pkgs.writeText "junction.zone" ''
-            $TTL 86400
-            @   IN  SOA ns1.junction. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
-                NS  ns1.junction.
-            ns1      IN A ${net.junction.wireguard.ip}
-            @        IN A ${net.junction.wireguard.ip}
-          '';
-        };
+        junction = mkTLDForHost "junction" "";
+        source = mkTLDForHost "source" "";
       };
     };
 
