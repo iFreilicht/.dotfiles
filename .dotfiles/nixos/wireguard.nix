@@ -21,18 +21,6 @@ let
       endpoint = "${a.initialIP}:${builtins.toString port}";
     }
     // additionalOpts;
-
-  # I stole this script from nixpkgs nixos/modules/services/networking/wireguard.nix
-  # because nixos/modules/services/networking/wg-quick.nix doesn't have a generatePrivateKeyFile option yet.
-  # I'm trying to get this upstreamed in https://github.com/NixOS/nixpkgs/pull/331253
-  createPrivateKey = ''
-    set -e
-    mkdir -p --mode 0755 "${dirOf privateKeyFile}"
-    if [ ! -f "${privateKeyFile}" ]; then
-      # Write private key file with atomically-correct permissions.
-      (set -e; umask 077; wg genkey > "${privateKeyFile}")
-    fi
-  '';
 in
 {
   peers = {
@@ -51,7 +39,7 @@ in
         wg0 = {
           address = makeIps gateway;
           inherit privateKeyFile;
-          preUp = createPrivateKey;
+          generatePrivateKeyFile = true;
           listenPort = port;
           peers = [
             (makePeer junction)
@@ -73,7 +61,7 @@ in
         wg0 = {
           address = makeIps junction;
           inherit privateKeyFile;
-          preUp = createPrivateKey;
+          generatePrivateKeyFile = true;
           listenPort = port;
           peers = [
             (makeServer gateway {
@@ -111,7 +99,7 @@ in
         wg0 = {
           address = makeIps source;
           inherit privateKeyFile;
-          preUp = createPrivateKey;
+          generatePrivateKeyFile = true;
           listenPort = port;
           peers = [ (makeServer gateway { }) ];
         };
