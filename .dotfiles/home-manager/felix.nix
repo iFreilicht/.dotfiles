@@ -1,10 +1,13 @@
 { ... }:
 {
   imports = [
+    ./modules/aliases.nix
+    ./modules/env.nix
     ./modules/packages.nix
     ./modules/registry.nix
     ./modules/ssh.nix
     ./modules/vim.nix
+    ./modules/zsh.nix
   ];
 
   home.username = "felix";
@@ -15,7 +18,10 @@
   };
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    # Fix perl locale warnings (they never matter and are always annoying to fix)
+    PERL_BADLANG = 0;
+    # Make sure programs know about vim
+    EDITOR = "$HOME/.nix-profile/bin/vim";
   };
 
   # Let Home Manager install and manage itself.

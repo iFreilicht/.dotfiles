@@ -1,31 +1,5 @@
-# Source nix. Try to source global default profile first, then the per-user profile.
-# This is a workaround for https://github.com/NixOS/nix/issues/3616
-#[[ "$(whence vim)" != "$HOME/.nix-profile/bin/vim" ]]
-
-# Make sure instant prompt doesn't throw a warning if direnv hook is run on startup
-emulate zsh -c "$(direnv export zsh)"
-
-# Colourful output for a lot of additional utilities.
-# Needs to be sourced before instant prompt, otherwise it doesn't work
-[ -e "$HOME/.nix-profile/etc/grc.zsh" ] && source $HOME/.nix-profile/etc/grc.zsh
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Get aliases
-source $ZDOTDIR/aliases
-
-# Source private zshrc if it exists
-if [ -f "$ZDOTDIR/private" ]; then
-    source "$ZDOTDIR/private"
-fi
-
 # Enable a list of options
-source $ZDOTDIR/keybinds
+source $ZDOTDIR/keybinds.zsh
 
 # Enable all autocompletions for nix-installed tools
 for p in ${(z)NIX_PROFILES}; do
@@ -33,7 +7,7 @@ for p in ${(z)NIX_PROFILES}; do
 done
 
 # Enable a list of options (after fpath was set, this is important for completions!)
-source $ZDOTDIR/options
+source $ZDOTDIR/options.zsh
 
 # Set history options
 HISTSIZE=100000
@@ -59,9 +33,6 @@ export NVM_DIR="$HOME/.nvm"
 # Source cargo
 [ -s "$HOME/.cargo/env" ] && source $HOME/.cargo/env
 
-# Source ROS
-[ -e "/opt/ros/melodic/setup.zsh" ] && source "/opt/ros/melodic/setup.zsh"
-
 # Source gcloud stuff if available
 if [[ ! $(command -v gcloud) && -e "$HOME/Documents/Apps/google-cloud-sdk/" ]]; then
   source "$HOME/Documents/Apps/google-cloud-sdk/path.zsh.inc"
@@ -72,7 +43,7 @@ fi
 [ -e "$HOME/.config/broot" ] && source $HOME/.config/broot/launcher/bash/br
 
 # Source fzf
-source $HOME/.config/fzf/zsh
+source $ZDOTDIR/fzf.zsh
 
 # Make sure vim is the default editor
 export EDITOR="$HOME/.nix-profile/bin/vim"
@@ -94,5 +65,3 @@ export ASDF_NPM_DEFAULT_PACKAGES_FILE=$HOME/.config/asdf-default-npm-packages
 # Let direnv hook into zsh. Used especially for nix
 eval "$(direnv hook zsh)"
 
-# ZSH syntax highlighting. This should be sourced last!
-source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

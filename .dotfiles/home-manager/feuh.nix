@@ -1,10 +1,13 @@
 { ... }:
 {
   imports = [
+    ./modules/aliases.nix
+    ./modules/env.nix
     ./modules/packages.nix
     ./modules/registry.nix
     ./modules/ssh.nix
     ./modules/vim.nix
+    ./modules/zsh.nix
   ];
 
   home.username = "feuh";
