@@ -9,8 +9,9 @@
 {
   imports = [
     ../common.nix
-    ../modules/user-felix.nix
+    ../modules/be-remote-builder.nix
     ../modules/extra-boot-options.nix
+    ../modules/user-felix.nix
     ./modules/hardware-configuration.nix
     wireguard.source
   ];
@@ -39,6 +40,11 @@
   networking.networkmanager.enable = true;
 
   nix.settings.cores = 6; # Use less than all available cores when building to avoid overloading the system
+  uhl.beRemoteBuilder.authorizedKeys = [
+    net.horse.root.publicKey
+    net.gateway.root.publicKey
+    net.junction.root.publicKey
+  ];
 
   time.timeZone = "Europe/Berlin";
 

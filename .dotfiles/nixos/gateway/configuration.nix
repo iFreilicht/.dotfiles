@@ -7,7 +7,7 @@
   imports = [
     ../common.nix
     ../modules/user-felix.nix
-    ../modules/ensure-root-ssh-key.nix
+    ../modules/use-remote-builders.nix
     ./modules/hardware-configuration.nix # Include the results of the hardware scan.
     ./modules/dns.nix
     ./modules/nginx.nix
@@ -20,13 +20,6 @@
   boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "gateway";
-
-  nix.settings = {
-    # Use less than all available cores when building to avoid overloading the system.
-    # In general, I don't want to build anything on this system at all, but it sometimes happens by accident.
-    # Having this limit ensures I can easily abort builds.
-    cores = 1;
-  };
 
   swapDevices = [
     {
@@ -50,20 +43,14 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Allow using junction for builds, as it has a much faster CPU
-  nix = {
-    distributedBuilds = true;
-    buildMachines = [
-      {
-        hostName = "${net.junction.name}";
-        system = "x86_64-linux";
-        sshUser = "remote-build";
-        maxJobs = 4;
-        speedFactor = 4;
-      }
-    ];
-  };
-  uhl.ensure-root-ssh-key.enable = true; # Root user needs ssh key so nix-daemon can connect to remote builders
+  # Use less than all available cores when building to avoid overloading the system.
+  # In general, I don't want to build anything that needs compiling on this system at all,
+  # but it sometimes happens by accident. Having this limit ensures I can easily abort builds.
+  nix.settings.cores = 1;
+  uhl.useRemoteBuilders = [
+    "source"
+    "junction"
+  ];
 
   # Enable automatic access to all services via wireguard
   uhl.dns.entries = {

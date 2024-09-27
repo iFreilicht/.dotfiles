@@ -6,13 +6,13 @@
 }:
 {
   options = {
-    uhl.ensure-root-ssh-key.enable = lib.mkOption {
+    uhl.ensureRootSshKey.enable = lib.mkOption {
       type = lib.types.bool;
       description = "Ensure that the root user has an ssh key. Generate one if necessary.";
     };
   };
 
-  config = lib.mkIf config.uhl.ensure-root-ssh-key.enable {
+  config = lib.mkIf config.uhl.ensureRootSshKey.enable {
     systemd.services.ensure-root-ssh-key = {
       enable = true;
       description = "Ensure that the root user has an ssh key. Generate one if necessary.";

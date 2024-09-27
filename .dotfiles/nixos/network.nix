@@ -49,6 +49,8 @@ in
   };
   junction = {
     name = "junction";
+    # ON REINSTALL: Run `sudo cat /root/.ssh/id_ed25519.pub` and update this value
+    root.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzxpvz0x2hc4Fa4SPaJ7ZAxrUrNd4qfDxUyUb1/903q root@junction";
     # ON REINSTALL: Ensure the router is statically setting the IP of junction to this
     home.ip = "${homeBaseIP}.13"; # Statically set in router
     # On REINSTALL: Run `cat /etc/ssh/ssh_host_ed25519_key.pub` and update this value
@@ -57,6 +59,11 @@ in
       ip = "${wgBaseIP}.13";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value
       publicKey = "ocMusNfO8N6z4kc2FEJMwhFTdRV4VWbKyAhGZMDzJSE=";
+    };
+    remoteBuilder = {
+      system = "x86_64-linux";
+      maxJobs = 4;
+      speedFactor = 4;
     };
     borgbase = {
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
@@ -81,9 +88,15 @@ in
     };
   };
   source = {
+    name = "source";
     felix.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0TI3HN6e00Bv29ui7BUCYSa4FBjcWBs4fE5R1ODc9+ felix@source";
     # On REINSTALL: Run `cat /etc/ssh/ssh_host_ed25519_key.pub` and update this value
     hostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJbNR9YHoKGaj46GvJlVi6z/30YFN3mbHvVs/oXjY/4X";
+    remoteBuilder = {
+      system = "x86_64-linux";
+      maxJobs = 4;
+      speedFactor = 8;
+    };
     wireguard = {
       ip = "${wgBaseIP}.33";
       # ON REINSTALL: Run `sudo cat /etc/wireguard/private | wg pubkey` and update this value

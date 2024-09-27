@@ -11,8 +11,10 @@
 {
   imports = [
     ../common.nix
-    ../modules/user-felix.nix
+    ../modules/be-remote-builder.nix
     ../modules/ensure-root-ssh-key.nix
+    ../modules/user-felix.nix
+    ../modules/use-remote-builders.nix
     ./modules/hardware-configuration.nix # Include the results of the hardware scan.
     ./modules/disko.nix # Drive configuration
     ./modules/nginx.nix
@@ -75,27 +77,14 @@
   # see https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/7?u=ifreilicht
   security.sudo.wheelNeedsPassword = false;
 
-  # User account to run remote builds
-  users.users.remote-build = {
-    isSystemUser = true;
-    hashedPassword = ""; # Only allow login via ssh
-    openssh.authorizedKeys.keys = [
-      net.horse.root.publicKey
-      net.gateway.root.publicKey
-    ];
-    shell = pkgs.bash;
-    group = "remote-build";
-  };
-  users.groups.remote-build = { };
-
-  nix.settings = {
-    # Ensure both users can actually build derivations
-    trusted-users = [
-      "felix"
-      "remote-build"
-    ];
-    cores = 6; # Use less than all available cores when building to avoid overloading the system
-  };
+  nix.settings.cores = 6; # Use less than all available cores when building to avoid overloading the system
+  uhl.beRemoteBuilder.authorizedKeys = [
+    net.horse.root.publicKey
+    net.gateway.root.publicKey
+  ];
+  uhl.useRemoteBuilders = [
+    "source"
+  ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
