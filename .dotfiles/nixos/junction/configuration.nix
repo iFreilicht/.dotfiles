@@ -41,8 +41,8 @@
       efi.canTouchEfiVariables = true;
     };
 
-    # Use the latest kernel compatible with OpenZFS
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    # Use the latest LTS kernel to guarantee support for ZFS
+    kernelPackages = pkgs.linuxPackages;
     supportedFilesystems = [ "zfs" ];
     zfs.forceImportRoot = false;
     zfs.extraPools = [ "tank" ];

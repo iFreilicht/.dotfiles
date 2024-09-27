@@ -29,11 +29,12 @@ in
   # ON REINSTALL: Add users again with `smbpasswd -a <username>`
   services.samba = {
     enable = true;
-    securityType = "user";
     openFirewall = true;
-    shares = {
+    settings = {
       # Use `global` instead of `extraConfig` to avoid syntax errors
       global = {
+        security = "user";
+
         # Basic settings
         "server string" = net.junction.name;
         "netbios name" = net.junction.name;
