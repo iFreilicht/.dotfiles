@@ -9,12 +9,16 @@
   };
 
   environment.systemPackages = with pkgs; [
-    lutris # install lutris launcher
-    protonup-qt # GUI for installing custom Proton versions like GE_Proton
+    lutris # Universal game launcher
+    wineWowPackages.waylandFull # Native Wine, the only one you can't install with protonup
+    protonup-qt # GUI for installing custom Proton and Wine versions like GE_Proton
+    winetricks # Useful tools for wine workarounds
+    protontricks # Run winetricks on Proton prefixes
+    mangohud # Vulkan overlay for monitoring
   ];
 
   hardware.graphics = {
-    # radv: open-source Vulkan driver from freedesktop. More performant, but less correct 
+    # radv: open-source Vulkan driver from freedesktop. More performant, but less correct
     enable32Bit = true; # enable 32-bit graphics drivers for 32-bit games in Wine/Proton
 
     # amdvlk: open-source Vulkan driver from AMD. More correct, but less performant. Consider enabling when issues arise with radv
