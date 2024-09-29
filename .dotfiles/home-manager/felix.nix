@@ -5,6 +5,7 @@
     ./modules/config-files
     ./modules/env.nix
     ./modules/fonts
+    ./modules/git.nix
     ./modules/home-files
     ./modules/packages.nix
     ./modules/registry.nix

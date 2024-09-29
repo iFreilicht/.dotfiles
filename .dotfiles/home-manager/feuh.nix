@@ -5,6 +5,7 @@
     ./modules/config-files
     ./modules/env.nix
     ./modules/fonts
+    ./modules/git.nix
     ./modules/home-files
     ./modules/packages.nix
     ./modules/registry.nix
@@ -15,6 +16,11 @@
 
   home.username = "feuh";
   home.homeDirectory = "/Users/feuh";
+
+  # MacOS git supports unlocking with keychain, which is conventient and not supported in any
+  # git version shipped with nix. We can't use programs.git.enable = false, because that would
+  # cause the git configuration from home-manager to not be written at all
+  programs.git.package = null;
 
   home.file = {
 

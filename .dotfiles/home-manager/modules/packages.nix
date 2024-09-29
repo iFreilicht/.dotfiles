@@ -70,8 +70,6 @@ in
     ++ lib.optionals (lib.strings.hasInfix "linux" system) (
       with pkgs;
       [
-        # MacOS git supports unlocking with keychain, which is conventient
-        git # Version management. Consistent version means access to new features on all platforms/distros.
         # Clipboard has a bug on Wayland, use custom fix from https://github.com/Slackadays/Clipboard/pull/203
         (clipboard-jh.overrideAttrs (oldAttrs: {
           version = "0.9.0.2+pre+fix_wayland_flicker";
