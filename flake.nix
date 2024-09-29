@@ -1,12 +1,3 @@
-# To install these packages via nix, run:
-#     nix run path:$HOME/.dotfiles#profile.switch
-
-# I also recommend pinning the flakes registry and channels to avoid unnecessary downloads:
-#     nix run path:$HOME/.dotfiles#profile.pin
-
-# To use nix flake commands, you'll also have to refer to this flake by path (because of the bare repo, see README.md):
-#     nix flake show path:$HOME/.dotfiles
-
 {
   description = "Default packages to install into user environment";
 

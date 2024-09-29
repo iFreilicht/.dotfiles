@@ -4,9 +4,6 @@
     # Make aliases work with sudo, see https://unix.stackexchange.com/a/349290/67771
     sudo = "sudo ";
 
-    # Alias for dotfiles bare repository
-    dot = "git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME";
-
     # Colorize command output
     ls = "ls --color=auto -vF";
     dir = "dir --color=auto";
