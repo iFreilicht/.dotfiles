@@ -4,6 +4,7 @@
     ./modules/aliases.nix
     ./modules/config-files
     ./modules/env.nix
+    ./modules/fonts
     ./modules/home-files
     ./modules/packages.nix
     ./modules/registry.nix
