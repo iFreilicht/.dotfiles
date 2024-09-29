@@ -1,10 +1,10 @@
 { ... }:
 {
-  home.file = {
-    ".config/kitty".source = ./kitty;
-    ".config/ranger".source = ./ranger;
-    ".config/thefuck".source = ./thefuck;
-    ".config/zellij".source = ./zellij;
-    ".config/asdf-default-npm-packages".source = ./asdf-default-npm-packages;
+  xdg.configFile = {
+    "kitty/kitty.conf".source = ./kitty/kitty.conf;
+    "ranger".source = ./ranger;
+    "thefuck".source = ./thefuck;
+    "zellij".source = ./zellij;
+    "asdf-default-npm-packages".source = ./asdf-default-npm-packages;
   };
 }
