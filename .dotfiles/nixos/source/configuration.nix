@@ -19,11 +19,22 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
-    systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
 
-    systemd-boot.edk2-uefi-shell.enable = true;
-    systemd-boot.windows."Windows 10".efiDeviceHandle = "FS1";
+    systemd-boot = {
+      enable = true;
+
+      edk2-uefi-shell.enable = true;
+      windows."Windows 10" = {
+        efiDeviceHandle = "FS1";
+        sortKey = "a_windows"; # Display at the top so switching is easier
+      };
+      configurationLimit = 20;
+
+      # Disable editing boot entries. It allows root access by passing init=/bin/sh
+      # and is enabled by default only for backwards compatibility
+      editor = false;
+    };
   };
 
   # Ensure clock is synchronized between Windows and Linux
