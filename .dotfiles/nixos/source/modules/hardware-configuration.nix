@@ -46,11 +46,19 @@
     "/mnt/g" = {
       device = "/dev/disk/by-uuid/7CA41E5EA41E1B6A";
       fsType = "ntfs";
+      options = [
+        "uid=1000"
+        "gid=100" # group users on NixOS
+      ];
     };
 
     "/mnt/s" = {
       device = "/dev/disk/by-uuid/9A48E8C248E89E6F";
       fsType = "ntfs";
+      options = [
+        "uid=1000"
+        "gid=100" # group users on NixOS
+      ];
     };
   };
 
