@@ -24,8 +24,7 @@
       // lib.optionalAttrs pkgs.stdenv.isDarwin {
         # Use macOS keychain for ssh keys. This would fail on Linux or with nix-built ssh!
         "*" = {
-          useKeychain = true;
-          addKeysToAgent = true;
+          extraOptions.UseKeychain = "yes";
           identityFile = [
             "~/.ssh/id_ed25519"
             "~/.ssh/id_rsa"
@@ -42,6 +41,8 @@
           user = "felix";
         };
       };
+
+    addKeysToAgent = "yes";
 
     userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
   };

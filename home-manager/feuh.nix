@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./modules/aliases.nix
@@ -20,7 +20,7 @@
   # MacOS git supports unlocking with keychain, which is conventient and not supported in any
   # git version shipped with nix. We can't use programs.git.enable = false, because that would
   # cause the git configuration from home-manager to not be written at all
-  programs.git.package = null;
+  programs.git.package = pkgs.writeShellScriptBin "use-system-git" "git $@";
 
   home.file = {
 
