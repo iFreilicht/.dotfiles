@@ -95,6 +95,7 @@
     initialPassword = "changeimmediately";
     packages = with pkgs; [
       firefox
+      thunderbird
       nextcloud-client
       keepassxc
       vorta
