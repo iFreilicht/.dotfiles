@@ -18,4 +18,8 @@ To update the dotfiles for the current user:
 
     nh home switch .
 
+### Notes:
+
+If you have the same username as me, the `.` is optional.
+
 When setting up for the first time, run `nix shell nixpkgs#nh` first.
