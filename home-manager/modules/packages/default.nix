@@ -65,30 +65,17 @@ let
     ]);
 in
 {
+  imports = [
+    ./clipboard-jh.nix
+  ];
+
   home.packages =
     defaultPackages
-    ++ lib.optionals (lib.strings.hasInfix "linux" system) (
-      with pkgs;
-      [
-        # Clipboard has a bug on Wayland, use custom fix from https://github.com/Slackadays/Clipboard/pull/203
-        (clipboard-jh.overrideAttrs (oldAttrs: {
-          version = "0.9.0.2+pre+fix_wayland_flicker";
-          src = fetchFromGitHub {
-            owner = "iFreilicht";
-            repo = "Clipboard";
-            rev = "15bb982412e3134a09eab28d8c27d9a60f5f9aef";
-            hash = "sha256-g0YNnpqpGx17j4JzGVgDWanY0AqNtTfUffh9IKon0rc=";
-          };
-          buildInputs = oldAttrs.buildInputs ++ [ pkgs.openssl ];
-        }))
-      ]
-    )
     ++ lib.lists.optionals (lib.strings.hasInfix "darwin" system) (
       with pkgs;
       [
         # The nix version somehow doesn't honor UTF-8 locales on linux, use the distro's version instead
         zsh
-        clipboard-jh # Clipboard integration for X11, Wayland, macOS, Windows and OSC 52
       ]
     );
 }

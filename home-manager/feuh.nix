@@ -7,7 +7,7 @@
     ./modules/fonts
     ./modules/git.nix
     ./modules/home-files
-    ./modules/packages.nix
+    ./modules/packages
     ./modules/registry.nix
     ./modules/ssh.nix
     ./modules/vim.nix
