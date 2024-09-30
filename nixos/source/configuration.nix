@@ -110,6 +110,7 @@
   environment.systemPackages = with pkgs; [
     kitty
     python3
+    (pkgs.callPackage ../packages/toggle-dark.nix { })
   ];
 
   services.flatpak.enable = true;
