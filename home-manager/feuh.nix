@@ -7,6 +7,7 @@
     ./modules/fonts
     ./modules/git.nix
     ./modules/home-files
+    ./modules/nushell
     ./modules/packages
     ./modules/registry.nix
     ./modules/ssh.nix
