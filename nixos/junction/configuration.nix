@@ -47,7 +47,7 @@
     kernelPackages = pkgs.linuxPackages;
     supportedFilesystems = [ "zfs" ];
     zfs.forceImportRoot = false;
-    zfs.extraPools = [ "tank" ];
+    zfs.extraPools = [ "tank" "bigz" ];
   };
 
   networking.hostId = "feb10dc9"; # Helps prevent accidental imports of zpools
