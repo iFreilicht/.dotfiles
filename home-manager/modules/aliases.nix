@@ -42,8 +42,9 @@
     status = "git status";
     switch = "git switch";
     # Non-trivial git aliases
-    absorb = "git stash push --keep-index && git absorb --and-rebase --base=$(main) && git stash pop"; # Only works if git-absorb is installed
-    main = "git rev-parse --verify main >/dev/null 2>&1 && echo 'main' || echo 'master'";
+    absorb = "git stash push --keep-index && git absorb --and-rebase --base=$(main-branch) && git stash pop"; # Only works if git-absorb is installed
+    main = "git switch $(main-branch)";
+    main-branch = "git rev-parse --verify main >/dev/null 2>&1 && echo 'main' || echo 'master'";
     # See https://stackoverflow.com/a/6127884/2533467
     del-merged = "git branch --merged | egrep -v '(^*|master|main|develop)' | xargs git branch -d";
 
