@@ -29,6 +29,63 @@ in
             # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
             # See also https://github.com/nix-community/disko/issues/581#issuecomment-2260602290
             options = {
+              mountpoint = "none";
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
+          "mysql" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = "none";
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
+          "samba" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = "none";
+            };
+          };
+          "forgejo" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = "none";
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
+          "ftp" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = "none";
+            };
+          };
+          "home-assistant" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = "none";
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
+        };
+      };
+      bigz = {
+        type = "zpool";
+        mode = "mirror";
+        rootFsOptions = {
+          # LZ4 is the default compression algorithm since 2020, which is an improvement over no compression for any workload
+          compression = "on";
+          encryption = "aes-256-gcm";
+          keylocation = "file:///etc/zfs/bigz.key";
+          keyformat = "passphrase"; # Passphrase can be up to 512 bytes long, raw and hex keys are limited to 32 bytes
+        };
+        postCreateHook = "zfs list -t snapshot -o name bigz | grep -q '^bigz@blank$' || zfs snapshot bigz@blank";
+
+        datasets = {
+          "nextcloud" = {
+            type = "zfs_fs";
+            # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
+            # See also https://github.com/nix-community/disko/issues/581#issuecomment-2260602290
+            options = {
               mountpoint = mnt.nextcloud;
               "com.sun:auto-snapshot" = "true";
             };
@@ -63,63 +120,6 @@ in
             type = "zfs_fs";
             options = {
               mountpoint = mnt.home-assistant;
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-        };
-      };
-      bigz = {
-        type = "zpool";
-        mode = "mirror";
-        rootFsOptions = {
-          # LZ4 is the default compression algorithm since 2020, which is an improvement over no compression for any workload
-          compression = "on";
-          encryption = "aes-256-gcm";
-          keylocation = "file:///etc/zfs/bigz.key";
-          keyformat = "passphrase"; # Passphrase can be up to 512 bytes long, raw and hex keys are limited to 32 bytes
-        };
-        postCreateHook = "zfs list -t snapshot -o name bigz | grep -q '^bigz@blank$' || zfs snapshot bigz@blank";
-
-        datasets = {
-          "nextcloud" = {
-            type = "zfs_fs";
-            # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
-            # See also https://github.com/nix-community/disko/issues/581#issuecomment-2260602290
-            options = {
-              mountpoint = "/mnt/bigz/nextcloud";
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "mysql" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "/mnt/bigz/mysql";
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "samba" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "/mnt/bigz/samba";
-            };
-          };
-          "forgejo" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "/mnt/bigz/forgejo";
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "ftp" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "/mnt/bigz/ftp";
-            };
-          };
-          "home-assistant" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "/mnt/bigz/home-assistant";
               "com.sun:auto-snapshot" = "true";
             };
           };
