@@ -14,60 +14,6 @@ in
   # disko --mode format --dry-run disko.nix
   disko.devices = {
     zpool = {
-      tank = {
-        type = "zpool";
-        mode = "mirror";
-        rootFsOptions = {
-          # LZ4 is the default compression algorithm since 2020, which is an improvement over no compression for any workload
-          compression = "on";
-        };
-        postCreateHook = "zfs list -t snapshot -o name tank | grep -q '^tank@blank$' || zfs snapshot tank@blank";
-
-        datasets = {
-          "nextcloud" = {
-            type = "zfs_fs";
-            # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
-            # See also https://github.com/nix-community/disko/issues/581#issuecomment-2260602290
-            options = {
-              mountpoint = "none";
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "mysql" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "none";
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "samba" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "none";
-            };
-          };
-          "forgejo" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "none";
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "ftp" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "none";
-            };
-          };
-          "home-assistant" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = "none";
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-        };
-      };
       bigz = {
         type = "zpool";
         mode = "mirror";
@@ -128,39 +74,6 @@ in
     };
     disk = {
       # ZFS storage pool, disk 1
-      tank_1 = {
-        device = "/dev/disk/by-id/ata-ST4000VN006-3CW104_WW61E4ZD";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            tank_1 = {
-              size = "100%";
-              content = {
-                type = "zfs";
-                pool = "tank";
-              };
-            };
-          };
-        };
-      };
-      # ZFS storage pool, disk 2
-      tank_2 = {
-        device = "/dev/disk/by-id/ata-ST4000VN006-3CW104_WW61CNDR";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            tank_2 = {
-              size = "100%";
-              content = {
-                type = "zfs";
-                pool = "tank";
-              };
-            };
-          };
-        };
-      };
       bigz_1 = {
         device = "/dev/disk/by-id/ata-ST16000NM001G-2KK103_ZL28WEM8";
         type = "disk";
@@ -177,6 +90,7 @@ in
           };
         };
       };
+      # ZFS storage pool, disk 2
       bigz_2 = {
         device = "/dev/disk/by-id/ata-ST16000NM001G-2KK103_ZL28WEM8";
         type = "disk";
