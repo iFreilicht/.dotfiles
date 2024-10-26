@@ -89,7 +89,7 @@
 
           wg-quick-configs = mkWgQuickConfigs {
             inherit pkgs;
-            names = [ "horse" ];
+            names = [ "horse" "DESKTOP-O2898M0" ];
           };
         };
       }
