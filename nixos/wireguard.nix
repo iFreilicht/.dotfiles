@@ -5,6 +5,7 @@ let
   horse = net.horse.wireguard;
   source = net.source.wireguard;
   uhl'siphone = net.uhl'siphone.wireguard;
+  DESKTOP-O2898M0 = net.DESKTOP-O2898M0.wireguard;
 
   port = 51820;
   privateKeyFile = "/etc/wireguard/private";
@@ -46,6 +47,7 @@ in
             (makePeer horse)
             (makePeer source)
             (makePeer uhl'siphone)
+            (makePeer DESKTOP-O2898M0)
           ];
         };
       };
@@ -63,6 +65,10 @@ in
           inherit privateKeyFile;
           generatePrivateKeyFile = true;
           listenPort = port;
+          # FTP doesn't work with the default MTU of 1420. I saw suggestions for 1200 and 1360,
+          # and both worked. I assume 1360 is faster because the fragmentation is lower, but I
+          # don't quite understand the details enough to actually know.
+          mtu = 1360;
           peers = [
             (makeServer gateway {
               # junction hosts services that need to be accessible 24/7
@@ -88,6 +94,13 @@ in
         peers = [ (makeServer gateway { }) ];
       };
     };
+  };
+  DESKTOP-O2898M0.networking.wg-quick.interfaces.wg0 = {
+    address = makeIps DESKTOP-O2898M0;
+    listenPort = port;
+    dns = [ ]; # No DNS, junction will be accessed via IP
+    privateKey = "AAAA-Replace-with-real-key-AAAA";
+    peers = [ (makeServer gateway { }) ];
   };
   source = {
     config = {
