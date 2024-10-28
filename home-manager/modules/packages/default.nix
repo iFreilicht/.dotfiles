@@ -56,6 +56,7 @@ let
       nixfmt-rfc-style # Autoformatter for Nix
       nixpkgs-fmt # Another autoformatter, specific to nixpkgs
       nixd # Nix LSP language server
+      nix-top # Monitor nix builds
 
       # Containers
       docker # Container management CLI
