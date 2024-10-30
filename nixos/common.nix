@@ -7,7 +7,7 @@
 }:
 
 {
-  imports = [ lix-module.nixosModules.default ];
+  imports = [ lix-module.nixosModules.lixFromNixpkgs ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -25,9 +25,6 @@
         "flakes"
       ];
       auto-optimise-store = true;
-
-      substituters = [ "https://cache.lix.systems" ];
-      trusted-public-keys = [ "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o=" ];
     };
 
     # Lock 'nixpkgs' in flake-refs to the same nixpkgs this configuration is built from
