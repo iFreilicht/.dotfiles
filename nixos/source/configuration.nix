@@ -114,6 +114,7 @@
 
   services.flatpak.enable = true;
 
+  programs.nix-ld.enable = true;
   programs.kdeconnect.enable = true;
 
   # Unlock GnuPG and SSH keys on login
