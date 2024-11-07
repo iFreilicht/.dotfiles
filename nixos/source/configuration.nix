@@ -10,7 +10,6 @@
   imports = [
     ../common.nix
     ../modules/be-remote-builder.nix
-    ../modules/extra-boot-options.nix
     ../modules/user-felix.nix
     ./modules/gaming.nix
     ./modules/hardware-configuration.nix
@@ -25,7 +24,7 @@
       enable = true;
 
       edk2-uefi-shell.enable = true;
-      windows."Windows 10" = {
+      windows."10" = {
         efiDeviceHandle = "FS1";
         sortKey = "a_windows"; # Display at the top so switching is easier
       };
