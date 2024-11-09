@@ -61,7 +61,6 @@ let
       # Containers
       docker # Container management CLI
       docker-compose # Container composition
-      colima # Backend for Linux and macOS, which docker daemon isn't. Run `colima start`
       dive # Inspecting image contents without starting a container
     ]);
 in
