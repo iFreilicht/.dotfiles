@@ -74,7 +74,9 @@ in
               # junction hosts services that need to be accessible 24/7
               # sending a periodic keepalive signal ensures gateway always
               # knows its current IP. This roaming is part of wireguard.
-              persistentKeepalive = 25;
+              # Setting this to 1 should minimize the maximum downtime on a public IP change,
+              # but the usual recommendation is 25, which seems fine for non-critical devices.
+              persistentKeepalive = 1;
             })
           ];
         };
