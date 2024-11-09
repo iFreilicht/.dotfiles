@@ -8,5 +8,5 @@
 .local/share/autojump
 
 # Nix stuff
-.nix-profile
+result
 
