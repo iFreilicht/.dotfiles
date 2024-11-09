@@ -49,6 +49,9 @@ in
             (makePeer uhl'siphone)
             (makePeer DESKTOP-O2898M0)
           ];
+          postUp = ''
+            echo "module wireguard +p" > /sys/kernel/debug/dynamic_debug/control
+          '';
         };
       };
     };
