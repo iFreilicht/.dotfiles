@@ -23,12 +23,12 @@
     fi
   '';
 
-  programs.zsh.initExtra = lib.readFile ../zsh/zshrc;
+  programs.zsh.initExtra = lib.readFile ./zshrc;
 
   home.file = {
-    ".config/zsh/.p10k.zsh".source = ../zsh/p10k.zsh;
-    ".config/zsh/options.zsh".source = ../zsh/options.zsh;
-    ".config/zsh/keybinds.zsh".source = ../zsh/keybinds.zsh;
-    ".config/zsh/fzf.zsh".source = ../zsh/fzf.zsh;
+    ".config/zsh/.p10k.zsh".source = ./p10k.zsh;
+    ".config/zsh/options.zsh".source = ./options.zsh;
+    ".config/zsh/keybinds.zsh".source = ./keybinds.zsh;
+    ".config/zsh/fzf.zsh".source = ./fzf.zsh;
   };
 }

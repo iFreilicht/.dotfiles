@@ -13,7 +13,7 @@
     ./modules/registry.nix
     ./modules/ssh.nix
     ./modules/vim.nix
-    ./modules/zsh.nix
+    ./modules/zsh
     ../nixos/modules/machine-type.nix
   ];
 

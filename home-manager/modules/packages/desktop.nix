@@ -52,14 +52,5 @@ in
     ./clipboard-jh.nix
   ];
 
-  home.packages = lib.lists.optionals (config.uhl.machineType == "desktop") (
-    defaultPackages
-    ++ lib.lists.optionals (lib.strings.hasInfix "darwin" system) (
-      with pkgs;
-      [
-        # The nix version somehow doesn't honor UTF-8 locales on linux, use the distro's version instead
-        zsh
-      ]
-    )
-  );
+  home.packages = lib.lists.optionals (config.uhl.machineType == "desktop") defaultPackages;
 }
