@@ -21,6 +21,9 @@
 
   home.username = "feuh";
   home.homeDirectory = "/Users/feuh";
+  home.sessionPath = [
+    "$HOME/.local/bin" # Useful for pipx
+  ];
 
   # MacOS git supports unlocking with keychain, which is conventient and not supported in any
   # git version shipped with nix. We can't use programs.git.enable = false, because that would
