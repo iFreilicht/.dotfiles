@@ -6,6 +6,7 @@ let
   defaultPackages =
     (with pkgs-stable; [
       tlrc # Quick command help, tldr rust client. Command is tldr, not tlrc
+      ncdu # Disk usage analyzer
     ])
     ++ (with pkgs; [
       # Basic terminal setup
@@ -37,7 +38,6 @@ let
       gnupg # PGP toolkit
       age # Encryption tool
       duf # Quick disk space view
-      ncdu # Disk usage analyzer
 
       # Programming stuff
       asdf-vm # Version manager for all sorts of tools
