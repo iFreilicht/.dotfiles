@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [
     ./modules/aliases.nix
@@ -9,11 +9,14 @@
     ./modules/home-files
     ./modules/nushell
     ./modules/packages
-    ./modules/registry.nix
+    ./modules/packages/desktop.nix
     ./modules/ssh.nix
     ./modules/vim.nix
     ./modules/zsh.nix
+    ../nixos/modules/machine-type.nix
   ];
+
+  uhl.machineType = lib.mkDefault "desktop";
 
   home.username = "felix";
   home.homeDirectory = "/home/felix";

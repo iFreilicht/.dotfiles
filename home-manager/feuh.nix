@@ -9,11 +9,15 @@
     ./modules/home-files
     ./modules/nushell
     ./modules/packages
+    ./modules/packages/desktop.nix
     ./modules/registry.nix
     ./modules/ssh.nix
     ./modules/vim.nix
     ./modules/zsh.nix
+    ../nixos/modules/machine-type.nix
   ];
+
+  uhl.machineType = "desktop";
 
   home.username = "feuh";
   home.homeDirectory = "/Users/feuh";

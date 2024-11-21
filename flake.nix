@@ -89,7 +89,10 @@
 
           wg-quick-configs = mkWgQuickConfigs {
             inherit pkgs;
-            names = [ "horse" "DESKTOP-O2898M0" ];
+            names = [
+              "horse"
+              "DESKTOP-O2898M0"
+            ];
           };
         };
       }
@@ -109,7 +112,9 @@
           };
           modules = [
             disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
             ./nixos/junction/configuration.nix
+            ./home-manager/nixos-module.nix
             sops-nix.nixosModules.sops
           ];
         };
@@ -117,7 +122,11 @@
         gateway = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           inherit specialArgs;
-          modules = [ ./nixos/gateway/configuration.nix ];
+          modules = [
+            home-manager.nixosModules.home-manager
+            ./nixos/gateway/configuration.nix
+            ./home-manager/nixos-module.nix
+          ];
         };
       };
     };

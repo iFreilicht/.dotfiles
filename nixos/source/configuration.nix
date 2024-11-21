@@ -10,6 +10,7 @@
   imports = [
     ../common.nix
     ../modules/be-remote-builder.nix
+    ../modules/machine-type.nix
     ../modules/user-felix.nix
     ./modules/gaming.nix
     ./modules/hardware-configuration.nix
@@ -40,6 +41,7 @@
   time.hardwareClockInLocalTime = true;
 
   networking.hostName = "source";
+  uhl.machineType = "desktop";
 
   swapDevices = [
     {

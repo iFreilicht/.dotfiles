@@ -6,6 +6,7 @@
 {
   imports = [
     ../common.nix
+    ../modules/machine-type.nix
     ../modules/user-felix.nix
     ../modules/use-remote-builders.nix
     ./modules/hardware-configuration.nix # Include the results of the hardware scan.
@@ -20,6 +21,7 @@
   boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "gateway";
+  uhl.machineType = "server";
 
   swapDevices = [
     {

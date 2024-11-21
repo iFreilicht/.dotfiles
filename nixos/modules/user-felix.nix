@@ -22,7 +22,6 @@
         "samba" # Allow moving files to/from Samba shares
       ];
       openssh.authorizedKeys.keys = config.felix.authorizedKeys;
-      packages = with pkgs; [ ];
       shell = pkgs.zsh;
     };
   };

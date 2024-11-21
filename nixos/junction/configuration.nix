@@ -13,6 +13,7 @@
     ../common.nix
     ../modules/be-remote-builder.nix
     ../modules/ensure-root-ssh-key.nix
+    ../modules/machine-type.nix
     ../modules/user-felix.nix
     ../modules/use-remote-builders.nix
     ./modules/hardware-configuration.nix # Include the results of the hardware scan.
@@ -52,6 +53,7 @@
 
   networking.hostId = "feb10dc9"; # Helps prevent accidental imports of zpools
   networking.hostName = "junction";
+  uhl.machineType = "server";
 
   # Scrub zpool once every month
   services.zfs.autoScrub.enable = true;
