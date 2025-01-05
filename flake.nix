@@ -10,7 +10,7 @@
     # and https://hydra.nixos.org/jobset/nixpkgs/nixpkgs-23.11-darwin for stable
     # and select the latest commit hash that has no unfinished builds (meaning it's fully cached).
     # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
-    nixpkgs.url = "github:NixOS/nixpkgs/e19cfce6f3f08d07653157d8826f5c920c770d7b";
+    nixpkgs.url = "github:NixOS/nixpkgs/6df24922a1400241dae323af55f30e4318a6ca65";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40";
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -24,16 +24,13 @@
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs-stable";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Only use tagged version of module. Should avoid compilation, but currently doesn't,
     # see https://git.lix.systems/lix-project/lix/issues/489
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
