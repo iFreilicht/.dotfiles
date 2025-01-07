@@ -10,3 +10,5 @@
 # Nix stuff
 result
 
+# MacOS
+.DS_Store
