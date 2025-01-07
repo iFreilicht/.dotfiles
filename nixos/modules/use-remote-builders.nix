@@ -33,6 +33,10 @@
         buildMachines = lib.map mkBuildMachine config.uhl.useRemoteBuilders;
       };
 
+    programs.ssh.knownHosts = lib.genAttrs config.uhl.useRemoteBuilders (machine: {
+      publicKey = net.${machine}.hostKey;
+    });
+
     # Root user needs ssh key so nix-daemon can connect to remote builders
     uhl.ensureRootSshKey.enable = true;
   };
