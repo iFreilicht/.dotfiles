@@ -121,9 +121,9 @@
 
   # Peer dependencies of store-installed apps
   environment.systemPackages = with pkgs; [
-    # Required for recognize. I checked `/mnt/nextcloud/store-apps/recognize/bin/x64.tar.gz`
-    # and it contains nodejs 14.18.2, but 18 is the oldest that's not EOL
-    nodejs_18
+    # Required for recognize. Check the "Node.js" box on https://cloud.uhl.cx/settings/admin/recognize
+    # to see which version is currently required
+    nodejs_20
   ];
 
   # Backups
