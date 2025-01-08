@@ -16,6 +16,12 @@ let
       default_type text/html;
     '';
   };
+
+  privateServiceHost = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = privateServiceResponse;
+  };
 in
 {
   # Automatically renewing SSL certificates
@@ -87,17 +93,9 @@ in
         };
       };
 
-      ${net.home-assistant.domain} = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = privateServiceResponse;
-      };
-
-      ${net.pihole.domain} = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = privateServiceResponse;
-      };
+      ${net.home-assistant.domain} = privateServiceHost;
+      ${net.pihole.domain} = privateServiceHost;
+      ${net.transmission.domain} = privateServiceHost;
     };
   };
 

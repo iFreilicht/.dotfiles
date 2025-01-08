@@ -12,6 +12,7 @@ locals {
     "git",
     "home",
     "pihole",
+    "transmission",
   ])
 }
 

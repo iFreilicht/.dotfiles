@@ -9,7 +9,7 @@
 let
   # YYYYMMDDRR where RR can be increased every time a change is made on the same day
   # Only ever increase this number!
-  serialn = "2024080901"; # Substitution ${serialn} has same length as string itself
+  serialn = "2025010801"; # Substitution ${serialn} has same length as string itself
   adminEmail = "admin.${net.domain}"; # Doesn't actually exist, but DNS is private, so doesn't matter
 in
 {

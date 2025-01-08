@@ -29,7 +29,6 @@
 
   # Proxy Home Assistant through Nginx for SSL termination
   services.nginx = {
-    recommendedProxySettings = true;
     virtualHosts.${net.home-assistant.domain} = {
       forceSSL = true;
       useACMEHost = net.domain;
