@@ -8,7 +8,9 @@
 
   programs.zsh.initExtraFirst = ''
     # Make sure instant prompt doesn't throw a warning if direnv hook is run on startup
-    emulate zsh -c "$(direnv export zsh)"
+    if [ $(command -v direnv) ]; then
+      emulate zsh -c "$(direnv export zsh)"
+    fi
 
     # Colourful output for a lot of additional utilities.
     # Needs to be sourced before instant prompt, otherwise it doesn't work

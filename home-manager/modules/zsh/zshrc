@@ -20,7 +20,9 @@ mkdir -p $(dirname $HISTFILE)
 touch $HISTFILE
 
 # Enable thefuck alias
-eval $(thefuck --alias)
+if [[ $(command -v thefuck) ]]; then
+  eval $(thefuck --alias)
+fi
 
 # Autojump needs to be sourced to work on Ubuntu
 source $HOME/.nix-profile/share/autojump/autojump.zsh
@@ -63,5 +65,7 @@ export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 export ASDF_NPM_DEFAULT_PACKAGES_FILE=$HOME/.config/asdf-default-npm-packages
 
 # Let direnv hook into zsh. Used especially for nix
-eval "$(direnv hook zsh)"
+if [[ $(command -v direnv) ]]; then
+  eval "$(direnv hook zsh)"
+fi
 
