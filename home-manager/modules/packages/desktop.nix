@@ -1,25 +1,20 @@
 # Files I want available on desktops only
 {
-  config,
+  nixosConfig,
   pkgs,
   pkgs-stable,
   ...
 }:
 let
   lib = pkgs.lib;
-  system = pkgs.stdenv.system;
+  machineType = nixosConfig.uhl.machineType or "desktop";
 
   defaultPackages =
     (with pkgs-stable; [
-      tlrc # Quick command help, tldr rust client. Command is tldr, not tlrc
     ])
     ++ (with pkgs; [
       # Basic terminal setup
       direnv # Automatically switch environments in development folders
-      grc # Colouring output of some default utilities
-      autojump # Jump to often-visited directories quickly
-      fzf # Fuzzy search command history
-      zellij # Split views and sessions
 
       # Some utilities
       imagemagick # Image processing
@@ -52,5 +47,5 @@ in
     ./clipboard-jh.nix
   ];
 
-  home.packages = lib.lists.optionals (config.uhl.machineType == "desktop") defaultPackages;
+  home.packages = lib.lists.optionals (machineType == "desktop") defaultPackages;
 }

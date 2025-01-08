@@ -17,8 +17,6 @@
     ../nixos/modules/machine-type.nix
   ];
 
-  uhl.machineType = "desktop";
-
   home.username = "feuh";
   home.homeDirectory = "/Users/feuh";
   home.sessionPath = [

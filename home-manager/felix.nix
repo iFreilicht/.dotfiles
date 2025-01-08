@@ -16,8 +16,6 @@
     ../nixos/modules/machine-type.nix
   ];
 
-  uhl.machineType = lib.mkDefault "desktop";
-
   home.username = "felix";
   home.homeDirectory = "/home/felix";
 
