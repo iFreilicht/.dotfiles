@@ -43,6 +43,9 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    kernelParams = [
+      "delayacct" # Enable process accounting to allow tracking I/O load with btop or iotop
+    ]; 
 
     # Use the latest LTS kernel to guarantee support for ZFS
     kernelPackages = pkgs.linuxPackages;
