@@ -70,8 +70,8 @@ in
     };
   };
   systemd.timers.borgmatic.timerConfig = {
-    # Run the backup every 15 minutes starting 5 minutes past the hour
-    OnCalendar = "*-*-* *:5/15";
-    RandomizedDelaySec = "0"; # Default is 3h, which makes no sense for a 15min interval
+    # Run the backup every hour, 15 minutes past the hour
+    OnCalendar = "*-*-* *:15";
+    RandomizedDelaySec = "120"; # Default is 3h
   };
 }
