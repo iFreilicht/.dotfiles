@@ -92,6 +92,24 @@
       log_type = "file"; # When using file logging, logs are displayed in the admin panel
       loglevel = 1;
       maintenance_window_start = 1; # Run maintenance tasks from 1-5am UTC (3-7am local time in summer, 2-6am in winter)
+      enabledPreviewProviders = [
+        # Default providers
+        "OC\\Preview\\BMP"
+        "OC\\Preview\\GIF"
+        "OC\\Preview\\JPEG"
+        "OC\\Preview\\Krita"
+        "OC\\Preview\\MarkDown"
+        "OC\\Preview\\MP3"
+        "OC\\Preview\\OpenDocument"
+        "OC\\Preview\\PNG"
+        "OC\\Preview\\TXT"
+        "OC\\Preview\\XBitmap"
+        # Additional providers
+        "OC\\Preview\\HEIC"
+        "OC\\Preview\\Movie"
+        "OC\\Preview\\PDF"
+        "OC\\Preview\\SVG"
+      ];
     };
     phpOptions = {
       upload_max_filesize = lib.mkForce "4G";
