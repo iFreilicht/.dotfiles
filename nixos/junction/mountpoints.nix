@@ -6,4 +6,5 @@
   ftp = "/mnt/ftp";
   home-assistant = "/mnt/home-assistant";
   scratch = "/mnt/scratch";
+  transmission = "/mnt/transmission";
 }

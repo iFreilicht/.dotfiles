@@ -62,6 +62,12 @@ in
               mountpoint = mnt.ftp;
             };
           };
+          "transmission" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = mnt.transmission;
+            };
+          };
           "home-assistant" = {
             type = "zfs_fs";
             options = {

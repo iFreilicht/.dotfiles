@@ -29,6 +29,7 @@
     ./modules/git.nix
     ./modules/ftp.nix
     ./modules/pihole.nix
+    ./modules/transmission.nix
     wireguard.junction
   ];
 
@@ -45,7 +46,7 @@
     };
     kernelParams = [
       "delayacct" # Enable process accounting to allow tracking I/O load with btop or iotop
-    ]; 
+    ];
 
     # Use the latest LTS kernel to guarantee support for ZFS
     kernelPackages = pkgs.linuxPackages;

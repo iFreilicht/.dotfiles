@@ -25,12 +25,15 @@ in
   pihole = mkService "pihole" 33006 // {
     dnsPort = 33353;
   };
+  transmission = mkService "transmission" 33007;
   home = {
+    baseIP = homeBaseIP;
     subnet = "${homeBaseIP}.0/24";
     router = "${homeBaseIP}.1";
     zone = "fritz.box";
   };
   wireguard = {
+    baseIP = wgBaseIP;
     subnet = "${wgBaseIP}.0/24";
   };
   gateway = {
