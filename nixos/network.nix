@@ -16,7 +16,7 @@ in
 {
   domain = rootDomain;
   nextcloud = (mkService "cloud" 33001) // {
-    nginx_max_body_size = "512M";
+    nginx_max_body_size = "1024M";
   };
   snapdrop = mkService "drop" 33002;
   kritzeln = mkService "kritzeln" 33003;
