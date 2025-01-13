@@ -119,6 +119,12 @@
   programs.nix-ld.enable = true;
   programs.kdeconnect.enable = true;
 
+  # Execute AppImages like normal programs
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   # Unlock GnuPG and SSH keys on login
   programs = {
     gnupg.agent = {
