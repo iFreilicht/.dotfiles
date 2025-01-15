@@ -51,7 +51,7 @@ in
         "min protocol" = "SMB2";
         "ea support" = "yes";
 
-        # This needs to be global else time machine ops can fail, according to 
+        # This needs to be global else time machine ops can fail, according to
         # https://github.com/connorfeeley/dotfiles/blob/fe585f1c34d4384173a10948d83d00737b3d0a26/nixos/machines/workstation/samba.nix#L33
         "vfs objects" = "fruit streams_xattr";
         "fruit:aapl" = "yes";
@@ -106,6 +106,17 @@ in
   systemd.tmpfiles.rules = (
     lib.lists.map (path: "d ${path} 0750 samba samba - -") ([ mnt.samba ] ++ (lib.attrValues shares))
   );
+
+  # Make Transmission downloads available in the public Samba share
+  fileSystems = {
+    "${mnt.samba}/public/TorrentDownloads" = {
+      device = "${mnt.transmission}/Downloads";
+      options = [
+        "bind"
+        "ro"
+      ];
+    };
+  };
 
   # Advertise shares to Windows clients
   services.samba-wsdd = {
