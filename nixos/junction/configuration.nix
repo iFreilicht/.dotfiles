@@ -2,7 +2,6 @@
 # and in the NixOS manual (accessible by running `nixos-help`).
 
 {
-  config,
   pkgs,
   net,
   wireguard,
@@ -14,23 +13,24 @@
     ../modules/be-remote-builder.nix
     ../modules/ensure-root-ssh-key.nix
     ../modules/machine-type.nix
-    ../modules/user-felix.nix
     ../modules/use-remote-builders.nix
-    ./modules/hardware-configuration.nix # Include the results of the hardware scan.
+    ../modules/user-felix.nix
     ./modules/disko.nix # Drive configuration
-    ./modules/nginx.nix
-    ./modules/ntp.nix
-    ./modules/dns.nix
-    ./modules/nextcloud.nix
-    ./modules/home-assistant.nix
+    ./modules/hardware-configuration.nix # Include the results of the hardware scan.
+    wireguard.junction
+    # Modules for services
     ./modules/borg.nix
     ./modules/containerized-apps.nix
-    ./modules/samba.nix
-    ./modules/git.nix
+    ./modules/dns.nix
     ./modules/ftp.nix
+    ./modules/git.nix
+    ./modules/home-assistant.nix
+    ./modules/nextcloud.nix
+    ./modules/nginx.nix
+    ./modules/ntp.nix
     ./modules/pihole.nix
+    ./modules/samba.nix
     ./modules/transmission.nix
-    wireguard.junction
   ];
 
   sops = {

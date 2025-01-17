@@ -7,14 +7,15 @@
   imports = [
     ../common.nix
     ../modules/machine-type.nix
-    ../modules/user-felix.nix
     ../modules/use-remote-builders.nix
+    ../modules/user-felix.nix
     ./modules/hardware-configuration.nix # Include the results of the hardware scan.
+    wireguard.gateway
+    # Modules for services
     ./modules/dns.nix
     ./modules/fail2ban.nix
     ./modules/nginx.nix
     ./modules/ntp.nix
-    wireguard.gateway
   ];
 
   # Use the GRUB 2 boot loader.

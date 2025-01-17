@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ../nixos/modules/machine-type.nix
     ./modules/aliases.nix
     ./modules/config-files
     ./modules/env.nix
@@ -14,7 +15,6 @@
     ./modules/ssh.nix
     ./modules/vim.nix
     ./modules/zsh
-    ../nixos/modules/machine-type.nix
   ];
 
   home.username = "feuh";
