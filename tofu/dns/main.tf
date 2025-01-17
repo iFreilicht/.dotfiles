@@ -13,6 +13,7 @@ locals {
     "home",
     "pihole",
     "transmission",
+    "media",
   ])
 }
 

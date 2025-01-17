@@ -96,6 +96,7 @@ in
       ${net.home-assistant.domain} = privateServiceHost;
       ${net.pihole.domain} = privateServiceHost;
       ${net.transmission.domain} = privateServiceHost;
+      ${net.jellyfin.domain} = privateServiceHost;
     };
   };
 

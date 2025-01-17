@@ -1,4 +1,9 @@
-{ mnt, lib, ... }:
+{
+  net,
+  mnt,
+  lib,
+  ...
+}:
 let
   dataDir = "${mnt.jellyfin}/data";
   movieDir = "${mnt.jellyfin}/Movies";
@@ -9,7 +14,6 @@ in
 {
   services.jellyfin = {
     enable = true;
-    openFirewall = true;
     dataDir = dataDir;
   };
 
@@ -25,6 +29,26 @@ in
         musicDir
         booksDir
       ];
+
+  # Proxy Jellyfin through Nginx for SSL termination
+  services.nginx = {
+    virtualHosts.${net.jellyfin.domain} = {
+      forceSSL = true;
+      useACMEHost = net.domain;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString net.jellyfin.port}/";
+        proxyWebsockets = true;
+      };
+    };
+  };
+
+  # Ensure home-assistant can be accessed locally
+  uhl.dns.entries.${net.jellyfin.subDomain} = net.junction.home.ip;
+
+  # Ensure our certificate also covers the home-assistant domain
+  security.acme.certs.${net.domain} = {
+    extraDomainNames = [ net.jellyfin.domain ];
+  };
 
   # Backups
   services.borgmatic.configurations.files = {
