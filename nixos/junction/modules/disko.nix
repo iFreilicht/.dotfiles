@@ -47,6 +47,13 @@ in
               "com.sun:auto-snapshot" = "true";
             };
           };
+          "jellyfin" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = mnt.jellyfin;
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
           "nextcloud" = {
             type = "zfs_fs";
             # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
