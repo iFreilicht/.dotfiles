@@ -27,6 +27,26 @@ in
         postCreateHook = "zfs list -t snapshot -o name bigz | grep -q '^bigz@blank$' || zfs snapshot bigz@blank";
 
         datasets = {
+          "forgejo" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = mnt.forgejo;
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
+          "ftp" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = mnt.ftp;
+            };
+          };
+          "home-assistant" = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = mnt.home-assistant;
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
           "nextcloud" = {
             type = "zfs_fs";
             # Use options.mountpoint instead of mountpoint to avoid systemd mount units, which interfere with zfs-import*.service
@@ -49,30 +69,10 @@ in
               mountpoint = mnt.samba;
             };
           };
-          "forgejo" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = mnt.forgejo;
-              "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "ftp" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = mnt.ftp;
-            };
-          };
           "transmission" = {
             type = "zfs_fs";
             options = {
               mountpoint = mnt.transmission;
-            };
-          };
-          "home-assistant" = {
-            type = "zfs_fs";
-            options = {
-              mountpoint = mnt.home-assistant;
-              "com.sun:auto-snapshot" = "true";
             };
           };
         };
