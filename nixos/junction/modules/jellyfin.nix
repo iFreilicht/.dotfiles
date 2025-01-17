@@ -15,6 +15,8 @@ in
   services.jellyfin = {
     enable = true;
     dataDir = dataDir;
+    # Don't store logs in dataDir, as that is backed up remotely
+    logDir = "/var/log/jellyfin";
   };
 
   # Set up folder structure and permissions
