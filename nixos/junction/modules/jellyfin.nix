@@ -24,13 +24,14 @@ in
     [
       "d ${dataDir} 0750 jellyfin jellyfin - -" # Only jellyfin should write to the data dir
     ]
-    ++ lib.map (dir: "d ${dir} 0770 jellyfin users - -") # Allow jellyfin and regular users to add/access media
-      [
-        movieDir
-        showsDir
-        musicDir
-        booksDir
-      ];
+    # Allow jellyfin and regular users to add/access media
+    # Also make media world-readable to allow access via bind mounts in SMB
+    ++ lib.map (dir: "d ${dir} 0775 jellyfin users - -") [
+      movieDir
+      showsDir
+      musicDir
+      booksDir
+    ];
 
   # Proxy Jellyfin through Nginx for SSL termination
   services.nginx = {
