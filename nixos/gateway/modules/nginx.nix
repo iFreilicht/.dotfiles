@@ -93,6 +93,14 @@ in
         };
       };
 
+      ${net.gitlab.domain} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://${net.junction.wireguard.ip}:${toString net.gitlab.port}";
+        };
+      };
+
       ${net.home-assistant.domain} = privateServiceHost;
       ${net.pihole.domain} = privateServiceHost;
       ${net.transmission.domain} = privateServiceHost;

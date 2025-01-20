@@ -14,6 +14,7 @@ locals {
     "pihole",
     "transmission",
     "media",
+    "gitlab",
   ])
 }
 
