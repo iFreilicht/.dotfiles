@@ -100,6 +100,12 @@ in
       publicKey = "i9cb+AxxoJC8vmMRBC4Sknu41j+1Tl9qICKTicxRzm0=";
     };
   };
+  source-win10 = {
+    wireguard = {
+      ip = "${wgBaseIP}.35";
+      publicKey = "cALdg/zMA7tADWf7iMNAYwLl8K9/Tyx0KXAKQbuETgE=";
+    };
+  };
   source = {
     name = "source";
     felix.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0TI3HN6e00Bv29ui7BUCYSa4FBjcWBs4fE5R1ODc9+ felix@source";

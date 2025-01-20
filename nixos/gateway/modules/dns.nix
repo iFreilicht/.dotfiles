@@ -81,14 +81,16 @@ in
 
         # Set up a TLD zone under which all hosts can be found. This is the search domain for the VPN
         gateway = mkTLDForHost "gateway" ''
-          junction IN A ${net.junction.wireguard.ip}
-          source   IN A ${net.source.wireguard.ip}
+          junction     IN A ${net.junction.wireguard.ip}
+          source       IN A ${net.source.wireguard.ip}
+          source-win10 IN A ${net.source-win10.wireguard.ip}
         '';
 
         # Publish a TLD for every host we want to be permanently accessible
         # This is more reliable than using a search domain, which can be overridden by other network adapters
         junction = mkTLDForHost "junction" "";
         source = mkTLDForHost "source" "";
+        source-win10 = mkTLDForHost "source-win10" "";
       };
     };
 

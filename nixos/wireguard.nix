@@ -6,6 +6,7 @@ let
   source = net.source.wireguard;
   uhl'siphone = net.uhl'siphone.wireguard;
   DESKTOP-O2898M0 = net.DESKTOP-O2898M0.wireguard;
+  source-win10 = net.source-win10.wireguard;
 
   port = 51820;
   privateKeyFile = "/etc/wireguard/private";
@@ -48,6 +49,7 @@ in
             (makePeer source)
             (makePeer uhl'siphone)
             (makePeer DESKTOP-O2898M0)
+            (makePeer source-win10)
           ];
           postUp = ''
             echo "module wireguard +p" > /sys/kernel/debug/dynamic_debug/control
@@ -104,6 +106,16 @@ in
     address = makeIps DESKTOP-O2898M0;
     listenPort = port;
     dns = [ ]; # No DNS, junction will be accessed via IP
+    privateKey = "AAAA-Replace-with-real-key-AAAA";
+    peers = [ (makeServer gateway { }) ];
+  };
+  source-win10.networking.wg-quick.interfaces.wg0 = {
+    address = makeIps source-win10;
+    listenPort = port;
+    dns = [
+      gateway.ip
+      "gateway"
+    ];
     privateKey = "AAAA-Replace-with-real-key-AAAA";
     peers = [ (makeServer gateway { }) ];
   };

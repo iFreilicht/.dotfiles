@@ -89,6 +89,7 @@
             names = [
               "horse"
               "DESKTOP-O2898M0"
+              "source-win10"
             ];
           };
         };
