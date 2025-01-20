@@ -38,7 +38,7 @@
       useACMEHost = net.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:${toString net.gitlab.port}";
+        proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
         proxyWebsockets = true;
       };
     };
