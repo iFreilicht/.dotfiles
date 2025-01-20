@@ -9,7 +9,7 @@
     statePath = "${mnt.gitlab}/state";
 
     host = net.gitlab.domain;
-    port = net.gitlab.port;
+    port = 443;
     https = true;
 
     initialRootPasswordFile = "${mnt.gitlab}/initialRootPassword.txt";
@@ -43,7 +43,4 @@
       };
     };
   };
-
-  # Allow direct HTTP access to gitlab from wireguard only
-  networking.firewall.interfaces.wg0.allowedTCPPorts = [ net.gitlab.port ];
 }
