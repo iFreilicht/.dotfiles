@@ -20,6 +20,7 @@
     wireguard.junction
     # Modules for services
     ./modules/borg.nix
+    ./modules/code-server.nix
     ./modules/containerized-apps.nix
     ./modules/dns.nix
     ./modules/ftp.nix
@@ -93,15 +94,6 @@
   uhl.useRemoteBuilders = [
     "source"
   ];
-
-  # Enable code-server (temporary for testing)
-  services.code-server = {
-    enable = true;
-    auth = "none";
-    port = 33012;
-    host = "0.0.0.0";
-  };
-  networking.firewall.allowedTCPPorts = [ 33012 ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
