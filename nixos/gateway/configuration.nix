@@ -67,6 +67,7 @@
     ${net.transmission.subDomain} = net.junction.wireguard.ip;
     ${net.jellyfin.subDomain} = net.junction.wireguard.ip;
     ${net.gitlab.subDomain} = net.junction.wireguard.ip;
+    "code-server" = net.junction.wireguard.ip;
   };
 
   # This value determines the NixOS release from which the default
