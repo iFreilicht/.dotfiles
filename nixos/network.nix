@@ -29,7 +29,7 @@ in
   # ON REINSTALL: Make sure to set this port in jellyfin's config/network.xml
   jellyfin = mkService "media" 33008;
   # temporary
-  gitlab = mkService "gitlab" 9999999;
+  gitlab = mkService "gitlab" 33110;
   home = {
     baseIP = homeBaseIP;
     subnet = "${homeBaseIP}.0/24";
