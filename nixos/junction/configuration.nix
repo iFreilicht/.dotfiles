@@ -60,6 +60,8 @@
   networking.hostName = "junction";
   uhl.machineType = "server";
 
+  programs.nix-ld.enable = true;
+
   # Scrub zpool once every month
   services.zfs.autoScrub.enable = true;
   # Snapshot every 15 minutes, automatically discard old ones
