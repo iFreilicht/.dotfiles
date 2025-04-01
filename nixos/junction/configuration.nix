@@ -60,6 +60,9 @@
   networking.hostName = "junction";
   uhl.machineType = "server";
 
+  # Use nftables instead of legacy iptables. It can be configured declaratively as well.
+  networking.nftables.enable = true;
+
   programs.nix-ld.enable = true;
 
   # Scrub zpool once every month
