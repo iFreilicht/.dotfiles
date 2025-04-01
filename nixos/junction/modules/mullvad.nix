@@ -4,13 +4,12 @@ let
   privateKeyFile = "/etc/wireguard/mullvad-private";
 in
 {
-  # Enable mullvad VPN so my IP doesn't leak
-  services.mullvad-vpn.enable = true;
-
+  # Set up a wireguard connection to one particular exit node
+  # TODO: Make it so that we have multiple tunnels to multiple nodes
   networking.wg-quick.interfaces.wg1 = {
     address = [
-      "10.66.208.107/32"
-      "fc00:bbbb:bbbb:bb01::3:d06a/128"
+      "10.70.60.172/32"
+      "fc00:bbbb:bbbb:bb01::7:3cab/128"
     ];
     dns = [ "10.64.0.1" ];
     inherit privateKeyFile;
@@ -27,4 +26,5 @@ in
       }
     ];
   };
+
 }
