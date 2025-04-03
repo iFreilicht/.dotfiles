@@ -10,7 +10,7 @@
     # and https://hydra.nixos.org/jobset/nixpkgs/nixpkgs-23.11-darwin for stable
     # and select the latest commit hash that has no unfinished builds (meaning it's fully cached).
     # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
-    nixpkgs.url = "github:NixOS/nixpkgs/6df24922a1400241dae323af55f30e4318a6ca65";
+    nixpkgs.url = "github:NixOS/nixpkgs/b9d43b3fe5152d1dc5783a2ba865b2a03388b741";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40";
 
     flake-utils.url = "github:numtide/flake-utils";
