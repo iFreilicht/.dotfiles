@@ -157,7 +157,8 @@ keybinds clear-defaults=true {
     }
 }
 
-
+// Plugin aliases - can be used to change the implementation of Zellij
+// changing these requires a restart to take effect
 plugins {
     tab-bar location="zellij:tab-bar"
     status-bar location="zellij:status-bar"
@@ -172,20 +173,28 @@ plugins {
     }
 }
 
-// Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
-// eg. when terminal window with an active zellij session is closed
-// Options:
-//   - detach (Default)
-//   - quit
-//
-// on_force_close "quit"
+// Plugins to load in the background when a new session starts
+// eg. "file:/path/to/my-plugin.wasm"
+// eg. "https://example.com/my-plugin.wasm"
+load_plugins {
+}
 
-//  Send a request for a simplified ui (without arrow fonts) to plugins
-//  Options:
-//    - true
-//    - false (Default)
+// Use a simplified UI without special fonts (arrow glyphs)
+// Options:
+//   - true
+//   - false (Default)
 //
 simplified_ui true
+
+// Choose the theme that is specified in the themes section.
+// Default: default
+// 
+theme "solarized-dark-custom"
+
+// Choose the base input mode of zellij.
+// Default: normal
+// 
+// default_mode "locked"
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -194,41 +203,7 @@ simplified_ui true
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
-// default_cwd ""
-
-// Toggle between having pane frames around the panes
-// Options:
-//   - true (default)
-//   - false
-
-pane_frames false
-
-// Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
-// Options:
-//   - true (default)
-//   - false
-//
-// auto_layout true
-
-// Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
-// Options:
-//   - true (default)
-//   - false
-
-session_serialization true
-
-// Whether pane viewports are serialized along with the session, default is false
-// Options:
-//   - true
-//   - false (default)
-
-serialize_pane_viewport true
-
-// Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
-// defaults to the scrollback size. If this number is higher than the scrollback size, it will
-// also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
-
-scrollback_lines_to_serialize 10000
+// default_cwd "/tmp"
 
 // Define color themes for Zellij
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
@@ -266,20 +241,20 @@ themes {
     }
 }
 
-// Choose the theme that is specified in the themes section.
-// Default: default
-
-theme "solarized-dark-custom"
-
 // The name of the default layout to load on startup
 // Default: "default"
 //
 // default_layout "compact"
 
-// Choose the mode that zellij uses when starting up.
-// Default: normal
-//
-// default_mode "locked"
+// The folder in which Zellij will look for layouts
+// (Requires restart)
+// 
+// layout_dir "/tmp"
+ 
+// The folder in which Zellij will look for themes
+// (Requires restart)
+// 
+// theme_dir "/tmp"
 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
@@ -290,9 +265,34 @@ theme "solarized-dark-custom"
 //
 // mouse_mode false
 
+// Toggle having pane frames around the panes
+// Options:
+//   - true (default, enabled)
+//   - false
+
+pane_frames false
+
+// When attaching to an existing session with other users,
+// should the session be mirrored (true)
+// or should each user have their own cursor (false)
+// (Requires restart)
+// Default: false
+//
+// mirror_session true
+
+// Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
+// eg. when terminal window with an active zellij session is closed
+// (Requires restart)
+// Options:
+//   - detach (Default)
+//   - quit
+//
+// on_force_close "quit"
+
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
 // buffer. Excess number of lines are discarded in a FIFO fashion.
+// (Requires restart)
 // Valid values: positive integers
 // Default value: 10000
 
@@ -319,33 +319,45 @@ copy_command "cb copy" // Uses https://github.com/Slackadays/Clipboard, supports
 //
 // copy_clipboard "primary"
 
-// Enable or disable automatic copy (and clear) of selection when releasing mouse
+// Enable automatic copying (and clearing) of selection when releasing mouse
 // Default: true
-//
-// copy_on_select false
+// 
+// copy_on_select true
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
-//
 // scrollback_editor "/usr/bin/vim"
 
-// When attaching to an existing session with other users,
-// should the session be mirrored (true)
-// or should each user have their own cursor (false)
-// Default: false
+// Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
+// Options:
+//   - true (default)
+//   - false
 //
-// mirror_session true
+// auto_layout false
 
-// The folder in which Zellij will look for layouts
-//
-// layout_dir "/path/to/my/layout_dir"
+// Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
+// Options:
+//   - true (default)
+//   - false
 
-// The folder in which Zellij will look for themes
-//
-// theme_dir "/path/to/my/theme_dir"
+session_serialization true
+
+// Whether pane viewports are serialized along with the session, default is false
+// Options:
+//   - true
+//   - false (default)
+
+serialize_pane_viewport true
+
+// Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
+// defaults to the scrollback size. If this number is higher than the scrollback size, it will
+// also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
+
+scrollback_lines_to_serialize 10000
 
 // Enable or disable the rendering of styled and colored underlines (undercurl).
 // May need to be disabled for certain unsupported terminals
+// (Requires restart)
 // Default: true
 //
 // styled_underlines false
