@@ -361,3 +361,35 @@ scrollback_lines_to_serialize 10000
 // Default: true
 //
 // styled_underlines false
+ 
+// How often in seconds sessions are serialized
+// 
+// serialization_interval 10000
+ 
+// Enable or disable writing of session metadata to disk (if disabled, other sessions might not know
+// metadata info on this session)
+// (Requires restart)
+// Default: false
+// 
+// disable_session_metadata false
+ 
+// Enable or disable support for the enhanced Kitty Keyboard Protocol (the host terminal must also support it)
+// (Requires restart)
+// Default: true (if the host terminal supports it)
+// 
+// support_kitty_keyboard_protocol false
+ 
+// Whether to stack panes when resizing beyond a certain size
+// Default: true
+// 
+// stacked_resize false
+ 
+// Whether to show tips on startup
+// Default: true
+// 
+// show_startup_tips false
+ 
+// Whether to show release notes on first version run
+// Default: true
+// 
+// show_release_notes false
