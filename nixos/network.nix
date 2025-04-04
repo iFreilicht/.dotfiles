@@ -28,6 +28,7 @@ in
   transmission = mkService "transmission" 33007;
   # ON REINSTALL: Make sure to set this port in jellyfin's config/network.xml
   jellyfin = mkService "media" 33008;
+  audiobookshelf = mkService "audio" 33009;
   home = {
     baseIP = homeBaseIP;
     subnet = "${homeBaseIP}.0/24";

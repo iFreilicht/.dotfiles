@@ -19,6 +19,7 @@
     ./modules/hardware-configuration.nix # Include the results of the hardware scan.
     wireguard.junction
     # Modules for services
+    ./modules/audiobookshelf.nix
     ./modules/borg.nix
     ./modules/containerized-apps.nix
     ./modules/dns.nix
