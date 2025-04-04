@@ -97,6 +97,7 @@ in
       ${net.pihole.domain} = privateServiceHost;
       ${net.transmission.domain} = privateServiceHost;
       ${net.jellyfin.domain} = privateServiceHost;
+      ${net.audiobookshelf.domain} = privateServiceHost;
     };
   };
 
