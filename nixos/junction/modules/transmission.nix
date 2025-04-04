@@ -1,4 +1,8 @@
-{ mnt, net, ... }:
+{
+  mnt,
+  net,
+  ...
+}:
 {
   # Ensure transmission will be accessed directly by clients in the home network
   uhl.dns.entries.${net.transmission.subDomain} = net.junction.home.ip;

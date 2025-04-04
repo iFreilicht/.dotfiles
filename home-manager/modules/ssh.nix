@@ -20,6 +20,9 @@
           hostname = net.gateway.wireguard.initialIP;
           user = "felix";
         };
+        junction = {
+          user = "felix";
+        };
       }
       // lib.optionalAttrs pkgs.stdenv.isDarwin {
         # Use macOS keychain for ssh keys. This would fail on Linux or with nix-built ssh!

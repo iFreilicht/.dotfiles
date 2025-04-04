@@ -19,6 +19,7 @@
     ./modules/hardware-configuration.nix # Include the results of the hardware scan.
     wireguard.junction
     # Modules for services
+    ./modules/audiobookshelf.nix
     ./modules/borg.nix
     ./modules/code-server.nix
     ./modules/containerized-apps.nix
@@ -31,6 +32,7 @@
     ./modules/nextcloud.nix
     ./modules/nginx.nix
     ./modules/ntp.nix
+    ./modules/mullvad.nix
     ./modules/pihole.nix
     ./modules/samba.nix
     ./modules/transmission.nix
@@ -61,6 +63,11 @@
   networking.hostId = "feb10dc9"; # Helps prevent accidental imports of zpools
   networking.hostName = "junction";
   uhl.machineType = "server";
+
+  # Use nftables instead of legacy iptables. It can be configured declaratively as well.
+  networking.nftables.enable = true;
+
+  programs.nix-ld.enable = true;
 
   # Scrub zpool once every month
   services.zfs.autoScrub.enable = true;
