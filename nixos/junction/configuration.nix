@@ -21,12 +21,10 @@
     # Modules for services
     ./modules/audiobookshelf.nix
     ./modules/borg.nix
-    ./modules/code-server.nix
     ./modules/containerized-apps.nix
     ./modules/dns.nix
     ./modules/ftp.nix
     ./modules/git.nix
-    ./modules/gitlab.nix
     ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/nextcloud.nix

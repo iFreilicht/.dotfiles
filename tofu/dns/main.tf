@@ -15,7 +15,6 @@ locals {
     "transmission",
     "media",
     "audio",
-    "gitlab",
   ])
 }
 
