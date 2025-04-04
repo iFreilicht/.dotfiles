@@ -2,8 +2,8 @@
 terraform {
   required_providers {
     hetznerdns = {
-      source = "timohirt/hetznerdns"
-      version = "2.2.0"
+      source = "germanbrew/hetznerdns"
+      version = "3.4.0"
     }
   }
 
