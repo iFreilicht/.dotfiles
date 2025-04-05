@@ -6,12 +6,13 @@
     # `nix flake update` always upgrades nixpkgs to the latest version as well, which is annoying,
     # as I need to download nixpkgs again AND risk breakage. Lock the exact commit instead for both
     # stable and unstable. Stable is only required when unstable breaks (which happens often on darwin)
-    # To upgrade, check https://hydra.nixos.org/jobset/nixpkgs/trunk for unstable
-    # and https://hydra.nixos.org/jobset/nixpkgs/nixpkgs-23.11-darwin for stable
+    # To upgrade, check https://hydra.nixos.org/jobset/nixpkgs/trunk
     # and select the latest commit hash that has no unfinished builds (meaning it's fully cached).
     # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
+    # Stable doesn't literally mean stable, it just means I can keep an older version of nixpkgs
+    # around in case an update causes breakage, which happens somewhat frequently on macOS.
     nixpkgs.url = "github:NixOS/nixpkgs/b9d43b3fe5152d1dc5783a2ba865b2a03388b741";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/b9d43b3fe5152d1dc5783a2ba865b2a03388b741";
 
     flake-utils.url = "github:numtide/flake-utils";
     disko = {
