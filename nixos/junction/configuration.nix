@@ -30,10 +30,10 @@
     ./modules/nextcloud.nix
     ./modules/nginx.nix
     ./modules/ntp.nix
-    ./modules/mullvad.nix
+    # ./modules/mullvad.nix
     ./modules/pihole.nix
     ./modules/samba.nix
-    ./modules/transmission.nix
+    # ./modules/transmission.nix
   ];
 
   sops = {
