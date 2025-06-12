@@ -16,6 +16,10 @@
           identityFile = "~/.ssh/id_ed25519";
           user = "git";
         };
+        "git.uhl.cx" = {
+          identityFile = "~/.ssh/id_ed25519";
+          user = "forgejo";
+        };
         gateway = {
           hostname = net.gateway.wireguard.initialIP;
           user = "felix";
