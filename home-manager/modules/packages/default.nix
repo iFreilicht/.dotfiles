@@ -34,6 +34,7 @@ let
       tlrc # Quick command help, tldr rust client. Command is tldr, not tlrc
 
       # Programming stuff
+      fossil # Minimal version control system
 
       # Nix stuff
       nh # Nix helper, very useful!
