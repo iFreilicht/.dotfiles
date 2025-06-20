@@ -148,30 +148,9 @@ in
           };
         };
       };
-      scratch_drive = {
-        device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_250GB_S21PNSAG237083K";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            scratch = {
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                extraArgs = [
-                  "-L"
-                  "scratch"
-                ];
-                mountpoint = mnt.scratch;
-              };
-            };
-          };
-        };
-      };
-      # Boot USB Stick
+      # Boot SSD
       boot_drive = {
-        device = "/dev/disk/by-id/usb-USB_SanDisk_3.2Gen1_0401f4a3f049a993ca43cb8610662699a3109583e0a0b515303f5b4a9d1ceb48c51a00000000000000000000a8cb2db1ff11101891558107592b5dcb-0:0";
+        device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_250GB_S21PNSAG237083K";
         type = "disk";
         content = {
           type = "gpt";
