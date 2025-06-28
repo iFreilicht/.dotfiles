@@ -48,7 +48,7 @@
       ];
     };
     databases = {
-      mysql_databases = [ { name = "nextcloud"; } ];
+      mysql_databases = [ { name = "forgejo"; } ];
     };
   };
 

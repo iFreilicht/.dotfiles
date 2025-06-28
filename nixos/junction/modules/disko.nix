@@ -105,7 +105,7 @@ in
       };
       # ZFS storage pool, disk 2
       bigz_2 = {
-        device = "/dev/disk/by-id/ata-ST16000NM001G-2KK103_ZL28WEM8";
+        device = "/dev/disk/by-id/ata-ST16000NM001G-2KK103_ZL27ZQ2C";
         type = "disk";
         content = {
           type = "gpt";
