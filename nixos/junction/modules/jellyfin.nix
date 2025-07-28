@@ -55,10 +55,22 @@ in
   };
 
   # Backups
-  services.borgmatic.configurations.files = {
-    source_directories = [
+  services.borgmatic.configurations = {
+    files.source_directories = [
       # Only back up metadata and configuration, media is too big for remote backups
       dataDir
     ];
+    # Back up databases separately to avoid potentially corrupted backups
+    databases.sqlite_databases = [
+      {
+        name = "jellyfin";
+        path = "${mnt.jellyfin}/data/data/jellyfin.db";
+      }
+      {
+        name = "jellyfin-library";
+        path = "${mnt.jellyfin}/data/data/library.db";
+      }
+    ];
   };
+
 }
