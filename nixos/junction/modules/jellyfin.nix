@@ -9,7 +9,6 @@ let
   movieDir = "${mnt.jellyfin}/Movies";
   showsDir = "${mnt.jellyfin}/Shows";
   musicDir = "${mnt.jellyfin}/Music";
-  booksDir = "${mnt.jellyfin}/Books";
 in
 {
   services.jellyfin = {
@@ -30,7 +29,6 @@ in
       movieDir
       showsDir
       musicDir
-      booksDir
     ];
 
   # Proxy Jellyfin through Nginx for SSL termination
