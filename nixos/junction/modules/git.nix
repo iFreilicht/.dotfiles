@@ -48,7 +48,7 @@
       ];
     };
     databases = {
-      mysql_databases = [ { name = "forgejo"; } ];
+      sqlite_databases = [ { inherit (config.services.forgejo.database) name path; } ];
     };
   };
 
