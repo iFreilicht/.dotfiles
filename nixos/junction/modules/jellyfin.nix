@@ -43,6 +43,9 @@ in
     };
   };
 
+  # Discovery port to make setup easier
+  networking.firewall.allowedUDPPorts = [ 7359 ];
+
   # Ensure home-assistant can be accessed locally
   uhl.dns.entries.${net.jellyfin.subDomain} = net.junction.home.ip;
 

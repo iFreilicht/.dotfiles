@@ -26,8 +26,8 @@ in
     dnsPort = 33353;
   };
   transmission = mkService "transmission" 33007;
-  # ON REINSTALL: Make sure to set this port in jellyfin's config/network.xml
-  jellyfin = mkService "media" 33008;
+  # Jellyfin module doesn't allow setting the port declaratively yet
+  jellyfin = mkService "media" 8096;
   audiobookshelf = mkService "audio" 33009;
   home = {
     baseIP = homeBaseIP;
