@@ -86,6 +86,7 @@
         net.junction.wireguard.ip
       ];
       overwriteprotocol = "https";
+      overwritehost = net.nextcloud.domain;
       default_phone_region = "DE";
       default_language = "de";
       default_locale = "de_DE";
