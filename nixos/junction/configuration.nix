@@ -33,7 +33,7 @@
     # ./modules/mullvad.nix
     ./modules/pihole.nix
     ./modules/samba.nix
-    # ./modules/transmission.nix
+    ./modules/torrent.nix
   ];
 
   sops = {

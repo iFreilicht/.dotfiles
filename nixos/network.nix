@@ -26,6 +26,9 @@ in
     dnsPort = 33353;
   };
   transmission = mkService "transmission" 33007;
+  torrent = mkService "torrent" 33008 // {
+    torrentingPort = 6887;
+  };
   # Jellyfin module doesn't allow setting the port declaratively yet
   jellyfin = mkService "media" 8096;
   audiobookshelf = mkService "audio" 33009;
