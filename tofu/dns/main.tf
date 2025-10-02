@@ -27,3 +27,10 @@ resource "hetznerdns_record" "uhl" {
 
   name = each.value
 }
+
+resource "hetznerdns_record" "atproto" {
+  zone_id = hetznerdns_zone.uhl.id
+  type = "TXT"
+  value = "did=did:plc:yfhhlh7xyjvsiexi3yy3ghqg"
+  name = "_atproto"
+}
