@@ -87,6 +87,7 @@
       ];
       overwriteprotocol = "https";
       overwritehost = net.nextcloud.domain;
+      "overwrite.cli.url" = "https://${net.nextcloud.domain}"; # For links in emails
       default_phone_region = "DE";
       default_language = "de";
       default_locale = "de_DE";
