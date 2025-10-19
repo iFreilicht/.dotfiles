@@ -8,7 +8,7 @@
     # Make vim the default editor
     EDITOR = pkgs.vim;
     # Used by nh to determine the default flake to use
-    FLAKE = "/Users/feuh/.dotfiles";
+    NH_FLAKE = "/Users/feuh/.dotfiles";
   };
 
   # Use Lix

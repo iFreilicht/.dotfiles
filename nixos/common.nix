@@ -60,7 +60,7 @@
     # Make vim the default editor
     EDITOR = pkgs.vim;
     # Used by nh to determine the default flake to use
-    FLAKE = "/home/felix/.dotfiles";
+    NH_FLAKE = "/home/felix/.dotfiles";
   };
 
   # Programs with configuration

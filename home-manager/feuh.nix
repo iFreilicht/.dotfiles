@@ -34,7 +34,7 @@
 
   home.sessionVariables = {
     # Used by nh to determine the default flake to use
-    FLAKE = "/Users/feuh/.dotfiles";
+    NH_FLAKE = "/Users/feuh/.dotfiles";
   };
 
   # Let Home Manager install and manage itself.
