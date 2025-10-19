@@ -19,11 +19,6 @@ setopt appendhistory
 mkdir -p $(dirname $HISTFILE)
 touch $HISTFILE
 
-# Enable thefuck alias
-if [[ $(command -v thefuck) ]]; then
-  eval $(thefuck --alias)
-fi
-
 # Autojump needs to be sourced to work on Ubuntu
 source $HOME/.nix-profile/share/autojump/autojump.zsh
 

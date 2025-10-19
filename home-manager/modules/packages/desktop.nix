@@ -27,7 +27,6 @@ let
       gh # GitHub CLI
       sops # Store secrets safely in git repositories
       sqlfluff # SQL linter and formatter
-      thefuck # Quickly correct common mistakes when typing commands
       opentofu # IAC, open-source fork of Terraform
 
       # Nix stuff
