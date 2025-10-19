@@ -23,6 +23,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +52,7 @@
       flake-utils,
       disko,
       home-manager,
+      nix-darwin,
       sops-nix,
       ...
     }@inputs:
@@ -97,6 +102,11 @@
       }
     ))
     // {
+      darwinConfigurations = {
+        horse = nix-darwin.lib.darwinSystem {
+          modules = [ ./nix-darwin/horse/configuration.nix ];
+        };
+      };
       nixosConfigurations = {
         source = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
