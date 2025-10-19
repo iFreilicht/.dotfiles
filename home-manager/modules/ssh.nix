@@ -9,49 +9,49 @@
   programs.ssh = {
     enable = true; # Only enable ssh configuration, but
     package = null; # use the system's ssh package
+    enableDefaultConfig = false; # Can be deleted once default values have been removed upstream
 
-    matchBlocks =
-      {
-        "github.com" = {
-          identityFile = "~/.ssh/id_ed25519";
-          user = "git";
-        };
-        "git.uhl.cx" = {
-          identityFile = "~/.ssh/id_ed25519";
-          user = "forgejo";
-        };
-        gateway = {
-          hostname = net.gateway.wireguard.initialIP;
-          user = "felix";
-        };
-        junction = {
-          user = "felix";
-        };
-      }
-      // lib.optionalAttrs pkgs.stdenv.isDarwin {
-        # Use macOS keychain for ssh keys. This would fail on Linux or with nix-built ssh!
-        "*" = {
-          extraOptions.UseKeychain = "yes";
-          identityFile = [
-            "~/.ssh/id_ed25519"
-            "~/.ssh/id_rsa"
-          ];
-        };
-      }
-      // lib.optionalAttrs (config.home.username != "felix") {
-        source = {
-          hostname = "source";
-          user = "felix";
-        };
-        junction = {
-          hostname = "junction";
-          user = "felix";
-        };
+    matchBlocks = {
+      "*" = {
+        addKeysToAgent = "yes";
+        userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
+        identityFile = "~/.ssh/id_ed25519";
       };
+      "github.com" = {
+        user = "git";
+      };
+      "git.uhl.cx" = {
+        user = "forgejo";
+      };
+      gateway = {
+        hostname = net.gateway.wireguard.initialIP;
+        user = "felix";
+      };
+      junction = {
+        user = "felix";
+      };
+    }
+    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      # Use macOS keychain for ssh keys. This would fail on Linux or with nix-built ssh!
+      "*" = {
+        extraOptions.UseKeychain = "yes";
+        identityFile = [
+          "~/.ssh/id_ed25519"
+          "~/.ssh/id_rsa"
+        ];
+      };
+    }
+    // lib.optionalAttrs (config.home.username != "felix") {
+      source = {
+        hostname = "source";
+        user = "felix";
+      };
+      junction = {
+        hostname = "junction";
+        user = "felix";
+      };
+    };
 
-    addKeysToAgent = "yes";
-
-    userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
   };
 
   home.file.".ssh/hm_known_hosts".text = ''

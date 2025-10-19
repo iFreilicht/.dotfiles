@@ -70,7 +70,7 @@
     activate = "source .venv/bin/activate";
   };
 
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     # Make sure remote clients aren't confused by kitty
     if [ $TERM = 'xterm-kitty' ]; then
         alias ssh='TERM=xterm-color ssh'
