@@ -112,35 +112,56 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760721282,
+        "narHash": "sha256-aAHphQbU9t/b2RRy2Eb8oMv+I08isXv2KUGFAFn7nCo=",
+        "owner": "nix-darwin",
+        "repo": "nix-darwin",
+        "rev": "c3211fcd0c56c11ff110d346d4487b18f7365168",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-darwin",
+        "ref": "master",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1743538100,
-        "narHash": "sha256-Bl/ynRPIb4CdtbEw3gfJYpKiHmRmrKltXc8zipqpO0o=",
+        "lastModified": 1760812691,
+        "narHash": "sha256-Kybb+26VCUMO177JF6c5xwBlo38EFJsviSTVIURh3F4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b9d43b3fe5152d1dc5783a2ba865b2a03388b741",
+        "rev": "5033f94f05a3539d4d7eabd96b0af5026cde5b0b",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b9d43b3fe5152d1dc5783a2ba865b2a03388b741",
+        "rev": "5033f94f05a3539d4d7eabd96b0af5026cde5b0b",
         "type": "github"
       }
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1743538100,
-        "narHash": "sha256-Bl/ynRPIb4CdtbEw3gfJYpKiHmRmrKltXc8zipqpO0o=",
+        "lastModified": 1760812691,
+        "narHash": "sha256-Kybb+26VCUMO177JF6c5xwBlo38EFJsviSTVIURh3F4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b9d43b3fe5152d1dc5783a2ba865b2a03388b741",
+        "rev": "5033f94f05a3539d4d7eabd96b0af5026cde5b0b",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b9d43b3fe5152d1dc5783a2ba865b2a03388b741",
+        "rev": "5033f94f05a3539d4d7eabd96b0af5026cde5b0b",
         "type": "github"
       }
     },
@@ -151,6 +172,7 @@
         "flakey-profile": "flakey-profile",
         "home-manager": "home-manager",
         "lix-module": "lix-module",
+        "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "sops-nix": "sops-nix"

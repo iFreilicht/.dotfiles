@@ -11,8 +11,8 @@
     # Use `git rev-parse 53a2c32` in a local nixpkgs checkout to find the full hash quickly.
     # Stable doesn't literally mean stable, it just means I can keep an older version of nixpkgs
     # around in case an update causes breakage, which happens somewhat frequently on macOS.
-    nixpkgs.url = "github:NixOS/nixpkgs/b9d43b3fe5152d1dc5783a2ba865b2a03388b741";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/b9d43b3fe5152d1dc5783a2ba865b2a03388b741";
+    nixpkgs.url = "github:NixOS/nixpkgs/5033f94f05a3539d4d7eabd96b0af5026cde5b0b";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/5033f94f05a3539d4d7eabd96b0af5026cde5b0b";
 
     flake-utils.url = "github:numtide/flake-utils";
     disko = {
