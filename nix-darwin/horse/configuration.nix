@@ -5,8 +5,6 @@
 
 {
   environment.variables = {
-    # Make vim the default editor
-    EDITOR = pkgs.vim;
     # Used by nh to determine the default flake to use
     NH_FLAKE = "/Users/feuh/.dotfiles";
   };
