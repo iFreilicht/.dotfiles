@@ -2,13 +2,10 @@
 {
   pkgs,
   nixpkgs,
-  lix-module,
   ...
 }:
 
 {
-  imports = [ lix-module.nixosModules.lixFromNixpkgs ];
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   # console = {
@@ -16,9 +13,11 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
-
   # Nix settings
   nix = {
+    # Use Lix instead of NixCpp
+    package = pkgs.lixPackageSets.stable.lix;
+
     settings = {
       experimental-features = [
         "nix-command"
@@ -43,6 +42,18 @@
       };
     };
   };
+
+  # Ensure tools relying on NixCpp use Lix instead
+  nixpkgs.overlays = [
+    (final: prev: {
+      inherit (prev.lixPackageSets.stable)
+        nixpkgs-review
+        nix-eval-jobs
+        nix-fast-build
+        colmena
+        ;
+    })
+  ];
 
   # Manage users and their passwords fully declaratively
   users.mutableUsers = false;

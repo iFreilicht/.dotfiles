@@ -2,7 +2,6 @@
   description = "Default packages to install into user environment";
 
   inputs = {
-    flakey-profile.url = "github:lf-/flakey-profile";
     # `nix flake update` always upgrades nixpkgs to the latest version as well, which is annoying,
     # as I need to download nixpkgs again AND risk breakage. Lock the exact commit instead for both
     # stable and unstable. Stable is only required when unstable breaks (which happens often on darwin)
@@ -30,17 +29,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Only use tagged version of module. Should avoid compilation, but currently doesn't,
-    # see https://git.lix.systems/lix-project/lix/issues/489
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        flakey-profile.follows = "flakey-profile";
-      };
     };
   };
 
