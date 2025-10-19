@@ -31,7 +31,6 @@
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedBrotliSettings = true;
-    recommendedZstdSettings = true;
 
     # Harden nginx as described in https://nixos.wiki/wiki/nginx#Hardened_setup_with_TLS_and_HSTS_preloading
     appendHttpConfig = ''
