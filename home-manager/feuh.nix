@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  nixpkgs,
+  nixpkgs-stable,
+  ...
+}:
 {
   imports = [
     ../nixos/modules/machine-type.nix
@@ -27,6 +32,11 @@
   # git version shipped with nix. We can't use programs.git.enable = false, because that would
   # cause the git configuration from home-manager to not be written at all
   programs.git.package = pkgs.writeShellScriptBin "use-system-git" "git $@";
+
+  nix.channels = {
+    inherit nixpkgs nixpkgs-stable;
+  };
+  nix.keepOldNixPath = false;
 
   home.file = {
 
