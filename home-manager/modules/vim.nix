@@ -52,9 +52,13 @@ let
           silent! colorscheme solarized
           highlight SpecialKey ctermbg=none
 
-          let g:airline#extensions#tabline#enabled = 1
 
           let mapleader = " "
+
+          " Make buffers behave more like tabs in other editors
+          let g:airline#extensions#tabline#enabled = 1
+          nnoremap gt :bnext<CR>
+          nnoremap gT :bprevious<CR>
 
           " Remap y in visual mode to yank to unnamed register AND pipe that to https://github.com/Slackadays/clipboard
           " This makes yank copy to the system clipboard on all platforms, even via ssh
