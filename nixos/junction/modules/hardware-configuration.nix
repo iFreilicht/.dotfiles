@@ -35,17 +35,12 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  # Enable hardware accelerated video encoding and decoding
-  # From https://wiki.nixos.org/wiki/Jellyfin#VAAPI_and_Intel_QSV
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
       intel-vaapi-driver
-      vaapiVdpau
+      vaapi-intel-hybrid # Enable hardware accelerated video encoding and decoding
       intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
       vpl-gpu-rt # QSV on 11th gen or newer
     ];

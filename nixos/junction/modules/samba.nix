@@ -115,6 +115,7 @@ in
         "bind"
         "ro"
       ];
+      fsType = "auto";
     };
   };
 
