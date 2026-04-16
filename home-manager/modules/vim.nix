@@ -19,7 +19,7 @@ let
             vim-fugitive # Git integration
             undotree # Richer undo history
             surround-nvim # Surround content with braces, replace surrounding braces
-            repeat # Makes built-in repeat command work with other scripts (for example surround)
+            vim-repeat # Makes built-in repeat command work with other scripts (for example surround)
           ];
           opt = [ ];
         };
@@ -91,7 +91,7 @@ let
     });
 
   # This is a small hack to get the vimrc file into the profile so I can point vscode to it
-  vimRc = pkgs.runCommandNoCC "custom-vimrc" { } ''
+  vimRc = pkgs.runCommand "custom-vimrc" { } ''
     mkdir -p $out/share/
     ln -s $(cat ${vim}/bin/vim | grep -oP "(?<=')[^']+(?=')") $out/share/custom-vimrc
   '';

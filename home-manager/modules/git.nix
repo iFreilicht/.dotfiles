@@ -3,12 +3,15 @@
   programs.git = {
     enable = true;
 
-    userName = "Felix Uhl";
-    userEmail = "github@mail.felix-uhl.de";
+    settings.user.name = "Felix Uhl";
+    settings.user.email = "github@mail.felix-uhl.de";
 
     ignores = [
       "*.swp"
     ];
+
+    # Use the new default, I don't sign my commits yet anyway
+    signing.format = null;
 
     iniContent = {
       rerere.enabled = false;

@@ -31,7 +31,7 @@ let
 
       # Nix stuff
       nixos-rebuild # Even on macOS and non-Nix linux for remote deployments
-      nixfmt-rfc-style # Autoformatter for Nix
+      nixfmt # Autoformatter for Nix
       nixpkgs-fmt # Another autoformatter, specific to nixpkgs
       nixd # Nix LSP language server
 

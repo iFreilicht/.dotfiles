@@ -5,7 +5,7 @@ let
 
   # Patch the wg-quick module from nixpkgs to return a `wg-quick-configs` config value
   originalWgQuick = "${pkgs.path}/nixos/modules/services/networking/wg-quick.nix";
-  wgQuickPatched = pkgs.runCommandNoCC "wg-quick-patched" { } ''
+  wgQuickPatched = pkgs.runCommand "wg-quick-patched" { } ''
     mkdir $out
     patch -o "$out/wg-quick.nix" ${originalWgQuick} ${./mk-wg-quick.patch}
   '';
