@@ -14,15 +14,16 @@ let
 
   mkTLDForHost = hostname: extraEntries: {
     master = true;
-    file =
-      pkgs.writeText "${hostname}.zone" ''
+    file = pkgs.writeText "${hostname}.zone" (
+      ''
         $TTL 86399
         @   IN  SOA ns1.${hostname}. ${adminEmail}. (${serialn} 3600 900 1209600 86400)
             NS  ns1.${hostname}.
         ns1      IN A ${net.${hostname}.wireguard.ip}
         @        IN A ${net.${hostname}.wireguard.ip}
       ''
-      + extraEntries;
+      + extraEntries
+    );
   };
 in
 {
