@@ -58,10 +58,12 @@
 
   # Enable automatic access to all services via wireguard
   uhl.dns.entries = {
-    ${net.nextcloud.subDomain} = net.junction.wireguard.ip;
-    ${net.snapdrop.subDomain} = net.junction.wireguard.ip;
-    ${net.kritzeln.subDomain} = net.junction.wireguard.ip;
-    ${net.git.subDomain} = net.junction.wireguard.ip;
+    # Public services are accessed via the reverse proxy on gateway
+    ${net.nextcloud.subDomain} = net.gateway.wireguard.ip;
+    ${net.snapdrop.subDomain} = net.gateway.wireguard.ip;
+    ${net.kritzeln.subDomain} = net.gateway.wireguard.ip;
+    ${net.git.subDomain} = net.gateway.wireguard.ip;
+    # Private services are accessed directly
     ${net.home-assistant.subDomain} = net.junction.wireguard.ip;
     ${net.pihole.subDomain} = net.junction.wireguard.ip;
     ${net.transmission.subDomain} = net.junction.wireguard.ip;
