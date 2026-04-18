@@ -25,6 +25,7 @@ let
     - ${lib.concatStringsSep "\n- " allSystems}
 
     Replace `$command` with one of the available commands:
+    - dry-build: Just show what would be built, don't actually build it
     - build: Just build the configuration, don't activate it
     - test: Switch to the new configuration temporarily. Will not add a new generation
     - boot: Build the configuration and make it the default so it gets enabled on reboot, not now
@@ -61,6 +62,7 @@ pkgs.writeShellScriptBin "flake-deploy" ''
         '';
     in
     {
+      dry-build = writeBuildScript "dry-build";
       build = writeBuildScript "build";
       test = writeBuildScript "test";
       boot = writeBuildScript "boot";
