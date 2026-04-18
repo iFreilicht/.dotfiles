@@ -18,6 +18,8 @@
       "flakes"
     ];
   };
+  # Run a VM to build aarch64-linux packages
+  nix.linux-builder.enable = true;
 
   # Ensure tools relying on NixCpp use Lix instead
   nixpkgs.overlays = [
