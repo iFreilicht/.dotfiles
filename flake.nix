@@ -10,8 +10,8 @@
     # Click on any build and then the "changes" link to find the full hash in the resulting URL.
     # Stable doesn't literally mean stable, it just means I can keep an older version of nixpkgs
     # around in case an update causes breakage, which happens somewhat frequently on macOS.
-    nixpkgs.url = "github:NixOS/nixpkgs/c42ef2eb2917e14a24949ec361ae166600fda5c6";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/5033f94f05a3539d4d7eabd96b0af5026cde5b0b";
+    nixpkgs.url = "github:NixOS/nixpkgs/ff048610a1b698607a66f4671821716c2272dc9f";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/c42ef2eb2917e14a24949ec361ae166600fda5c6";
 
     flake-utils.url = "github:numtide/flake-utils";
     disko = {
@@ -92,6 +92,9 @@
     // {
       darwinConfigurations = {
         horse = nix-darwin.lib.darwinSystem {
+          specialArgs = specialArgs // {
+            pkgs-stable = nixpkgs-stable.legacyPackages.aarch64-darwin;
+          };
           modules = [ ./nix-darwin/horse/configuration.nix ];
         };
       };
