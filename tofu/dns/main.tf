@@ -1,6 +1,8 @@
-resource "hetznerdns_zone" "uhl" {
+resource "hcloud_zone" "uhl" {
   name = "uhl.cx"
+  mode = "primary"
   ttl = 86400
+  delete_protection = true
 }
 
 locals {
@@ -18,19 +20,19 @@ locals {
   ])
 }
 
-resource "hetznerdns_record" "uhl" {
-  zone_id = hetznerdns_zone.uhl.id
+resource "hcloud_zone_rrset" "uhl" {
+  zone = hcloud_zone.uhl.name
   type = "A"
-  value = "49.12.239.37"
+  records = [ { value = "49.12.239.37" } ]
 
   for_each = local.subdomains
 
   name = each.value
 }
 
-resource "hetznerdns_record" "atproto" {
-  zone_id = hetznerdns_zone.uhl.id
+resource "hcloud_zone_rrset" "atproto" {
+  zone = hcloud_zone.uhl.name
   type = "TXT"
-  value = "did=did:plc:yfhhlh7xyjvsiexi3yy3ghqg"
+  records = [ { value = "\"did=did:plc:yfhhlh7xyjvsiexi3yy3ghqg\"" } ]
   name = "_atproto"
 }
