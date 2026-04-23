@@ -20,3 +20,6 @@ bindkey "^[[F"      end-of-line
 # Arrow Up + Down
 bindkey "^[[A"      history-search-backward
 bindkey "^[[B"      history-search-forward
+
+# VI Mode (Esc)
+bindkey -v
