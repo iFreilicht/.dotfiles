@@ -67,7 +67,7 @@
   # Nextcloud itself
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud32;
+    package = pkgs.nextcloud33;
     hostName = net.nextcloud.domain;
     home = mnt.nextcloud;
     configureRedis = true;
