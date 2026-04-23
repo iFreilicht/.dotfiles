@@ -15,12 +15,12 @@
       # resolve entries like _acme-challenge.cloud.uhl.cx properly, making the check fail
       dnsResolver = "1.1.1.1:53";
       credentialFiles = {
-        HETZNER_API_KEY_FILE = config.sops.secrets.hetzner-dns-api-key.path;
+        HETZNER_API_TOKEN_FILE = config.sops.secrets.hetzner-api-token.path;
       };
     };
   };
 
-  sops.secrets.hetzner-dns-api-key = {
+  sops.secrets.hetzner-api-token = {
     reloadUnits = [ "acme-cert-${net.domain}.service" ];
   };
 
