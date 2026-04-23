@@ -28,6 +28,10 @@ in
     };
   };
   config = {
+    # Bind is essential for my network to function properly, but it can crash
+    # because of a bug in libuv 1.52.0. This can be removed once that bug is fixed.
+    systemd.services.bind.serviceConfig.Restart = lib.mkForce "always";
+
     services.bind = {
       enable = true;
       forwarders = [
