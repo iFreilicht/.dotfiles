@@ -33,6 +33,7 @@ in
         keep_monthly = 6;
         keep_yearly = 10;
 
+        statistics = true;
         # These options are used when `borgmatic check` is run
         check_last = 3;
       };
