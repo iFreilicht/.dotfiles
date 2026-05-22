@@ -114,7 +114,7 @@
       ];
     };
     phpOptions = {
-      upload_max_filesize = lib.mkForce "4G";
+      upload_max_filesize = lib.mkForce "10G";
       memory_limit = lib.mkForce "8G";
       "opcache.interned_strings_buffer" = "23";
     };
