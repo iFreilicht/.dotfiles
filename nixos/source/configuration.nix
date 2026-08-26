@@ -126,10 +126,7 @@
 
   # Unlock GnuPG and SSH keys on login
   programs = {
-    gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.callPackage ../packages/pinentry-kwallet.nix { };
-    };
+    gnupg.agent.enable = true;
     ssh.startAgent = true;
   };
   security.pam.services.sshd.kwallet.enable = true;
