@@ -10,7 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     lutris # Universal game launcher
-    wineWowPackages.waylandFull # Native Wine, the only one you can't install with protonup
+    # wineWowPackages.waylandFull # Native Wine, the only one you can't install with protonup
     protonup-qt # GUI for installing custom Proton and Wine versions like GE_Proton
     winetricks # Useful tools for wine workarounds
     protontricks # Run winetricks on Proton prefixes
