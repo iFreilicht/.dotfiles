@@ -10,9 +10,13 @@ To deploy the server with the name `gateway` (maybe this could be integrated int
 
     nix run .#deploy.gateway.switch
 
-To rebuild the local system configuration:
+To rebuild the local system configuration on NixOS:
 
     nh os switch .
+
+To rebuild the local system configuraiton on macOS:
+
+    nh darwin switch .
 
 To update the dotfiles for the current user:
 
