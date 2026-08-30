@@ -10,7 +10,7 @@
     # Click on any build and then the "changes" link to find the full hash in the resulting URL.
     # Stable doesn't literally mean stable, it just means I can keep an older version of nixpkgs
     # around in case an update causes breakage, which happens somewhat frequently on macOS.
-    nixpkgs.url = "github:NixOS/nixpkgs/062346a6d85bc4b49dfaa61c986e9c5be21217d1";
+    nixpkgs.url = "github:NixOS/nixpkgs/56c02bc00adcf003215cc4bd996d6efaf4cff188";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/c42ef2eb2917e14a24949ec361ae166600fda5c6";
 
     flake-utils.url = "github:numtide/flake-utils";
