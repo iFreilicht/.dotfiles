@@ -101,6 +101,8 @@
       keepassxc
       vorta
       vscode
+      zed-editor
+      bubblewrap # For Zed agent sandboxing
       joplin-desktop
 
       kdePackages.discover
