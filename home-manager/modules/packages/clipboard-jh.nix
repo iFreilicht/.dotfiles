@@ -3,7 +3,7 @@
   # Clipboard integration for X11, Wayland, macOS, Windows and OSC 52
   # Used by my vim configuration to copy and paste to the system clipboard, even through ssh
   home.packages =
-    if pkgs.stdenv.isLinux then
+    if pkgs.stdenv.hostPlatform.isLinux then
       [
         # Clipboard has a bug on Wayland, use custom fix from https://github.com/Slackadays/Clipboard/pull/203
         (pkgs.clipboard-jh.overrideAttrs (oldAttrs: {

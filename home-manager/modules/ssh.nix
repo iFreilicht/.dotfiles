@@ -34,7 +34,7 @@
         User = "felix";
       };
     }
-    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
       # Use macOS keychain for ssh keys. This would fail on Linux or with nix-built ssh!
       "*" = {
         UseKeychain = "yes";
