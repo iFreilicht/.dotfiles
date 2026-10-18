@@ -45,6 +45,9 @@ in
     extraConfig = ''
       pasv_min_port=${toString ftp-pasv-min-port}
       pasv_max_port=${toString ftp-pasv-max-port}
+      # Show dotfiles in listings. Otherwise backup clients can't see them,
+      # re-upload them on every run and may treat them as deleted on the server.
+      force_dot_files=YES
     '';
   };
 
