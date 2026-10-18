@@ -125,7 +125,7 @@
   environment.systemPackages = with pkgs; [
     # Required for recognize. Check the "Node.js" box on https://cloud.uhl.cx/settings/admin/recognize
     # to see which version is currently required
-    nodejs_20
+    nodejs_24
   ];
 
   # Backups
