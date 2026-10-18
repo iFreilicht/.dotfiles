@@ -11,31 +11,34 @@
     package = null; # use the system's ssh package
     enableDefaultConfig = false; # Can be deleted once default values have been removed upstream
 
-    matchBlocks = {
+    settings = {
       "*" = {
-        addKeysToAgent = "yes";
-        userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
-        identityFile = "~/.ssh/id_ed25519";
+        AddKeysToAgent = "yes";
+        UserKnownHostsFile = [
+          "~/.ssh/known_hosts"
+          "~/.ssh/hm_known_hosts"
+        ];
+        IdentityFile = "~/.ssh/id_ed25519";
       };
       "github.com" = {
-        user = "git";
+        User = "git";
       };
       "git.uhl.cx" = {
-        user = "forgejo";
+        User = "forgejo";
       };
       gateway = {
-        hostname = net.gateway.wireguard.initialIP;
-        user = "felix";
+        HostName = net.gateway.wireguard.initialIP;
+        User = "felix";
       };
       junction = {
-        user = "felix";
+        User = "felix";
       };
     }
     // lib.optionalAttrs pkgs.stdenv.isDarwin {
       # Use macOS keychain for ssh keys. This would fail on Linux or with nix-built ssh!
       "*" = {
-        extraOptions.UseKeychain = "yes";
-        identityFile = [
+        UseKeychain = "yes";
+        IdentityFile = [
           "~/.ssh/id_ed25519"
           "~/.ssh/id_rsa"
         ];
@@ -43,12 +46,12 @@
     }
     // lib.optionalAttrs (config.home.username != "felix") {
       source = {
-        hostname = "source";
-        user = "felix";
+        HostName = "source";
+        User = "felix";
       };
       junction = {
-        hostname = "junction";
-        user = "felix";
+        HostName = "junction";
+        User = "felix";
       };
     };
 
