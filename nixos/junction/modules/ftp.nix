@@ -34,6 +34,10 @@ in
   # These can then be accessed fully via FTP.
   systemd.tmpfiles.rules = [ "d ${mnt.ftp}/stefan/album 0700 stefan ftp -" ];
 
+  # The vsftpd module only defines its PAM service when virtual users are enabled.
+  # Without it, PAM falls back to the "other" service, which denies every login.
+  security.pam.services.vsftpd = { };
+
   services.vsftpd = {
     enable = true;
     localUsers = true;
