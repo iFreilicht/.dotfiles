@@ -68,7 +68,15 @@ in
     ];
     environment = {
       BORG_PASSCOMMAND = "cat ${config.sops.secrets."borg/passphrase".path}";
+      # Borg only removes stale locks that were created with its own host id. By default that id
+      # includes uuid.getnode(), which falls back to a random value when no MAC address is found,
+      # so locks left behind by killed runs may never get cleaned up. A fixed id avoids that.
+      BORG_HOST_ID = "${net.junction.name}-borgmatic";
     };
+    # Oneshot services have no start timeout by default, so a hanging run (e.g. borgmatic
+    # waiting for database dumps that borg never reads) blocks all following backups.
+    # The longest regular runs take about 10h.
+    serviceConfig.TimeoutStartSec = "16h";
   };
   systemd.timers.borgmatic.timerConfig = {
     # Run the backup every hour, 15 minutes past the hour

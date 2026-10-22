@@ -66,10 +66,6 @@ in
         name = "jellyfin";
         path = "${mnt.jellyfin}/data/data/jellyfin.db";
       }
-      {
-        name = "jellyfin-library";
-        path = "${mnt.jellyfin}/data/data/library.db";
-      }
     ];
   };
 
