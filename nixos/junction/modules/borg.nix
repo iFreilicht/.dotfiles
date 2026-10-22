@@ -77,6 +77,14 @@ in
     # waiting for database dumps that borg never reads) blocks all following backups.
     # The longest regular runs take about 10h.
     serviceConfig.TimeoutStartSec = "16h";
+    # The upstream unit restricts root to reading files. But sqlite3 has to create the -shm file of
+    # WAL databases (e.g. Jellyfin's) when the owning service has no open connection, which needs
+    # CAP_DAC_OVERRIDE. CAP_CHOWN lets SQLite hand that file over to the database owner, so the
+    # service isn't locked out of its own database.
+    serviceConfig.CapabilityBoundingSet = [
+      "CAP_DAC_OVERRIDE"
+      "CAP_CHOWN"
+    ];
   };
   systemd.timers.borgmatic.timerConfig = {
     # Run the backup every hour, 15 minutes past the hour
