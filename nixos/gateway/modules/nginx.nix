@@ -56,15 +56,8 @@ in
     '';
 
     virtualHosts = {
-      ${net.nextcloud.domain} = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/".proxyPass = "http://${net.junction.wireguard.ip}:${toString net.nextcloud.port}";
-        extraConfig = ''
-          # Needs to be equivalent between the nginx instances on junction and gateway
-          client_max_body_size ${net.nextcloud.nginx_max_body_size};
-        '';
-      };
+      # Temporarily make nextcloud unavailable until PHP2Shell fix lands in NixOS
+      ${net.nextcloud.domain} = privateServiceHost;
 
       ${net.snapdrop.domain} = {
         enableACME = true;
