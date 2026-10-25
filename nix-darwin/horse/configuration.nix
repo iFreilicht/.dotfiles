@@ -12,7 +12,7 @@
   # Use Lix
   nix = {
     enable = true;
-    package = pkgs.lixPackageSets.lix_2_95.lix;
+    package = pkgs.lixPackageSets.lix_2_96.lix;
     settings.experimental-features = [
       "nix-command"
       "flakes"
@@ -24,7 +24,7 @@
   # Ensure tools relying on NixCpp use Lix instead
   nixpkgs.overlays = [
     (final: prev: {
-      inherit (prev.lixPackageSets.lix_2_95)
+      inherit (prev.lixPackageSets.lix_2_96)
         nixpkgs-review
         nix-eval-jobs
         nix-fast-build
