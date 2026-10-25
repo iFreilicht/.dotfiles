@@ -127,19 +127,22 @@ in
 
   # Advertise shares to macOS clients
   services.avahi = {
-    publish = {
-      enable = true;
-      userServices = true;
-      # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`
+    settings = {
+      publish = {
+        disable-publishing = false;
+        disable-user-service-publishing = false;
+        publish-addresses = true;
+        # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`)
+      };
+      server.allow-interfaces = [
+        "enp2s0"
+        "wg0"
+      ];
     };
     nssmdns4 = true;
     # ^^ Not one hundred percent sure if this is needed- if it aint broke, don't fix it
     enable = true;
     openFirewall = true;
-    allowInterfaces = [
-      "enp2s0"
-      "wg0"
-    ];
     extraServiceFiles = {
       timemachine = ''
         <?xml version="1.0" standalone='no'?>
