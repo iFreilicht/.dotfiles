@@ -16,10 +16,6 @@
     dataDir = mnt.mysql;
   };
 
-  # Initial pw file, required for first install
-  # ON REINSTALL: Change the admin password to a new random one
-  environment.etc."nextcloud-admin-pass".text = "default-admin-pass-plz-change";
-
   # Set port nextcloud is reachable on
   services.nginx.virtualHosts.${net.nextcloud.domain} = {
     listen = [
@@ -74,7 +70,6 @@
     database.createLocally = true;
     config = {
       dbtype = "mysql";
-      adminpassFile = "/etc/nextcloud-admin-pass";
     };
     settings = {
       trusted_proxies = [ net.gateway.wireguard.ip ];
