@@ -76,6 +76,12 @@ export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 # Install some npm packages by default with asdf nodejs
 export ASDF_NPM_DEFAULT_PACKAGES_FILE=$HOME/.config/asdf-default-npm-packages
 
+# Store Arcan's persistent data in ~/.arcan
+export ARCAN_RESOURCEPATH="$HOME/.arcan/resources"
+export ARCAN_APPLBASEPATH="$HOME/.arcan/appl"
+export ARCAN_SCRIPTPATH="$HOME/.arcan/scripts"
+export ARCAN_STATEPATH="$HOME/.arcan/state"
+
 # Let direnv hook into zsh. Used especially for nix
 if [[ $(command -v direnv) ]]; then
   eval "$(direnv hook zsh)"
