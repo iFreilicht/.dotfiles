@@ -19,7 +19,7 @@
     ];
   };
   # Run a VM to build aarch64-linux packages
-  nix.linux-builder.enable = true;
+  nix.linux-builder.enable = false; # Disable temporarily to free up RAM
 
   # Ensure tools relying on NixCpp use Lix instead
   nixpkgs.overlays = [
